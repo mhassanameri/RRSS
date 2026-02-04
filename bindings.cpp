@@ -17,7 +17,11 @@ py::class_<RandomRobustSS>(m, "RandomRobustSS")
 .def(py::init<int, int, int>(),
         py::arg("len"),
         py::arg("t"),
-        py::arg("lambda"))
+        py::arg("lambda_"))
+
+.def_readonly("len", &RandomRobustSS::_len)
+.def_readonly("t", &RandomRobustSS::_t)
+.def_readonly("lambda_", &RandomRobustSS::lambda_)
 
 .def_static("rrss_init",
 &RandomRobustSS::RRSS_Init)

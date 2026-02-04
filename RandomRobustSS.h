@@ -11,11 +11,14 @@
 
 class RandomRobustSS {
 public:
-    int _len,_t, _lambda;
+    int _len;
+    int _t;
+    int lambda_;
+
     RandomRobustSS(int len, int t, int lambda) {
         _len = len;
         _t = t;
-        _lambda = lambda;
+        lambda_ = lambda;
     }
 
     static int RRSS_Init(int min, int max);
