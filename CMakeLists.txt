@@ -20,6 +20,10 @@ pybind11_add_module(rrss
         RandomRobustSS.cpp
 )
 
+
+
+include_directories("ShamirSS")
+
 # Ensure the compiled Python extension is placed somewhere importable.
 # Putting it in the project root makes: `python -c "import rrss"` work from root.
 #set_target_properties(rrss PROPERTIES
