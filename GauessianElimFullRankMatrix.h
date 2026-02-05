@@ -8,8 +8,8 @@
 
 #include <vector>
 #include <stdexcept>
-#include "../ShamirSS/src/GF256.h"
-#include "../ShamirSS/src/shamir.h"
+#include "ShamirSS/GF256.h"
+#include "ShamirSS/shamir.h"
 #include <NTL/ZZ_pEX.h>
 
 #include <NTL/LLL.h>

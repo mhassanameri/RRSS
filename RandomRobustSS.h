@@ -23,6 +23,7 @@ using CryptoPP::PublicKey;
 #include <cryptopp/aes.h>
 using CryptoPP::AES;
 #include <cryptopp/filters.h>
+
 #include <cryptopp/hex.h>
 #include <cryptopp/osrng.h>
 using CryptoPP::RandomNumberGenerator;
@@ -32,7 +33,7 @@ static CryptoPP::AutoSeededRandomPool PRNG;  // instantiate only one class
 #include <cryptopp/channels.h>
 using CryptoPP::ChannelSwitch;
 
-
+#include <gmp.h>
 
 #include <NTL/LLL.h>
 #include <NTL/mat_ZZ_p.h>
@@ -48,6 +49,68 @@ using namespace shamir;
 #include "cryptopp/base64.h"
 
 
+class NTLParams
+{
+public:
+    vector<GF256::byte> V_pub; // the publickey known vector will be used to recover the valid shares, if the predicate holds
+    vec_ZZ_p V_pub_ZZ;
+    vector<int> R;
+    mat_ZZ_p Debug;
+    mpz_t P_GF_OrigShare;
+    mpz_t MaxM;
+    mpz_t MaxMEncoded;
+    mpz_t L_PackingParam;
+    mpz_t N_MaxMEncdo_Floor;
+    int m_V; //The number of publicly know values or the numebr of the equations in the system of equations. We set it as m_V = 3*_len in which _len is the numebr of the shares.
+
+    int lambda;
+    int n_bits;
+    int n_PackedPlain;
+    int _d_pack; //indicating the number of elements after encoding to Paillier plaintext.
+
+    /*
+     * Let T = \dfrac{2^{\left\lfloor \log_2\sqrt{N}\right\rfloor-k}} {4\times 2^\lambda n (2 * m +1)}
+     * then, d_LexpPack is maximized such that 2^d_LexpPack < T.
+     */
+
+    int d_LexpPack;
+    int r_LexpPack;
+
+    mpz_t exp_2_d_LexpPack; // stores 2 ^ d_LexpPack
+    mpz_t exp_2_r_LexpPack; // stores 2 ^ r_LexpPack
+
+    mpz_t RanEnc_Floor_d_LexpPack; // stores floor N/2^d_LexpPack
+    mpz_t RanEnc_Floor_r_LexpPack; // stores floor N/2^r_LexpPack
+
+    NTLParams(int m, int _len_,int _lambda, int _n_bits )
+    {
+        n_bits = _n_bits;
+        lambda = _lambda;
+        long a = 257;
+        ZZ_p::init(ZZ(a));
+        m_V = m;
+        V_pub_ZZ.SetLength(m);
+        Debug.SetDims(m,_len_);
+
+        // n_PackedPlain = PackedEncodingInitParams(_len_, m, _lambda, _n_bits);
+
+        SetV_pub(m);
+    }
+
+    // int PackedEncodingInitParams(const mpz_t N, int _len, int m, int lambda, int k);
+
+    void SetV_pub(int m);
+
+    // static int compute_d_LexpPack(const mpz_t N, int lambda, int k, int  _len, int m);
+
+    // void compute_floor_div_minus_one(mpz_t c, const mpz_t a, const mpz_t b);
+
+
+};
+
+
+
+
 class RandomRobustSS {
 public:
     int _len;
@@ -57,8 +120,9 @@ public:
     int _m; // The number of publicly know secret to be shares as the helper data. For this application and our paper we use _m =  3 *_len.
 
     int _n; // The number of the shares for identifying the (in)valid shares. It is enough to have $_n = 2* _len.
+    NTLParams NTL_params;
 
-    RandomRobustSS(int len, int t, int lambda) {
+    RandomRobustSS(int len, int t, int lambda): NTL_params(3*len,len,lambda, 128) {
         _len = len;
         _t = t;
         _n =  2 * _len;
@@ -68,9 +132,15 @@ public:
 
     static int RRSS_Init(int min, int max);
 //    static std::vector<std::string, std::vector<int>> ShareGen(int len, int t, int lambda, std::string Secret);
-    static std::vector<std::pair<std::string, std::vector<int>>> ShareGen(int len, int t, int lambda, const std::string& secret);
+    static std::vector<std::pair<std::string, std::vector<int>>> ShareGen(int len, int t, NTLParams NTL_params, const std::string& secret);
+    static std::string SecretReconstruction(int len, int t,  NTLParams NTL_params, std::vector<std::pair<std::string, std::vector<int>>> const Shares);
 
-    static std::string SecretReconstruction(int len, int t, int lambda, std::vector<std::pair<std::string, std::vector<int>>> const Shares);
+    static vec_ZZ_p ValidSharIndexFinder(mat_ZZ_p V_shares_NTL,int _len, int threshold, NTLParams NTL_params);
+    static bool RecoverSecretFromValidShares (const std::vector<std::string> &strShares,
+                                                int threshold,
+                                                const std::vector<int> &selected,
+                                                std::string &RecoveredSecret);
+
 };
 
 #endif //RRSS_RANDOMROBUSTSS_H
