@@ -15,6 +15,8 @@ See their impelementation here: https://github.com/seemoo-lab/fastzip/tree/main/
 - Cryptographic Library for symmetric and asymmetric cryptography: https://cryptography.io/en/latest/.
 - Two Raspberry Pi 3 Model devices with the default Raspbian connected to the same network.
 
+- DO this for adding our RRSS library:  export PYTHONPATH="../../../cmake-build-debug:$PYTHONPATH"
+
 ## Getting Started
 
 * Copy the "fPAKE" folder to the target devices (e.g., Raspberry Pis).
