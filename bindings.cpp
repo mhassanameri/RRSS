@@ -13,6 +13,25 @@ namespace py = pybind11;
 PYBIND11_MODULE(rrss, m) {
     py::class_<RandomRobustSS>(m, "RandomRobustSS")
             .def(py::init<int, int, int>(), py::arg("len"), py::arg("t"), py::arg("lambda_"))
+            .def_readonly("_len", &RandomRobustSS::_len)
+            .def_readonly("_t", &RandomRobustSS::_t)
+            .def_readonly("lambda_", &RandomRobustSS::lambda_)
+            .def_readonly("_m", &RandomRobustSS::_m)
+            .def_readonly("_n", &RandomRobustSS::_n)
+
+            .def("params",
+                 [](const RandomRobustSS &self) {
+                     py::dict d;
+                     d["len"] = self._len;
+                     d["t"] = self._t;
+                     d["lambda"] = self.lambda_;
+                     d["m"] = self._m;
+                     d["n"] = self._n;
+                     // add NTL_params fields if you want:
+                     // d["m_V"] = self.NTL_params.m_V;
+                     return d;
+                 })
+
 
             // Return (secret, shares_bytes_list)
             .def("sharegen_bytes",
@@ -39,7 +58,8 @@ PYBIND11_MODULE(rrss, m) {
                             std::string buf = b;
                             std::string id;
                             std::vector<int> v;
-                            unpack_share(buf, id, v);
+                            int len;
+                            unpack_share(buf, id, v, len);
 
                             // return id as raw bytes (safe even if not UTF-8)
                             return py::make_tuple(py::bytes(id), v);
@@ -78,7 +98,7 @@ PYBIND11_MODULE(rrss, m) {
                          std::string buf = b;
                          std::string id;
                          std::vector<int> v;
-                         unpack_share(buf, id, v);
+                         unpack_share(buf, id, v, self._len);
                          shares.emplace_back(std::move(id), std::move(v));
                      }
 

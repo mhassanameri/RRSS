@@ -1,2 +1,9 @@
 
 cmake-build-debug
+*.iml
+*.xml
+/external/fPAKE-benchmark/fPAKE/__pycache__
+/external/fPAKE-benchmark/fPAKE/helper/__pycache__
+/external/fPAKE-benchmark/fPAKE/LiPAKE/__pycache__
+/external/fPAKE-benchmark/fPAKE/RSS/__pycache__
+/external/fPAKE-benchmark/fPAKE/Connection/__pycache__
