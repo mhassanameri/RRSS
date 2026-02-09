@@ -187,12 +187,8 @@ class fPAKE:
             c_time_total += c_time
             time.start_time()
         #Send E + Signature + verification key + selected prime number to reconstruct
-        print("here3")
         self.connection.send((E, sig, vkBytes, rss.get_prime()))
-        print("here4")
         response = self.connection.receive()
-        print(response)
-        print("here5")
         while response != "accepted":
             #print((E, sig, vkBytes, rss.get_prime()))
             self.connection.send((E, sig, vkBytes, rss.get_prime()))
@@ -285,14 +281,11 @@ class fPAKE:
         while not accepted:
             try:
                 E, sig, vk, prime = self.connection.receive()
-                print("here000")
-                # print(E)
                 accepted = True
                 # self.connection.close()
                 self.connection.send("accepted")
                 
             except:
-                print("here111")
                 # self.connection.send("Failed")
                 print("Failed retrying")
                 # E, sig, vk, prime = self.connection.receive()

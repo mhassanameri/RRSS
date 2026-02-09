@@ -163,13 +163,17 @@ void NTLParams::SetV_pub(int m) {
         else if (thshld <threshold)
         {
 
+            // cout << "k: (" << k << ")" <<"\t";
+            indx = k/2;
             ValidShareIndx.push_back(indx);
-            indx++;
+            // indx++;
+            cout <<indx<<"\t";
             thshld++;
         }
 
 
     }
+    // cout <<"\n" <<ValidShareIndx.size() <<"\n";
     if (ValidShareIndx.size()< threshold)
     {
         cout <<"not enough shares\n";
@@ -202,34 +206,35 @@ vec_ZZ_p RandomRobustSS::ValidSharIndexFinder(mat_ZZ_p V_shares_NTL,int _len, in
     R_NTL.SetDims(NTL_params.m_V, _len); // Forming the lagrange coefficients to use in Solving system of the equations.
 
 
-    for (int i = 0; i< NTL_params.m_V;  i++)
-    {
-        for (int j = 0; j<_len; j++)
-        {
-            ZZ_p K;
-            K =1;
-            int counter = 0;
-            ZZ_p k_byte;
-            ZZ_p j_byte;
-            ZZ_p Aux_inv;
-            for(int k = 1; k< threshold+1; k++)
-            {
-                if (k ==j+1) continue;
-                if (counter < threshold)
-                {
-                    k_byte = k;
-                    j_byte = j+1;
-                    inv(Aux_inv, k_byte - j_byte);
-                    K = K * k_byte * Aux_inv;
-                    counter = counter +1;
-                }
-
-            }
-            R_NTL[i][j] = V_shares_NTL[i][j] * K;
-        }
-    }
+    // for (int i = 0; i< NTL_params.m_V;  i++)
+    // {
+    //     for (int j = 0; j<_len; j++)
+    //     {
+    //         ZZ_p K;
+    //         K =1;
+    //         int counter = 0;
+    //         ZZ_p k_byte;
+    //         ZZ_p j_byte;
+    //         ZZ_p Aux_inv;
+    //         for(int k = 1; k< threshold+1; k++)
+    //         {
+    //             if (k ==j+1) continue;
+    //             if (counter < threshold)
+    //             {
+    //                 k_byte = k;
+    //                 j_byte = j+1;
+    //                 inv(Aux_inv, k_byte - j_byte);
+    //                 K = K * k_byte * Aux_inv;
+    //                 counter = counter +1;
+    //             }
+    //
+    //         }
+    //         R_NTL[i][j] = V_shares_NTL[i][j] * K;
+    //     }
+    // }
     vec_ZZ_p x;
-    x = gauss_jordan_NTL_p(R_NTL,NTL_params.V_pub_ZZ);
+    // x = gauss_jordan_NTL_p(R_NTL,NTL_params.V_pub_ZZ);
+    x = gauss_jordan_NTL_p(V_shares_NTL,NTL_params.V_pub_ZZ);
     vec_ZZ_p RsltChk;
     RsltChk.SetLength(NTL_params.m_V);
 

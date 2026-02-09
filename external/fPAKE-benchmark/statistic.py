@@ -6,7 +6,7 @@ import os
 import glob
 import datetime
 
-default_folder = "results128" # "results244" Source folder of the results
+default_folder = "fPAKE/results128" # "results244" Source folder of the results
 
 
 def print_stats():

@@ -11,8 +11,8 @@ import re
 def get_finger_prints_gzip(path):
     return glob.glob(os.path.join(path,"**","*.gz"),recursive=True)
 def get_fingerprints_json(path):
-    # return glob.glob(os.path.join(path, "**", "result_*.json"), recursive=True)
-    return glob.glob(os.path.join(path,"**","result_[0-9][0-9]_[0-9][0-9]Sender.json"),recursive=True)
+    return glob.glob(os.path.join(path, "**", "result_*.json"), recursive=True)
+    # return glob.glob(os.path.join(path,"**","result_[0-9][0-9]_[0-9][0-9]Sender.json"),recursive=True)
 
 
 numberoOfExecution = range(3)
@@ -83,8 +83,8 @@ for seclvl in (0,1):
                 counter+=1
                 prints = stamps[s]
                 # print(prints)
-                fp1 = prints["fp"]
-                fp2 = prints["fp"]
+                fp = prints["fp"]
+                # fp2 = prints["fp"]
                 # fp = prints["fp"]
                 stamplayer[s] = {}
                 if role.lower() == "sender":
