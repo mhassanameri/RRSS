@@ -6,12 +6,13 @@ import gzip
 import json
 import os
 import glob
-
+import re
 
 def get_finger_prints_gzip(path):
     return glob.glob(os.path.join(path,"**","*.gz"),recursive=True)
 def get_fingerprints_json(path):
-    return glob.glob(os.path.join(path,"**","[0-9][0-9]_[0-9][0-9].json"),recursive=True)
+    # return glob.glob(os.path.join(path, "**", "result_*.json"), recursive=True)
+    return glob.glob(os.path.join(path,"**","result_[0-9][0-9]_[0-9][0-9]Sender.json"),recursive=True)
 
 
 numberoOfExecution = range(3)
@@ -29,13 +30,16 @@ config.read("config.ini")
 IP = config["DEFAULT"]["IP"]
 seclvl = int(config["DEFAULT"]["SECPARAM"])
 if role is None:
-    role = config["DEFAULT"]["ROLE"]
+    role = config["DEFAULT"]["ROLE"]   
 jsonpath = config["DEFAULT"]["JSONDIR"]
+
 pw = ""
+
+print(jsonpath)
 
 fps = get_fingerprints_json(jsonpath)
 fps.sort()
-
+# print(fps)
 def get_timing(interLayer):
     c = 0
     n = 0
@@ -46,8 +50,20 @@ def get_timing(interLayer):
 
 for seclvl in (0,1):
     for jsonfile in fps:
+        
         print(jsonfile)
-        k1,k2 = os.path.basename(jsonfile).split(".", 1)[0].split("_") #get numbers to read fp
+        name = os.path.basename(jsonfile)
+        m = re.match(r"result_(\d+)_(\d+)(Sender|Receiver)\.json$", name)
+        if not m:
+            raise ValueError(f"Unexpected filename format: {name}")
+        k1 = m.group(1)
+        k2 = m.group(2)
+        file_role = m.group(3)
+        
+        # k1,k2,k3= os.path.basename(jsonfile).split(".", 1)[0].split("_") #get numbers to read fp
+        # print(k1)
+        # print(k2)
+        # print(k3)
         filepath,_ = os.path.split(jsonfile)
         if seclvl == 0:
             result_filepath = os.path.join("results128",filepath)
@@ -66,9 +82,10 @@ for seclvl in (0,1):
             for s in stamps :
                 counter+=1
                 prints = stamps[s]
-                print(s)
-                fp1 = prints["fp"+k1]
-                fp2 = prints["fp"+k2]
+                # print(prints)
+                fp1 = prints["fp"]
+                fp2 = prints["fp"]
+                # fp = prints["fp"]
                 stamplayer[s] = {}
                 if role.lower() == "sender":
                     stamplayer[s]["role"] = role.lower()
@@ -85,18 +102,26 @@ for seclvl in (0,1):
                     interLayer = {}
                     exec_iteration["{:03d}".format(i)] = interLayer
                     finalpw = ""
+                    PORT = 10005
                     if role.lower() == "sender":
-                        conn = IPConnection(IP=IP)
+                        conn = IPConnection(IP="localhost", PORT =10005)
+                        # ok = conn.connect() 127.0.0.1
+                        # print("[Sender] connect() =", ok)
                         pw = fp1
+                        print(pw)
                         finalpw = fPAKE(weakPW=pw, connection=conn,securityParam=seclvl).init_Protocol(interLayer)
                     if role.lower() == "receiver":
-                        conn = IPConnection(IP="")
+                        conn = IPConnection(IP="localhost", PORT = 10005)
+                        print("[Receiver] waiting for connection on 0.0.0.0:10005 ...")
+                        # ok = conn.wait_for_connection()
+                        # print("[Receiver] wait_for_connection() =", ok)
                         pw = fp2
+                        print(pw)
                         finalpw = fPAKE(weakPW=pw, connection=conn, securityParam=seclvl).receive_protocol(interLayer)
                     interLayer["negotiated_key"] = ''.join(format(byte, '08b') for byte in finalpw)
                     network_timings.append(interLayer["total_network_time"])
                     computation_timings.append(interLayer["total_calculation_time"])
-                    #print("Final pw: ",''.join(format(byte, '02x') for byte in finalpw))
+                    print("Final pw: ",''.join(format(byte, '02x') for byte in finalpw))
                 stamplayer[s]["avg_network_time"] = statistics.mean(network_timings)
                 stamplayer[s]["avg_calculation_time"] = statistics.mean(computation_timings)
             os.makedirs(result_filepath,exist_ok=True)

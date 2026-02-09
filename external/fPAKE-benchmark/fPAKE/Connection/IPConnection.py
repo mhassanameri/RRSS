@@ -2,11 +2,12 @@ import socket
 from Connection.ConnectionInterface import ConnectionInterface
 from Connection.ConnectionInterface import CoudNotReadException
 import pickle
+import struct
 import time
-
 
 class IPConnection(ConnectionInterface):
     def __init__(self, IP="localhost", PORT = 10000):
+        self.is_server_connected = False
         self.address = (IP, PORT)
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR, 1)
@@ -23,28 +24,58 @@ class IPConnection(ConnectionInterface):
                 time.sleep(0.1)
         return True
 
+    # def wait_for_connection(self):
+    #     self.socket.bind(self.address)
+    #     self.socket.listen(1)
+    #     self.socket, self.info = self.socket.accept()  # should be blocking till connection is available
+    #     #self.socket.setblocking(0)
+    #     return True
+    
     def wait_for_connection(self):
+        if self.is_server_connected:
+            return True
+        
         self.socket.bind(self.address)
         self.socket.listen(1)
-        self.socket, self.info = self.socket.accept()  # should be blocking till connection is available
-        #self.socket.setblocking(0)
+        self.socket, self.info = self.socket.accept()
+        self.is_server_connected = True
         return True
 
-    def send(self, args):
-        data = pickle.dumps(args)
-        if args == None:
-            print("Data to send was none :D")
-        #self.logger.log(("Send:",args))
-        self.socket.sendall(data)
 
+    # def send(self, args):
+    #     data = pickle.dumps(args)
+    #     if args == None:
+    #         print("Data to send was none :D")
+    #     #self.logger.log(("Send:",args))
+    #     self.socket.sendall(data)
+
+    def _recvall(self, sock, n):
+        data = b""
+        while len(data) < n:
+            chunk = sock.recv(n - len(data))
+            if not chunk:
+                raise ConnectionError("Socket closed")
+            data += chunk
+        return data
+
+    def send(self, obj):
+        payload = pickle.dumps(obj, protocol=pickle.HIGHEST_PROTOCOL)
+        header = struct.pack("!I", len(payload))
+        self.socket.sendall(header + payload)
 
     def receive(self):
-        data = self.socket.recv(8192)
-        try :
-            tmp = pickle.loads(data)
-            return tmp
-        except:
-            return self._reread(data,1)
+        header = self._recvall(self.socket, 4)
+        (length,) = struct.unpack("!I", header)
+        payload = self._recvall(self.socket, length)
+        return pickle.loads(payload)
+
+    # def receive(self):
+    #     data = self.socket.recv(8192)
+    #     try :
+    #         tmp = pickle.loads(data)
+    #         return tmp
+    #     except:
+    #         return self._reread(data,1)
 
     def log(self,args):
         self.logger.log(args)

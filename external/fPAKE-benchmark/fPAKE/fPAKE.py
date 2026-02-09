@@ -68,11 +68,14 @@ class fPAKE:
         c_time_total = 0
         n_time = 0
         n_time_total = 0
+        print("here00")
         if not self.connection.connect():
+            print("here0")
             raise CouldNotConnectException()
+        
         if benchmark is not None:
             time = timer()
-
+        
         # Generate signingKey and get Verification key bytes to send
         signingKey = self.ed.generate()
         vk = signingKey.public_key()
@@ -85,6 +88,7 @@ class fPAKE:
         #Prepare for @LiPake exchange
         Ki = []
         key_array = b""
+        
         # Execute @LiPake over each bit of the password
         for i in self.pw:
 
@@ -96,8 +100,10 @@ class fPAKE:
             iv = os.urandom(16)  # We use fixed size of AES256 cause we can't get 128 Bit Keys with KDF
             lp = LiPake(pw=i, label=vkBytes, iv=iv, Hash=self.hash, mode=self.mode, curve=self.curve,
                         symmAlgo=self.symmAlgo, symmetricKeySize=self.keySize, n=self.n)
-            Xs, l = lp.getX()
+            
 
+            Xs, l = lp.getX()
+            
             if time is not None:  # This is only for benchmarking
                 c_time += time.stop_time()
                 time.start_time()
@@ -105,12 +111,14 @@ class fPAKE:
             # Send generated X receive Y
             self.connection.send((Xs, l, iv))
             Y, l = self.connection.receive()
+        
 
             if time is not None:  # This is only for benchmarking
                 n_time = time.stop_time()
                 time.start_time()
 
             k = lp.getKey(Y, l, self.ecpub, False)
+            # print(k)
             Ki.append(k)
             key_array += k
 
@@ -125,6 +133,7 @@ class fPAKE:
 
         # We use robust shamir secret sharing with reed solomon error correcting codes.
         # each key from lipake is 32 bit and we have 32 keys -> 32 * 32 will be the size of C
+        
         secretkey = os.urandom(self.n)
         rss = RSS.RSSCodes.robustShamir(self.pw.__len__(), 1, size=self.n)
         # secretkey, C = rss.shamir_share(secretkey)
@@ -133,13 +142,13 @@ class fPAKE:
         #Hrere We replace the RSS with Random Robust Secret Sharing, the CPP impelementation, 
         r = rr.RandomRobustSS(self.pw.__len__(), self.pw.__len__()-2, 8)
         
-        print(self.pw.__len__())
+        # print(self.pw.__len__())
         secret, shares = r.sharegen_bytes(secretkey)
-        print(r.params())
-        print(r._t)
+        # print(r.params())
+        # print(r._t)
 
-        print(len(shares[0]))
-        print(len(shares[1]))
+        # print(len(shares[0]))
+        # print(len(shares[1]))
 
 
         
@@ -168,32 +177,6 @@ class fPAKE:
             KiExtended = RSS.RSSCodes.hkdf_sha256(Ki[i], length=len(sh), info=b"KiExtented|" + i.to_bytes(4, "little"))
             E.append(RSS.RSSCodes.xor_bytes(sh, KiExtended))   # E[i] = share XOR KiExtented
 
-        shares = list(shares)
-        # print(shares[0])
-        # shares[0] = RSS.RSSCodes.xor_bytes(shares[1],E[0])
-        # shares[1] = RSS.RSSCodes.xor_bytes(shares[2],E[0])
-
-        # shares[2] = RSS.RSSCodes.xor_bytes(shares[5],E[0])
-        # shares[3] = RSS.RSSCodes.xor_bytes(shares[4],E[0])
-        # shares[4] = RSS.RSSCodes.xor_bytes(shares[6],E[4])
-        # shares[1] = shares[0]
-        # shares[2] = shares[0]
-        # shares[3] = shares[0]
-        # shares[4] = shares[0]
-        # shares[5] = shares[0]
-        # shares[6] = shares[0]
-
-        # print(shares[0])
-        U = r.reconstruct_bytes(shares)
-
-        print(b"Debuging")
-        print(U)
-        print(secretkey)
-
-        # E = []
-        # # E = C-K
-        # for i in range(self.pw.__len__()):
-        #     E.append(RSS.RSSCodes.XORBytes(C[i], Ki[i]))
 
         #Sign our E with the secret key
         sig = signingKey.sign(RSS.RSSCodes.list_to_byte(E))
@@ -204,8 +187,12 @@ class fPAKE:
             c_time_total += c_time
             time.start_time()
         #Send E + Signature + verification key + selected prime number to reconstruct
+        print("here3")
         self.connection.send((E, sig, vkBytes, rss.get_prime()))
+        print("here4")
         response = self.connection.receive()
+        print(response)
+        print("here5")
         while response != "accepted":
             #print((E, sig, vkBytes, rss.get_prime()))
             self.connection.send((E, sig, vkBytes, rss.get_prime()))
@@ -248,7 +235,10 @@ class fPAKE:
                 c_time = 0
                 time.start_time()
             # get Init Vectors as well as labels and X_s for LiPake
+            
             Xs, l1, iv = self.connection.receive()
+            
+            
 
             if time is not None:  # For Benchmarking only
                 n_time += time.stop_time()
@@ -271,11 +261,13 @@ class fPAKE:
                 time.start_time()
             # Send Y_s with its label
             self.connection.send((Ys, l2))
+            
             if time is not None:  # For Benchmarking only
                 n_time += time.stop_time()
                 time.start_time()
 
             k = lp.getKey(Xs, l1, self.ecpub, True)
+            # print(k)
             Ki.append(k)
             key_array += k
 
@@ -288,14 +280,20 @@ class fPAKE:
                                                                          "network_time": n_time}
                 time.start_time()
 
+        
         accepted = False
         while not accepted:
             try:
                 E, sig, vk, prime = self.connection.receive()
+                print("here000")
+                # print(E)
                 accepted = True
+                # self.connection.close()
                 self.connection.send("accepted")
+                
             except:
-                self.connection.send("Failed")
+                print("here111")
+                # self.connection.send("Failed")
                 print("Failed retrying")
                 # E, sig, vk, prime = self.connection.receive()
 
@@ -310,7 +308,7 @@ class fPAKE:
         #Replacing RSS with our new RRSS. 
         r = rr.RandomRobustSS(self.pw.__len__(), self.pw.__len__()-2, 8)
 
-        print(self.pw.__len__())
+        # print(self.pw.__len__())
 
 
 

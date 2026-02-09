@@ -9,3 +9,6 @@ cmake-build-debug
 /external/fPAKE-benchmark/fPAKE/Connection/__pycache__
 /external/fPAKE-benchmark/fPAKE/my_env
 /external/fPAKE-benchmark/fPAKE/venv
+/external/fPAKE-benchmark/results128
+/external/fPAKE-benchmark/results244
+/external/fPAKE-benchmark/fPAKE/results128
