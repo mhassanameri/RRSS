@@ -30,6 +30,7 @@ config.read("config.ini")
 IP = config["DEFAULT"]["IP"]
 seclvl = int(config["DEFAULT"]["SECPARAM"])
 if role is None:
+    print("rolefromConfigue")
     role = config["DEFAULT"]["ROLE"]   
 jsonpath = config["DEFAULT"]["JSONDIR"]
 
@@ -79,8 +80,9 @@ for seclvl in (0,1):
                 counter+=1
                 prints = stamps[s]
                 fp = prints["fp"]
-                stamplayer[s] = {}
+                # stamplayer[s] = {}
                 if role.lower() == file_role.lower():
+                    stamplayer[s] = {}
                     stamplayer[s]["role"] = role.lower()
                     stamplayer[s]["fp"] = fp
 
@@ -88,6 +90,8 @@ for seclvl in (0,1):
                     exec_iteration = stamplayer[s]["execution"]
                     network_timings = []
                     computation_timings = []
+                    SenderCommunicationOverhead = []
+                    RreceiverCommunicationOverhead= []
                     for i in numberoOfExecution:
                         print("Number of execution: ",i)
                         interLayer = {}
@@ -109,13 +113,20 @@ for seclvl in (0,1):
                         interLayer["negotiated_key"] = ''.join(format(byte, '08b') for byte in finalpw)
                         network_timings.append(interLayer["total_network_time"])
                         computation_timings.append(interLayer["total_calculation_time"])
+                        if(role.lower()=="sender"):
+                            SenderCommunicationOverhead.append(interLayer["total_sender_communication"])
+                        if(role.lower()=="receiver"):
+                            RreceiverCommunicationOverhead.append(interLayer["total_receiver_communication"])
                         print("Final pw: ",''.join(format(byte, '02x') for byte in finalpw))
                     stamplayer[s]["avg_network_time"] = statistics.mean(network_timings)
                     stamplayer[s]["avg_calculation_time"] = statistics.mean(computation_timings)
-            os.makedirs(result_filepath,exist_ok=True)
-            with open(os.path.join(result_filepath, "result_" + k1 + "_" + k2 + role + ".json"), "w") as f:
-                json.dump(benchrun, f,indent=4,sort_keys=True)
-                print("results saved: " + result_filepath)
+                    
+                    if(role.lower()== "sender"): stamplayer[s]["avg_Sender_CommOverhead"] = statistics.mean(SenderCommunicationOverhead)
+                    if(role.lower()== "receiver"): stamplayer[s]["avg_Receiver_CommOverhead"] = statistics.mean(RreceiverCommunicationOverhead)
+                    os.makedirs(result_filepath,exist_ok=True)
+                    with open(os.path.join(result_filepath, "result_" + k1 + "_" + k2 + role + ".json"), "w") as f:
+                        json.dump(benchrun, f,indent=4,sort_keys=True)
+                        print("results saved: " + result_filepath)
 
 
 print("finished")

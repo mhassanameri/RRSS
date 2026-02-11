@@ -16,6 +16,7 @@ See their impelementation here: https://github.com/seemoo-lab/fastzip/tree/main/
 - Two Raspberry Pi 3 Model devices with the default Raspbian connected to the same network.
 
 - DO this for adding our RRSS library:  export PYTHONPATH="../../../cmake-build-debug:$PYTHONPATH"
+- For release ubsude the path: External/fPAKE-benchmark/fPAKE run: export PYTHONPATH=../../../cmake-build-release
 
 ## Getting Started
 

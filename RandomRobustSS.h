@@ -28,7 +28,7 @@ using CryptoPP::AES;
 #include <cryptopp/osrng.h>
 using CryptoPP::RandomNumberGenerator;
 
-static CryptoPP::AutoSeededRandomPool PRNG;  // instantiate only one class
+// static CryptoPP::AutoSeededRandomPool PRNG;  // instantiate only one class
 
 #include <cryptopp/channels.h>
 using CryptoPP::ChannelSwitch;
@@ -116,9 +116,7 @@ public:
     int _len;
     int _t;
     int lambda_;
-
     int _m; // The number of publicly know secret to be shares as the helper data. For this application and our paper we use _m =  3 *_len.
-
     int _n; // The number of the shares for identifying the (in)valid shares. It is enough to have $_n = 2* _len.
     NTLParams NTL_params;
 

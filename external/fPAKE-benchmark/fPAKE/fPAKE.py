@@ -16,6 +16,7 @@ from helper.timer import timer
 import numpy as np
 
 import rrss as rr
+import pickle
 
 class fPAKE:
     """
@@ -56,6 +57,9 @@ class fPAKE:
             self.edpub = ed25519.Ed25519PublicKey
             self.keySize = 16  # Keysize of the Curve25519 public Key needed for symmetirc encryption to set the correct Block size so no padding is needed
             self.n = 16  # Security bits 128
+        
+        self.SenderCommOverhead = 0; 
+        self.ReceiverCommOverhead = 0; 
 
     def init_Protocol(self, benchmark=None):
         """
@@ -68,9 +72,7 @@ class fPAKE:
         c_time_total = 0
         n_time = 0
         n_time_total = 0
-        print("here00")
         if not self.connection.connect():
-            print("here0")
             raise CouldNotConnectException()
         
         if benchmark is not None:
@@ -107,6 +109,7 @@ class fPAKE:
             if time is not None:  # This is only for benchmarking
                 c_time += time.stop_time()
                 time.start_time()
+                
 
             # Send generated X receive Y
             self.connection.send((Xs, l, iv))
@@ -115,6 +118,11 @@ class fPAKE:
 
             if time is not None:  # This is only for benchmarking
                 n_time = time.stop_time()
+
+                PayloadSend = Xs,l,iv
+                serialized = pickle.dumps( PayloadSend, protocol=pickle.HIGHEST_PROTOCOL)
+                self.SenderCommOverhead += len(serialized)
+
                 time.start_time()
 
             k = lp.getKey(Y, l, self.ecpub, False)
@@ -144,32 +152,6 @@ class fPAKE:
         
         # print(self.pw.__len__())
         secret, shares = r.sharegen_bytes(secretkey)
-        # print(r.params())
-        # print(r._t)
-
-        # print(len(shares[0]))
-        # print(len(shares[1]))
-
-
-        
-        
-        # id_bytes,  vec = rr.RandomRobustSS.decode_share(shares[0])
-        # id_bytes1, vec1 = rr.RandomRobustSS.decode_share(shares[1])
-        # id_bytes2, vec2 = rr.RandomRobustSS.decode_share(shares[2])
-        # for i in range( len(vec)):
-        #     vec[i] ^= 0xFF
-        #     vec1[i] ^= 0xFF
-        #     vec2[i] ^= 0xFF
-        # shares[0] = rr.RandomRobustSS.encode_share(id_bytes, vec)
-        # shares[1] = rr.RandomRobustSS.encode_share(id_bytes1, vec1)
-        # shares[2] = rr.RandomRobustSS.encode_share(id_bytes2, vec2)
-        # print(shares[0])
-        
-
-        # U = r.reconstruct_bytes(shares)
-        # print(b"Debuging")
-        # print(U)
-        # print(secretkey)
 
 
         E =[]
@@ -196,6 +178,13 @@ class fPAKE:
 
         if time is not None:  # only for benchmarking purpose
             n_time = time.stop_time()
+            PayloadSend = E, sig, vkBytes, rss.get_prime()
+            serialized = pickle.dumps( PayloadSend, protocol=pickle.HIGHEST_PROTOCOL)
+            self.SenderCommOverhead += len(serialized)
+            benchmark["total_sender_communication"] = self.SenderCommOverhead
+            print(benchmark["total_sender_communication"] )
+            print(self.SenderCommOverhead)
+            print("hereSender")
             benchmark["rss_network_time"] = n_time
             n_time_total += n_time
             benchmark["total_calculation_time"] = c_time_total
@@ -260,6 +249,9 @@ class fPAKE:
             
             if time is not None:  # For Benchmarking only
                 n_time += time.stop_time()
+                PayloadSend = Ys,l2
+                serialized = pickle.dumps( PayloadSend, protocol=pickle.HIGHEST_PROTOCOL)
+                self.ReceiverCommOverhead += len(serialized)
                 time.start_time()
 
             k = lp.getKey(Xs, l1, self.ecpub, True)
@@ -341,6 +333,11 @@ class fPAKE:
             c_time_total += c_time
             benchmark["total_calculation_time"] = c_time_total
             benchmark["total_network_time"] = n_time_total
+            benchmark["total_receiver_communication"] = self.ReceiverCommOverhead
+            print(benchmark["total_receiver_communication"] )
+            print(self.ReceiverCommOverhead)
+            print("hereRece")
+
 
         # Close the connection and tell the other party to close the connection
         self.connection.send("finalize")

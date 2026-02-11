@@ -152,7 +152,7 @@ void NTLParams::SetV_pub(int m) {
 
     int thshld =0;
     int indx = 0;
-    int ret = 0;
+    string ret = 0;
     for (int k=0; k< 2*len; k=k+2)
     {
         if ((x[k] == 0 || x[k+1] ==0) && (thshld<threshold))
@@ -167,7 +167,7 @@ void NTLParams::SetV_pub(int m) {
             indx = k/2;
             ValidShareIndx.push_back(indx);
             // indx++;
-            cout <<indx<<"\t";
+            // cout <<indx<<"\t";
             thshld++;
         }
 
@@ -177,7 +177,7 @@ void NTLParams::SetV_pub(int m) {
     if (ValidShareIndx.size()< threshold)
     {
         cout <<"not enough shares\n";
-        ret =  -1;
+        secret =  "BOT";
     }
     else {
 

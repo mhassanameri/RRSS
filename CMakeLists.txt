@@ -84,7 +84,7 @@ target_link_libraries(rrss PUBLIC ${CRYPTOPP_LIBRARY})
 target_include_directories(rrss PUBLIC ${NTL_INCLUDE_DIRS})
 target_link_libraries(rrss PUBLIC ${NTL_LIBRARIES})
 target_link_libraries(rrss PUBLIC ntl gmp)
-target_link_libraries(rrss  ${GMP_STATIC_LIB})
+#target_link_libraries(rrss  ${GMP_STATIC_LIB})
 #target_link_libraries(condenccpp ${${GMP_SHARED_LIB}})
 target_link_libraries(rrss  ${GMP_LIBRAIES})
 
@@ -98,11 +98,13 @@ target_link_libraries(RRSS PUBLIC ntl)
 #target_include_directories(RRSS PRIVATE ${GMP_INCLUDE_DIRS})
 #target_link_libraries(RRSS PRIVATE ${GMP_LIBRARIES})
 
-target_link_libraries(RRSS  ${GMP_STATIC_LIB})
+#target_link_libraries(RRSS  ${GMP_STATIC_LIB})
 #target_link_libraries(condenccpp ${${GMP_SHARED_LIB}})
 target_link_libraries(RRSS  ${GMP_LIBRAIES})
 
 include_directories("ShamirSS")
+include_directories("paillier")
+add_subdirectory(srcCondEncArbHam)
 
 # Ensure the compiled Python extension is placed somewhere importable.
 # Putting it in the project root makes: `python -c "import rrss"` work from root.
@@ -111,3 +113,12 @@ include_directories("ShamirSS")
 #        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/cmake-build-debug"
 #        ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/cmake-build-debug"
 #)
+
+
+#Testing Conditional Encryption
+include(CTest)
+ENABLE_TESTING()
+add_subdirectory(testCondEncArbHam)
+
+
+file(COPY PWDvsTyposDataSet DESTINATION testCondEncArbHam )
