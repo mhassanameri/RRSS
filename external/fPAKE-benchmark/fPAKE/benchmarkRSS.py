@@ -1,4 +1,4 @@
-from fPAKERRSS import *
+from fPAKERSS import *
 import configparser
 import sys
 import statistics
@@ -31,7 +31,7 @@ IP = config["DEFAULT"]["IP"]
 seclvl = int(config["DEFAULT"]["SECPARAM"])
 if role is None:
     print("rolefromConfigue")
-    role = config["DEFAULT"]["ROLE"]   
+    role = config["DEFAULT"]["ROLE"]
 jsonpath = config["DEFAULT"]["JSONDIR"]
 
 pw = ""
@@ -51,7 +51,7 @@ def get_timing(interLayer):
 
 for seclvl in (0,1):
     for jsonfile in fps:
-        
+
         print(jsonfile)
         name = os.path.basename(jsonfile)
         m = re.match(r"result_(\d+)_(\d+)(Sender|Receiver)\.json$", name)
@@ -65,9 +65,9 @@ for seclvl in (0,1):
         rel_path = os.path.relpath(filepath, "../results128")
         
         if seclvl == 0:
-            result_filepath = os.path.join("RRSSresults128", rel_path)
+            result_filepath = os.path.join("RSSresults128", rel_path)
         else:
-            result_filepath = os.path.join("RRSSresults244", rel_path)
+            result_filepath = os.path.join("RSSresults244", rel_path)
 
         benchrun = {}
         benchrun["file"] = os.path.basename(jsonfile)
@@ -102,13 +102,13 @@ for seclvl in (0,1):
                         finalpw = ""
                         PORT = 10005
                         if role.lower() == "sender":
-                            conn = IPConnection(IP="localhost", PORT =10005)
+                            conn = IPConnection(IP="localhost", PORT =20005)
                             # print("[Sender] connect() =", ok)
                             pw = fp
                             # print(pw)
                             finalpw = fPAKE(weakPW=pw, connection=conn,securityParam=seclvl).init_Protocol(interLayer)
                         if role.lower() == "receiver":
-                            conn = IPConnection(IP="localhost", PORT = 10005)
+                            conn = IPConnection(IP="localhost", PORT = 20005)
                             # print("[Receiver] waiting for connection on 0.0.0.0:10005 ...")
                             pw = fp
                             # print(pw)
@@ -123,7 +123,7 @@ for seclvl in (0,1):
                         # print("Final pw: ",''.join(format(byte, '02x') for byte in finalpw))
                     stamplayer[s]["avg_network_time"] = statistics.mean(network_timings)
                     stamplayer[s]["avg_calculation_time"] = statistics.mean(computation_timings)
-                    
+
                     if(role.lower()== "sender"): stamplayer[s]["avg_Sender_CommOverhead"] = statistics.mean(SenderCommunicationOverhead)
                     if(role.lower()== "receiver"): stamplayer[s]["avg_Receiver_CommOverhead"] = statistics.mean(RreceiverCommunicationOverhead)
                     os.makedirs(result_filepath,exist_ok=True)

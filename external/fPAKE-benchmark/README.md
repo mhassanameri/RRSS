@@ -17,6 +17,7 @@ See their impelementation here: https://github.com/seemoo-lab/fastzip/tree/main/
 
 - DO this for adding our RRSS library:  export PYTHONPATH="../../../cmake-build-debug:$PYTHONPATH"
 - For release ubsude the path: External/fPAKE-benchmark/fPAKE run: export PYTHONPATH=../../../cmake-build-release
+- check the beasuy IP port to kill for fresh running: lsof -iTCP:10005 -sTCP:LISTEN
 
 ## Getting Started
 

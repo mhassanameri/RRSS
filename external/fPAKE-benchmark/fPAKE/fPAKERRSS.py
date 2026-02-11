@@ -148,10 +148,9 @@ class fPAKE:
 
 
         #Hrere We replace the RSS with Random Robust Secret Sharing, the CPP impelementation, 
-        r = rr.RandomRobustSS(self.pw.__len__(), self.pw.__len__()-2, 8)
-        
-        # print(self.pw.__len__())
+        r = rr.RandomRobustSS(self.pw.__len__(), self.pw.__len__()-2, 8)        
         secret, shares = r.sharegen_bytes(secretkey)
+        
 
 
         E =[]
@@ -182,9 +181,6 @@ class fPAKE:
             serialized = pickle.dumps( PayloadSend, protocol=pickle.HIGHEST_PROTOCOL)
             self.SenderCommOverhead += len(serialized)
             benchmark["total_sender_communication"] = self.SenderCommOverhead
-            print(benchmark["total_sender_communication"] )
-            print(self.SenderCommOverhead)
-            print("hereSender")
             benchmark["rss_network_time"] = n_time
             n_time_total += n_time
             benchmark["total_calculation_time"] = c_time_total
@@ -317,15 +313,9 @@ class fPAKE:
             KiExtented = RSS.RSSCodes.hkdf_sha256(Ki[i], length=len(E[i]), info=b"KiExtented|" + i.to_bytes(4, "little"))
             C.append(RSS.RSSCodes.xor_bytes(E[i], KiExtented))
         try:
-            # use RSS to reconstruct secret key if enough Kis were correct
-            # U = rss.shamir_robust_reconstruct(C)
             U = r.reconstruct_bytes(C)
-            print(b"The reconstructed Secret is:\n")
-            print(U)
         except:
             # If RSS was not successful the key is random
-            print(b"RRSS is not successfull\n")
-            print(len(E[0]))
             U = (os.urandom(self.n))
         if time is not None:  # For Benchmarking only
             c_time = time.stop_time()
@@ -334,9 +324,6 @@ class fPAKE:
             benchmark["total_calculation_time"] = c_time_total
             benchmark["total_network_time"] = n_time_total
             benchmark["total_receiver_communication"] = self.ReceiverCommOverhead
-            print(benchmark["total_receiver_communication"] )
-            print(self.ReceiverCommOverhead)
-            print("hereRece")
 
 
         # Close the connection and tell the other party to close the connection
