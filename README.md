@@ -1,4 +1,4 @@
-# RRSS
+# RRSS: Random Robust Secret sharing scheme
 
 RRSS is a C++20 project that provides:
 - **Robust secret sharing (RRSS)** primitives (Shamir-style + robustness/error-correction components).
@@ -60,17 +60,17 @@ A typical pattern is:
 Below are common package names on Ubuntu/Debian-like systems. Adjust for your distro.
 bash sudo apt-get update
 
-### Build tools
+- Build tools
  `sudo apt-get install -y build-essential cmake pkg-config` 
-### Core math/crypto deps
+- Core math/crypto deps
 `sudo apt-get install -y libgmp-dev libntl-dev libcrypto++-dev`
-### Python + pybind11
+- Python + pybind11
 `sudo apt-get install -y python3 python3-dev pybind11-dev`
-### Protobuf
+- Protobuf
 `sudo apt-get install -y protobuf-compiler libprotobuf-dev`
-### Testing
+- Testing
 `sudo apt-get install -y catch2'
-### Optional (only if your build links them)
+- Optional (only if your build links them)
 `sudo apt-get install -y libargon2-dev`
 
 SafeheronCryptoSuites is often installed from source or as a custom package.
@@ -167,28 +167,27 @@ From what’s visible in that header, these names are valid filters:
 - `HDAtmostTSemiEval`
 - `HDArbSemiFuncCheck`
 - `HDLMalEvalEstim`
-
-So, for example:\
-`bash$ ./tests "HDArbSemiFuncCheck"`
+- So, for example:
+  `bash$ ./tests "HDArbSemiFuncCheck"`
 ---
 
-## 7) Specification / design notes (fill in)
+## 6) Specification / design notes (fill in)
 
 Use this section to document protocol/security/parameter choices and interfaces.
 
-### 7.1 RRSS specification
+### 6.1 RRSS specification
 - Threshold / reconstruction requirements:
 - Error model and robustness guarantees:
 - Share size, encoding, field parameters:
 - Complexity notes:
 
-### 7.2 fPAKE integration notes
+### 6.2 fPAKE integration notes
 - Expected RRSS API surface exposed to Python:
 - Password representation assumptions:
 - Security parameter settings (e.g., 128/256-bit modes):
 - Network / serialization expectations:
 
-### 7.3 Conditional Encryption specification
+### 6.3 Conditional Encryption specification
 - Security model (e.g., semi-honest):
 - Supported predicates (e.g., AtMostT Hamming / Arbitrary Hamming):
 - Cryptographic assumptions and parameter sizes:
