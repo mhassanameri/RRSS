@@ -157,7 +157,7 @@ TEST_CASE("HDArbSemiFuncCheck") {
 }
 
 
-TEST_CASE("HDLMalEvalEstim")
+TEST_CASE("HDLSemiEvalEstim")
 {
     /*
      * In this Test case, we compare the estimated running time with the actual running time required to execute the
@@ -183,7 +183,7 @@ TEST_CASE("HDLMalEvalEstim")
     // rslt  = testCondEncHamDist(n_lambda_, Num_tests, _len, MaxHam);
     vector<double> T_Outs(3);
 
-    string File  = "dataMalAtmostTEstimate.dat";
+    string File  = "dataSemiAtmostTEstimate.dat";
 
     std::ofstream HamdDisAtMostDEstimate(File, std::ios_base::app | std::ios_base::out);
     HamdDisAtMostDEstimate << "n\td\tCondDec\n";  //it considers the Proof of Good Key as part of the ctx as KB
