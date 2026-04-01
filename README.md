@@ -226,8 +226,8 @@ Use this section to document protocol/security/parameter choices and interfaces.
 - Public-key components used (Paillier, etc.): We use Paillier Public key scheme as the underlying public key encryption as the building blocks since it provides the ciphertext addition homomorphic and ciphertext-plaintext multiplication property. 
 ---
 
-## 8) How to cite / authorship
-This repository contains the open-source implementation corresponding to a paper that is currently under review. To preserve the integrity of the double-blind review process, we do not include the paper title, author list, or preprint link at this time.
+### 8) How to cite / authorship
+- This repository contains the open-source implementation corresponding to a paper that is currently under review. To preserve the integrity of the double-blind review process, we do not include the paper title, author list, or preprint link at this time.
 
-If the paper is accepted, or once an anonymized public preprint becomes available, we will update this repository with the full citation and, if applicable, an ePrint/arXiv link.
+- If the paper is accepted, or once an anonymized public preprint becomes available, we will update this repository with the full citation and, if applicable, an ePrint/arXiv link.
 ---
