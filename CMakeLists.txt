@@ -7,28 +7,87 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 find_package(pybind11 CONFIG REQUIRED)
 
-#Finding the cryptoPP package.
+# -----------------------------
+# Crypto++
+# -----------------------------
 find_path(CRYPTOPP_INCLUDE_DIR
-        NAMES cryptopp
-        PATHS /usr/include /usr/local/include)
+        NAMES cryptopp/cryptlib.h
+        PATHS /usr/include /usr/local/include
+)
 
 find_library(CRYPTOPP_LIBRARY
         NAMES cryptopp libcryptopp
-        PATHS /usr/lib /usr/local/lib /usr/lib/x86_64-linux-gnu)
+        PATHS /usr/lib /usr/local/lib /usr/lib/x86_64-linux-gnu
+)
 
 if(NOT CRYPTOPP_INCLUDE_DIR OR NOT CRYPTOPP_LIBRARY)
         message(FATAL_ERROR "Crypto++ not found. Install libcrypto++-dev")
 endif()
 
-find_library(NTL_STATIC_LIB libntl.a NTL_LIBRARIES)
-link_directories(${NTL_LIBRARIES})
-include_directories(${NTL_INCLUDE_DIRS})
+# -----------------------------
+# NTL
+# -----------------------------
+find_path(NTL_INCLUDE_DIR
+        NAMES NTL/ZZ_pEX.h
+        PATHS /usr/include /usr/local/include
+)
 
-link_directories(${GMP_LIBRARIES})
-include_directories(${GMP_INCLUDE_DIRS})
+find_library(NTL_LIBRARY
+        NAMES ntl libntl
+        PATHS /usr/lib /usr/local/lib /usr/lib/x86_64-linux-gnu
+)
 
+if(NOT NTL_INCLUDE_DIR OR NOT NTL_LIBRARY)
+        message(FATAL_ERROR "NTL not found. Install libntl-dev")
+endif()
 
-add_executable(RRSS main.cpp
+# -----------------------------
+# GMP
+# -----------------------------
+find_path(GMP_INCLUDE_DIR
+        NAMES gmp.h
+        PATHS
+        /usr/include
+        /usr/include/x86_64-linux-gnu
+        /usr/local/include
+)
+
+find_library(GMP_SHARED_LIB
+        NAMES gmp libgmp
+        PATHS /usr/lib /usr/local/lib /usr/lib/x86_64-linux-gnu
+)
+
+find_library(GMP_STATIC_LIB
+        NAMES libgmp.a gmp.a
+        PATHS /usr/lib /usr/local/lib /usr/lib/x86_64-linux-gnu
+)
+
+if(NOT GMP_INCLUDE_DIR OR NOT GMP_SHARED_LIB)
+        message(FATAL_ERROR "GMP not found. Install libgmp-dev")
+endif()
+
+# -----------------------------
+# Argon2
+# -----------------------------
+find_path(ARGON2_INCLUDE_DIR
+        NAMES argon2.h
+        PATHS /usr/include /usr/local/include
+)
+
+find_library(ARGON2_LIBRARY
+        NAMES argon2 libargon2
+        PATHS /usr/lib /usr/local/lib /usr/lib/x86_64-linux-gnu
+)
+
+if(NOT ARGON2_INCLUDE_DIR OR NOT ARGON2_LIBRARY)
+        message(FATAL_ERROR "Argon2 not found. Install libargon2-dev")
+endif()
+
+# -----------------------------
+# Main executable
+# -----------------------------
+add_executable(RRSS
+        main.cpp
         RandomRobustSS.cpp
         RandomRobustSS.h
         GauessianElimFullRankMatrix.h
@@ -37,10 +96,23 @@ add_executable(RRSS main.cpp
         ShamirSS/GF256.h
         ShamirSS/shamir.cpp
         ShamirSS/shamir.h
-        #        bindings.cpp
-        )
+)
 
+target_include_directories(RRSS PUBLIC
+        ${CRYPTOPP_INCLUDE_DIR}
+        ${NTL_INCLUDE_DIR}
+        ${GMP_INCLUDE_DIR}
+)
 
+target_link_libraries(RRSS PUBLIC
+        ${CRYPTOPP_LIBRARY}
+        ${NTL_LIBRARY}
+        ${GMP_SHARED_LIB}
+)
+
+# -----------------------------
+# Python module
+# -----------------------------
 pybind11_add_module(rrss
         WrapperPackShares.cpp
         WrapperPackShares.h
@@ -55,70 +127,34 @@ pybind11_add_module(rrss
         ShamirSS/shamir.h
 )
 
-
 set_target_properties(rrss PROPERTIES
         OUTPUT_NAME "rrss"
-        PREFIX ""   # ensures it’s rrss*.so, not librrss*.so
+        PREFIX ""
 )
 
-#set_target_properties(rrss PROPERTIES
-#        LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}"
-#)
+target_include_directories(rrss PUBLIC
+        ${CRYPTOPP_INCLUDE_DIR}
+        ${NTL_INCLUDE_DIR}
+        ${GMP_INCLUDE_DIR}
+)
 
+target_link_libraries(rrss PUBLIC
+        ${CRYPTOPP_LIBRARY}
+        ${NTL_LIBRARY}
+        ${GMP_SHARED_LIB}
+)
 
-#Finding the cryptoPP package.
-find_path(CRYPTOPP_INCLUDE_DIR
-        NAMES cryptopp
-        PATHS /usr/include /usr/local/include)
-
-find_library(CRYPTOPP_LIBRARY
-        NAMES cryptopp libcryptopp
-        PATHS /usr/lib /usr/local/lib /usr/lib/x86_64-linux-gnu)
-
-if(NOT CRYPTOPP_INCLUDE_DIR OR NOT CRYPTOPP_LIBRARY)
-        message(FATAL_ERROR "Crypto++ not found. Install libcrypto++-dev")
-endif()
-
-target_include_directories(rrss PUBLIC ${CRYPTOPP_INCLUDE_DIR})
-target_link_libraries(rrss PUBLIC ${CRYPTOPP_LIBRARY})
-target_include_directories(rrss PUBLIC ${NTL_INCLUDE_DIRS})
-target_link_libraries(rrss PUBLIC ${NTL_LIBRARIES})
-target_link_libraries(rrss PUBLIC ntl gmp)
-#target_link_libraries(rrss  ${GMP_STATIC_LIB})
-#target_link_libraries(condenccpp ${${GMP_SHARED_LIB}})
-target_link_libraries(rrss  ${GMP_LIBRAIES})
-
-target_include_directories(RRSS PUBLIC ${CRYPTOPP_INCLUDE_DIR})
-target_link_libraries(RRSS PUBLIC ${CRYPTOPP_LIBRARY})
-
-target_include_directories(RRSS PUBLIC ${NTL_INCLUDE_DIRS})
-target_link_libraries(RRSS PUBLIC ${NTL_LIBRARIES})
-target_link_libraries(RRSS PUBLIC ntl)
-
-#target_include_directories(RRSS PRIVATE ${GMP_INCLUDE_DIRS})
-#target_link_libraries(RRSS PRIVATE ${GMP_LIBRARIES})
-
-#target_link_libraries(RRSS  ${GMP_STATIC_LIB})
-#target_link_libraries(condenccpp ${${GMP_SHARED_LIB}})
-target_link_libraries(RRSS  ${GMP_LIBRAIES})
-
+# -----------------------------
+# Extra include dirs
+# -----------------------------
 include_directories("ShamirSS")
 include_directories("paillier")
+
+# These subdirectories expect ARGON2_LIBRARY and GMP_STATIC_LIB
 add_subdirectory(srcCondEncArbHam)
 
-# Ensure the compiled Python extension is placed somewhere importable.
-# Putting it in the project root makes: `python -c "import rrss"` work from root.
-#set_target_properties(rrss PROPERTIES
-#        LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/cmake-build-debug"
-#        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/cmake-build-debug"
-#        ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/cmake-build-debug"
-#)
-
-
-#Testing Conditional Encryption
 include(CTest)
-ENABLE_TESTING()
+enable_testing()
 add_subdirectory(testCondEncArbHam)
 
-
-file(COPY PWDvsTyposDataSet DESTINATION testCondEncArbHam )
+file(COPY PWDvsTyposDataSet DESTINATION testCondEncArbHam)
