@@ -182,6 +182,94 @@ vec_ZZ_p gauss_jordan_NTL_p(mat_ZZ_p A, vec_ZZ_p R)
 }
 
 
+vec_GF2E gauss_jordan_GF2E(mat_GF2E A, vec_GF2E R)
+{
+    long m = A.NumRows();
+    long n = A.NumCols();
+
+    if (R.length() != m) {
+        throw std::runtime_error("Dimension mismatch in gauss_jordan_GF2E.");
+    }
+
+    mat_GF2E augmented;
+    augmented.SetDims(m, n + 1);
+
+    for (long i = 0; i < m; i++) {
+        for (long j = 0; j < n; j++) {
+            augmented[i][j] = A[i][j];
+        }
+        augmented[i][n] = R[i];
+    }
+
+    vec_long pivot_col;
+    pivot_col.SetLength(std::min(m, n));
+
+    long rank = 0;
+
+    for (long col = 0; col < n && rank < m; col++) {
+        long pivot_row = -1;
+
+        for (long row = rank; row < m; row++) {
+            if (!IsZero(augmented[row][col])) {
+                pivot_row = row;
+                break;
+            }
+        }
+
+        if (pivot_row == -1) {
+            continue;
+        }
+
+        if (pivot_row != rank) {
+            swap(augmented[rank], augmented[pivot_row]);
+        }
+
+        GF2E pivot = augmented[rank][col];
+        GF2E inv_pivot;
+        inv(inv_pivot, pivot);
+
+        for (long j = col; j < n + 1; j++) {
+            augmented[rank][j] *= inv_pivot;
+        }
+
+        for (long row = rank + 1; row < m; row++) {
+            GF2E factor = augmented[row][col];
+
+            if (!IsZero(factor)) {
+                for (long j = col; j < n + 1; j++) {
+                    augmented[row][j] -= factor * augmented[rank][j];
+                }
+            }
+        }
+
+        pivot_col[rank] = col;
+        rank++;
+    }
+
+    vec_GF2E X;
+    X.SetLength(n);
+
+    for (long i = 0; i < n; i++) {
+        clear(X[i]);
+    }
+
+    for (long r = rank - 1; r >= 0; r--) {
+        long col = pivot_col[r];
+
+        GF2E value = augmented[r][n];
+
+        for (long j = col + 1; j < n; j++) {
+            value -= augmented[r][j] * X[j];
+        }
+
+        X[col] = value;
+
+        if (r == 0) break; // avoid long underflow issue
+    }
+
+    return X;
+}
+
 // Function to perform Gaussian elimination in the field Z_p
 vector<vector<int>> gauss_jordan_mod(vector<vector<int>> A, vector<vector<int>> R, int p) {
     int m = A.size();

@@ -44,14 +44,17 @@ typedef vec_ZZ shares_NTL;
     shares_NTL* createShares_NTL(std::string secret);
     // shares_NTL_p* createShares_NTL_p(ZZ_p secret);
     vec_ZZ_p createShares_NTL_p(ZZ_p secret);
-    vec_GF2E createShares_GF2E(const GF2E& secret, long numShares, long threshold);
+    vec_GF2E createShares_GF2E(const GF2E& secret);
 
     std::string getSecret(shares* Kshares);
     /*
    * Some useful wrapper functions:
    */
-    long smallest_lambda1_for_2n(long n);
+    long smallest_lambda1_for_field_size(long required_points);
     void init_GF2E_field(long lambda1);
+    static GF2E int_to_GF2E(unsigned long a);
+    static int GF2E_to_int(const GF2E& a);
+
 
   };
   /*

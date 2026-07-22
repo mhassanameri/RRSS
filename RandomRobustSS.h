@@ -54,6 +54,7 @@ class NTLParams
 public:
     vector<GF256::byte> V_pub; // the publickey known vector will be used to recover the valid shares, if the predicate holds
     vec_ZZ_p V_pub_ZZ;
+    vec_GF2E V_pub_GF2E;
     vector<int> R;
     mat_ZZ_p Debug;
     mpz_t P_GF_OrigShare;
@@ -133,7 +134,8 @@ public:
     static std::vector<std::pair<std::string, std::vector<int>>> ShareGen(int len, int t, NTLParams NTL_params, const std::string& secret);
     static std::string SecretReconstruction(int len, int t,  NTLParams NTL_params, std::vector<std::pair<std::string, std::vector<int>>> const Shares);
 
-    static vec_ZZ_p ValidSharIndexFinder(mat_ZZ_p V_shares_NTL,int _len, int threshold, NTLParams NTL_params);
+    static vec_ZZ_p ValidSharIndexFinder(       mat_ZZ_p V_shares_NTL,  int _len, int threshold, NTLParams NTL_params);
+    static vec_GF2E ValidSharIndexFinder_GF2E(  mat_GF2E V_shares_GF2E, int _len, int threshold, NTLParams NTL_params);
     static bool RecoverSecretFromValidShares (const std::vector<std::string> &strShares,
                                                 int threshold,
                                                 const std::vector<int> &selected,
