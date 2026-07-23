@@ -15,7 +15,11 @@ typedef vector<vector<point>> shares;
 scheme::scheme(int members,int threshold){
     n = members;
     k = threshold;
-    GF_2E_degree =  smallest_lambda1_for_field_size(n); // for example, when n = 256, we have GF_2E_degree = 9, and we get  GF_2^9
+    GF_2E_degree = std::max(
+    smallest_lambda1_for_field_size(n),
+    ceil_div(2 * _lambda, n) // we want \lambda_1 > \lambda/len, here: n  = 2 * len.
+);
+    // GF_2E_degree =  smallest_lambda1_for_field_size(n); // for example, when n = 256, we have GF_2E_degree = 9, and we get  GF_2^9
     init_GF2E_field(GF_2E_degree);
 
 }
@@ -236,4 +240,11 @@ long scheme::smallest_lambda1_for_field_size(long required_points) {
     }
 
     return lambda1;
+}
+
+long scheme::ceil_div(long a, long b) {
+    if (b <= 0) {
+        throw std::invalid_argument("denominator must be positive");
+    }
+    return (a + b - 1) / b;
 }

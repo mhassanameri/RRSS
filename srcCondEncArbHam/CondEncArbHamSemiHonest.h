@@ -85,7 +85,7 @@ public:
 
 	int PackedEncodingInitParams_old(int _len, int m, int lambda, int n_bits);
 
-	int PackedEncodingInitParams(const mpz_t N, int _len, int m, int lambda, int k);
+	int PackedEncodingInitParams(const mpz_t N, int _len, int m, int lambda,int lambda_1, int k);
 
 	static int compute_d_LexpPack(const mpz_t N, int lambda, int k, int  _len, int m);
 
@@ -144,7 +144,8 @@ public:
 		_k = k; //For conditional Encryption for Hamming distnace we set it as k =4.
 
 		CondKeyPair.initialize(n_bits, _MinPQ, _k); // if WithNIZK is true, then the keys are generated with NIZK implying PK is in GOODKEY
-		NTL_ArbHam_params.PackedEncodingInitParams(CondKeyPair._ppk->n, _len, NTL_ArbHam_params.RRSS._m, _lambda, _k);
+		NTL_ArbHam_params.PackedEncodingInitParams(CondKeyPair._ppk->n, _len, NTL_ArbHam_params.RRSS._m, _lambda,
+			 NTL_ArbHam_params.RRSS.NTL_params.GF_2E_SS.get_GF2E_degree(), _k);
 	}
 
     /* API Documentation

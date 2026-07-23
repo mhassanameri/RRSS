@@ -34,11 +34,14 @@ int  a_VectAverageCalc(int Num_tests);
 int plot();
 
 
+
+
+
 TEST_CASE("HDArbSemiEval") {
 
     int  n_lambda_ =3072;
     int lambda =128; //the security level.
-    int Num_tests = 20;
+    int Num_tests = 10;
     double rslt = 0;
 
     string File  = "dataHamArbSemi.dat";
@@ -49,6 +52,7 @@ TEST_CASE("HDArbSemiEval") {
 
 
     vector<int> len = {8,16, 32, 64, 128};
+    // vector<int> len = {8,16,};
     vector<int> _ell = {2, 4, 8, 16, 32, 64};
 
     for (auto l:len)
@@ -110,7 +114,7 @@ TEST_CASE("HDArbSemiFuncCheck") {
     int lambda =128; //the security level.
     int Num_tests = 20;
     double rslt = 0;
-    int len = 32;
+    int len = 64;
     int ell = 4;
     int m = 3 *len;
     int Threshold  =len - ell;
@@ -118,7 +122,7 @@ TEST_CASE("HDArbSemiFuncCheck") {
     int k = 5;
 
     string msg = "Tes111";
-    string typo = "Tes001";
+    string typo = "T00000";
     string payload = CryptoSymWrapperFunctions::Wrapper_pad( typo, len);
     cout << msg.size() << "\t" <<typo.size() << "\n";
     cout << msg << "\t" <<typo << "\n";

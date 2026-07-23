@@ -74,7 +74,7 @@ void NTLParams::SetV_pub(int m) {
 
      // shamir::init();//to initialise the library functions.Must be used to use the library.
 
-    scheme GF_2E_SS(static_cast<int>(2*len),2*threshold); //For the security reasons we need to 2n shares with threshold 2*threshold
+    // scheme GF_2E_SS(static_cast<int>(2*len),2*threshold); //For the security reasons we need to 2n shares with threshold 2*threshold
 
 
     // shamir::shares* GF256_shares = GF256SS.createShares("0");
@@ -96,7 +96,7 @@ void NTLParams::SetV_pub(int m) {
      for (auto r:NTL_params.V_pub_GF2E)
      {
          // vec_ZZ_p  GF256_shares_NTL= GF256SS.createShares_NTL_p( r);
-         vec_GF2E  GF_2E_shares_NTL= GF_2E_SS.createShares_GF2E( r);
+         vec_GF2E  GF_2E_shares_NTL= NTL_params.GF_2E_SS.createShares_GF2E( r);
 
          int count_n = 0;
          for (int j = 0; j<len; j++)

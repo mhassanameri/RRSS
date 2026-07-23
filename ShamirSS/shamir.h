@@ -27,6 +27,7 @@ typedef vec_ZZ shares_NTL;
 
   class scheme{
     int n,k;
+    int _lambda = 128;
     long GF_2E_degree;
   public:
     typedef struct point_p{
@@ -54,6 +55,12 @@ typedef vec_ZZ shares_NTL;
     void init_GF2E_field(long lambda1);
     static GF2E int_to_GF2E(unsigned long a);
     static int GF2E_to_int(const GF2E& a);
+
+    long get_GF2E_degree() const {
+      return GF_2E_degree;
+    }
+
+    long ceil_div(long a, long b);
 
 
   };

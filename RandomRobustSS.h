@@ -55,6 +55,8 @@ public:
     vector<GF256::byte> V_pub; // the publickey known vector will be used to recover the valid shares, if the predicate holds
     vec_ZZ_p V_pub_ZZ;
     vec_GF2E V_pub_GF2E;
+    bool is_RRSSNTLParamInitialized = false;
+    scheme GF_2E_SS; //For the security reasons we need to 2n shares with threshold 2*threshold
     vector<int> R;
     mat_ZZ_p Debug;
     mpz_t P_GF_OrigShare;
@@ -83,7 +85,7 @@ public:
     mpz_t RanEnc_Floor_d_LexpPack; // stores floor N/2^d_LexpPack
     mpz_t RanEnc_Floor_r_LexpPack; // stores floor N/2^r_LexpPack
 
-    NTLParams(int m, int _len_,int _lambda, int _n_bits )
+    NTLParams(int m, int _len_, int _t_, int _lambda, int _n_bits ): GF_2E_SS(2*_len_,2*_t_)
     {
         n_bits = _n_bits;
         lambda = _lambda;
@@ -94,8 +96,13 @@ public:
         Debug.SetDims(m,_len_);
 
         // n_PackedPlain = PackedEncodingInitParams(_len_, m, _lambda, _n_bits);
+        if (!is_RRSSNTLParamInitialized) {
+            SetV_pub(m);
+            is_RRSSNTLParamInitialized = true;
+        }else {
+            throw std::logic_error("RRSS params are already initialized");
+        }
 
-        SetV_pub(m);
     }
 
     // int PackedEncodingInitParams(const mpz_t N, int _len, int m, int lambda, int k);
@@ -121,7 +128,9 @@ public:
     int _n; // The number of the shares for identifying the (in)valid shares. It is enough to have $_n = 2* _len.
     NTLParams NTL_params;
 
-    RandomRobustSS(int len, int t, int lambda): NTL_params(3*len,len,lambda, 128) {
+
+
+    RandomRobustSS(int len, int t, int lambda): NTL_params(3*len,len, t, lambda, 128){
         _len = len;
         _t = t;
         _n =  2 * _len;
