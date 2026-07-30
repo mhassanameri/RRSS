@@ -130,7 +130,7 @@ public:
 
 
 
-    RandomRobustSS(int len, int t, int lambda): NTL_params(3*len,len, t, lambda, 128){
+    RandomRobustSS(int len, int t, int lambda): NTL_params(3*len,len, t, lambda, 3096){
         _len = len;
         _t = t;
         _n =  2 * _len;

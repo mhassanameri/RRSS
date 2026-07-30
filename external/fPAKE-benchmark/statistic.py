@@ -68,7 +68,7 @@ for file in files:
         overall.append((js["results"][result]["avg_network_time"]+js["results"][result]["avg_calculation_time"])/1000000000)
         lastkey = js["results"][result]["fp"].__len__()
         # if js["results"][result]["avg_Sender_CommOverhead"] is not None:
-        # avg_send_commoverhead.append(js["results"][result]["avg_Sender_CommOverhead"]/1024) #Computing in KB. 
+        # avg_send_commoverhead.append(js["results"][result]["avg_Sender_CommOverhead"]/1024) #Computing in KB.
         # if js["results"][result]["avg_Receiver_CommOverhead"] is not None:
         avg_rece_commoverhead.append(js["results"][result]["avg_Receiver_CommOverhead"]/1024) #Computing in KB.
 

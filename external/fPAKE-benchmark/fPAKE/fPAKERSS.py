@@ -142,6 +142,7 @@ class fPAKE:
         # each key from lipake is 32 bit and we have 32 keys -> 32 * 32 will be the size of C
         secretkey = os.urandom(self.n)
         rss = RSS.RSSCodes.robustShamir(self.pw.__len__(), 1, size=self.n)
+        
         secretkey, C = rss.shamir_share(secretkey)
         E = []
         # E = C-K

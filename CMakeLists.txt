@@ -98,6 +98,7 @@ add_executable(RRSS
         ShamirSS/shamir.h
 )
 
+
 target_include_directories(RRSS PUBLIC
         ${CRYPTOPP_INCLUDE_DIR}
         ${NTL_INCLUDE_DIR}
@@ -109,6 +110,19 @@ target_link_libraries(RRSS PUBLIC
         ${NTL_LIBRARY}
         ${GMP_SHARED_LIB}
 )
+
+#target_compile_options(RRSS PRIVATE
+#        -O1
+#        -fsanitize=address,undefined
+#        -fno-omit-frame-pointer
+#        -g
+#)
+#
+#target_link_options(RRSS PRIVATE
+#        -fsanitize=address,undefined
+#)
+
+#target_compile_options(RRSS PRIVATE -Og -g -fno-omit-frame-pointer)
 
 # -----------------------------
 # Python module

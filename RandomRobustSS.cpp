@@ -221,6 +221,8 @@ std::string RandomRobustSS::SecretReconstruction(
     NTLParams NTL_params,
     std::vector<std::pair<std::string, std::vector<int>>> const Shares
 ) {
+
+
     vector<vector<int>> Mat_shar_Ints(2 * len, vector<int>(NTL_params.m_V));
     std::vector<std::string> strShares;
     strShares.reserve(len);
@@ -267,12 +269,17 @@ std::string RandomRobustSS::SecretReconstruction(
     vector<int> ValidShareIndx;
     vec_GF2E x;
 
+    // cout << "Before ValidSharIndexFinder_GF2E\n";
+
     x = ValidSharIndexFinder_GF2E(
         V_shares_GF2E,
         2 * len,
         2 * threshold,
         NTL_params
     );
+
+
+
 
     int thshld = 0;
     int indx = 0;
@@ -287,6 +294,11 @@ std::string RandomRobustSS::SecretReconstruction(
             thshld++;
         }
     }
+
+    // cout << "After ValidSharIndexFinder_GF2E\n";
+    // cout << "x.length() = " << x.length()
+    //      << ", required = " << 2 * len << '\n';
+
 
     if (ValidShareIndx.size() < threshold) {
         cout << "not enough shares\n";
