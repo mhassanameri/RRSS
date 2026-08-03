@@ -35,7 +35,7 @@ vector<vector<int>> gauss_jordan_mod(vector<vector<int>> A, vector<vector<int>> 
 // vector<vector<GF256::byte>> gauss_jordan_GF256(vector<vector<GF256::byte>> A, vector<vector<GF256::byte>> R);
 vector<GF256::byte> gauss_jordan_GF256(vector<vector<GF256::byte>> A, vector<GF256::byte> R);
 vec_ZZ_p gauss_jordan_NTL_p(mat_ZZ_p A, vec_ZZ_p R);
-vec_GF2E gauss_jordan_GF2E(mat_GF2E A, vec_GF2E R);
+vec_GF2E gauss_jordan_GF2E(const mat_GF2E& A, const vec_GF2E& R);
 
 vector<vector<GF256::byte>> MatMult(vector<vector<GF256::byte>> A, vector<vector<GF256::byte>> B);
 vector<GF256::byte> MatMultVec( vector<vector<GF256::byte>> A,  vector<GF256::byte> B);

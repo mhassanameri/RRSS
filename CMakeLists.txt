@@ -112,10 +112,11 @@ target_link_libraries(RRSS PUBLIC
 )
 
 #target_compile_options(RRSS PRIVATE
-#        -O1
+#        -O0
+#        -g3
 #        -fsanitize=address,undefined
 #        -fno-omit-frame-pointer
-#        -g
+#        -fno-inline
 #)
 #
 #target_link_options(RRSS PRIVATE

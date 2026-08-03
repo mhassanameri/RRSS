@@ -182,7 +182,11 @@ vec_ZZ_p gauss_jordan_NTL_p(mat_ZZ_p A, vec_ZZ_p R)
 }
 
 
-vec_GF2E gauss_jordan_GF2E(mat_GF2E A, vec_GF2E R)
+// vec_GF2E gauss_jordan_GF2E(mat_GF2E A, vec_GF2E R)
+vec_GF2E gauss_jordan_GF2E(
+    const mat_GF2E& A,
+    const vec_GF2E& R
+)
 {
     long m = A.NumRows();
     long n = A.NumCols();
@@ -191,8 +195,15 @@ vec_GF2E gauss_jordan_GF2E(mat_GF2E A, vec_GF2E R)
         throw std::runtime_error("Dimension mismatch in gauss_jordan_GF2E.");
     }
 
+
+
     mat_GF2E augmented;
+
+    GF2X currentModulus = GF2E::modulus();
+
+
     augmented.SetDims(m, n + 1);
+
 
     for (long i = 0; i < m; i++) {
         for (long j = 0; j < n; j++) {
@@ -200,6 +211,7 @@ vec_GF2E gauss_jordan_GF2E(mat_GF2E A, vec_GF2E R)
         }
         augmented[i][n] = R[i];
     }
+
 
     vec_long pivot_col;
     pivot_col.SetLength(std::min(m, n));

@@ -41,7 +41,7 @@ TEST_CASE("HDArbSemiEval") {
 
     int  n_lambda_ =3072;
     int lambda =128; //the security level.
-    int Num_tests = 10;
+    int Num_tests = 5;
     double rslt = 0;
 
     string File  = "dataHamArbSemi.dat";

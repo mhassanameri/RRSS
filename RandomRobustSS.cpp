@@ -33,7 +33,14 @@ void NTLParams::SetV_pub(int m) {
     return 1;
 }
 //    static std::vector<std::string, std::vector<int>> ShareGen(int len, int t, int lambda, std::string Secret);
- std::vector<std::pair<std::string, std::vector<int>>> RandomRobustSS::ShareGen(int len, int threshold, NTLParams NTL_params, const std::string& secret)
+ // std::vector<std::pair<std::string, std::vector<int>>> RandomRobustSS::ShareGen(int len, int threshold, NTLParams NTL_params, const std::string& secret)
+std::vector<std::pair<std::string, std::vector<int>>>
+RandomRobustSS::ShareGen(
+    int len,
+    int threshold,
+    NTLParams& NTL_params,
+    const std::string& secret
+)
 {
     std::vector<std::pair<std::string, std::vector<int>>> FinalShare(
         len,
@@ -120,112 +127,29 @@ void NTLParams::SetV_pub(int m) {
     return FinalShare;
 }
 
-//  std::string RandomRobustSS::SecretReconstruction(int len, int threshold,  NTLParams NTL_params, std::vector<std::pair<std::string, std::vector<int>>> const Shares)
-// {
-//
-//     vector<vector<int>> Mat_shar_Ints(2*len, vector<int>(NTL_params.m_V) );
-//     std::vector<std::string> strShares;
-//     strShares.reserve(len);
-//
-//     std::string secret;
-//
-//     int rslt = 0;
-//     int lambda_GF256 =8;
-//     vector<int> V_Shares_int(2*NTL_params.m_V);
-//     mat_ZZ_p V_shares_NTL;
-//     V_shares_NTL.SetDims(NTL_params.m_V, 2*len);
-//
-//     int j = 0;
-//     int i_Mat=0;
-//     for (int i= 0; i< len; i++) {
-//         int count_m =0;
-//         for (int c=0; c<NTL_params.m_V; c++)
-//         {
-//             conv(Mat_shar_Ints[i_Mat][c], Shares[i].second[count_m]);
-//             conv(Mat_shar_Ints[i_Mat+1][c], Shares[i].second[count_m+1]);
-//             count_m =count_m+2;
-//         }
-//         i_Mat=i_Mat+2;
-//         strShares.push_back(Shares[i].first);
-//     }
-//
-//     for (int ii =0; ii<2*len; ii++)
-//     {
-//         for (int jj = 0; jj<NTL_params.m_V ; jj++)
-//         {
-//             conv(V_shares_NTL[jj][ii], Mat_shar_Ints[ii][jj]);
-//         }
-//         // cout <<"\n";
-//     }
-//
-//     vector<int> ValidShareIndx;
-//     // vec_ZZ_p x;
-//     vec_GF2E x;
-//     bool rslt_Indx;
-//
-//     // x = ValidSharIndexFinder( V_shares_NTL,2*len, 2*threshold,NTL_params);
-//     x = ValidSharIndexFinder_GF2E(V_shares_GF2E, 2 * len, 2 * threshold, NTL_params);
-//
-//     int thshld =0;
-//     int indx = 0;
-//     string ret = 0;
-//     for (int k=0; k< 2*len; k=k+2)
-//     {
-//         if ((x[k] == 0 || x[k+1] ==0) && (thshld<threshold))
-//         {
-//             indx++;
-//             continue;
-//         }
-//         else if (thshld <threshold)
-//         {
-//
-//             // cout << "k: (" << k << ")" <<"\t";
-//             indx = k/2;
-//             ValidShareIndx.push_back(indx);
-//             // indx++;
-//             // cout <<indx<<"\t";
-//             thshld++;
-//         }
-//
-//
-//     }
-//     // cout <<"\n" <<ValidShareIndx.size() <<"\n";
-//     if (ValidShareIndx.size()< threshold)
-//     {
-//         cout <<"not enough shares\n";
-//         secret =  "BOT";
-//     }
-//     else {
-//
-//         string recoverTheMainSecret;
-//         string recoveredMainSecret;
-//         string plaintext_rcv;
-//
-//         bool ifCorrectShareVec = false;
-//         ifCorrectShareVec = RandomRobustSS::RecoverSecretFromValidShares (strShares, threshold, ValidShareIndx, recoverTheMainSecret );
-//         size_t key_size = recoverTheMainSecret.size();
-//         CryptoPP::StringSink ss_recoveredMainSecret(recoveredMainSecret);
-//         cout << "";
-//         auto reMainSecrtSize = ss_recoveredMainSecret.Put((const CryptoPP::byte*)recoverTheMainSecret.data(),  recoverTheMainSecret.size(), false);
-//         secret = recoveredMainSecret;
-//
-//     }
-//
-//     return secret;
-//
-// }
 
 std::string RandomRobustSS::SecretReconstruction(
     int len,
     int threshold,
-    NTLParams NTL_params,
-    std::vector<std::pair<std::string, std::vector<int>>> const Shares
-) {
+    const NTLParams& NTL_params,
+    const std::vector<
+        std::pair<std::string, std::vector<int>>
+    >& Shares
+)
+{
 
 
     vector<vector<int>> Mat_shar_Ints(2 * len, vector<int>(NTL_params.m_V));
     std::vector<std::string> strShares;
+
+
+    if (len < 0 || len > 100000) {
+        throw std::runtime_error("Invalid len before strShares.reserve()");
+    }
+
     strShares.reserve(len);
+
+
 
     std::string secret;
 
@@ -269,17 +193,12 @@ std::string RandomRobustSS::SecretReconstruction(
     vector<int> ValidShareIndx;
     vec_GF2E x;
 
-    // cout << "Before ValidSharIndexFinder_GF2E\n";
-
     x = ValidSharIndexFinder_GF2E(
         V_shares_GF2E,
         2 * len,
         2 * threshold,
         NTL_params
     );
-
-
-
 
     int thshld = 0;
     int indx = 0;
@@ -295,17 +214,13 @@ std::string RandomRobustSS::SecretReconstruction(
         }
     }
 
-    // cout << "After ValidSharIndexFinder_GF2E\n";
-    // cout << "x.length() = " << x.length()
-    //      << ", required = " << 2 * len << '\n';
-
-
     if (ValidShareIndx.size() < threshold) {
         cout << "not enough shares\n";
         secret = "BOT";
+
     } else {
-        string recoverTheMainSecret;
-        string recoveredMainSecret;
+        std::string recoverTheMainSecret;
+
 
         bool ifCorrectShareVec = false;
 
@@ -316,13 +231,7 @@ std::string RandomRobustSS::SecretReconstruction(
             recoverTheMainSecret
         );
 
-        CryptoPP::StringSink ss_recoveredMainSecret(recoveredMainSecret);
-
-        ss_recoveredMainSecret.Put(
-            (const CryptoPP::byte*) recoverTheMainSecret.data(),
-            recoverTheMainSecret.size(),
-            false
-        );
+        std::string recoveredMainSecret = recoverTheMainSecret;
 
         secret = recoveredMainSecret;
     }
@@ -335,40 +244,11 @@ vec_ZZ_p RandomRobustSS::ValidSharIndexFinder(mat_ZZ_p V_shares_NTL,int _len, in
     mat_ZZ_p R_NTL;
     R_NTL.SetDims(NTL_params.m_V, _len); // Forming the lagrange coefficients to use in Solving system of the equations.
 
-
-    // for (int i = 0; i< NTL_params.m_V;  i++)
-    // {
-    //     for (int j = 0; j<_len; j++)
-    //     {
-    //         ZZ_p K;
-    //         K =1;
-    //         int counter = 0;
-    //         ZZ_p k_byte;
-    //         ZZ_p j_byte;
-    //         ZZ_p Aux_inv;
-    //         for(int k = 1; k< threshold+1; k++)
-    //         {
-    //             if (k ==j+1) continue;
-    //             if (counter < threshold)
-    //             {
-    //                 k_byte = k;
-    //                 j_byte = j+1;
-    //                 inv(Aux_inv, k_byte - j_byte);
-    //                 K = K * k_byte * Aux_inv;
-    //                 counter = counter +1;
-    //             }
-    //
-    //         }
-    //         R_NTL[i][j] = V_shares_NTL[i][j] * K;
-    //     }
-    // }
     vec_ZZ_p x;
     // x = gauss_jordan_NTL_p(R_NTL,NTL_params.V_pub_ZZ);
     x = gauss_jordan_NTL_p(V_shares_NTL,NTL_params.V_pub_ZZ);
     vec_ZZ_p RsltChk;
     RsltChk.SetLength(NTL_params.m_V);
-
-    // mul(RsltChk, R_NTL, x);
 
     for (int j = 0; j < _len ; ++j) {
         if(x[j] == 0) continue;
@@ -380,22 +260,64 @@ vec_ZZ_p RandomRobustSS::ValidSharIndexFinder(mat_ZZ_p V_shares_NTL,int _len, in
 }
 
 
-vec_GF2E RandomRobustSS::ValidSharIndexFinder_GF2E( mat_GF2E V_shares_GF2E, int _len, int threshold, NTLParams NTL_params
-) {
-    mat_GF2E R_GF2E;
-    R_GF2E.SetDims(NTL_params.m_V, _len);
+// vec_GF2E RandomRobustSS::ValidSharIndexFinder_GF2E( mat_GF2E V_shares_GF2E, int _len, int threshold, NTLParams NTL_params)
+vec_GF2E RandomRobustSS::ValidSharIndexFinder_GF2E(
+    const mat_GF2E& V_shares_GF2E,
+    int _len,
+    int threshold,
+    const NTLParams& NTL_params
+)
+{
+    if (_len <= 0) {
+        throw std::invalid_argument(
+            "ValidSharIndexFinder_GF2E: expectedLength must be positive"
+        );
+    }
+
+    if (V_shares_GF2E.NumCols() != _len) {
+        throw std::runtime_error(
+            "ValidSharIndexFinder_GF2E: unexpected matrix column count"
+        );
+    }
+
+    if (NTL_params.V_pub_GF2E.length() !=
+        V_shares_GF2E.NumRows()) {
+        throw std::runtime_error(
+            "ValidSharIndexFinder_GF2E: RHS length does not match matrix rows"
+        );
+        }
+
+    // mat_GF2E R_GF2E;
+    // R_GF2E.SetDims(NTL_params.m_V, _len);
 
     vec_GF2E x;
 
     // Solve V_shares_GF2E * x = V_pub_GF2E
     x = gauss_jordan_GF2E(V_shares_GF2E, NTL_params.V_pub_GF2E);
 
-    for (int j = 0; j < _len; ++j) {
-        if (IsZero(x[j])) {
-            continue;
-        } else {
-            set(x[j]);   // set to 1 in GF(2^lambda_1)
+
+    if (x.length() != _len) {
+        throw std::runtime_error(
+            "ValidSharIndexFinder_GF2E: solver returned length " +
+            std::to_string(x.length()) +
+            "; expected " +
+            std::to_string(_len)
+        );
+    }
+
+    int nonzeroCount = 0;
+    for (long j = 0; j < x.length(); ++j) {
+        if (!IsZero(x[j])) {
+            set(x[j]);
+            ++nonzeroCount;
         }
+    }
+
+    if (nonzeroCount < threshold) {
+        std::cerr
+            << "Solver found only " << nonzeroCount
+            << " nonzero coordinates; required "
+            << threshold << '\n';
     }
 
     return x;
@@ -477,48 +399,3 @@ bool RandomRobustSS::RecoverSecretFromValidShares(
         return false;
     }
 }
-
-
-
-
-// bool RandomRobustSS::RecoverSecretFromValidShares (vector<string> &strShares,
-//                                                 int threshold,
-//                                                 vector<int> &selected,
-//                                                 string &RecoveredSecret)
-// {
-//
-//     string channel;
-//     const unsigned int CHID_LENGTH = 4;
-//     string recovered;
-//     CryptoPP::SecretRecovery recovery(threshold, new CryptoPP::StringSink(recovered), false);
-//
-//     CryptoPP::vector_member_ptrs<CryptoPP::StringSource> strSources(threshold);
-//     channel.resize(CHID_LENGTH);
-//
-//     for (unsigned int i=0; i<threshold; i++)
-//     {
-//         strSources[i].reset(new CryptoPP::StringSource(strShares[selected[i]], false));
-//         strSources[i]->Pump(CHID_LENGTH);
-//         strSources[i]->Get((CryptoPP::byte*)&channel[0], CHID_LENGTH);
-//         strSources[i]->Attach(new CryptoPP::ChannelSwitch(recovery, channel));
-//     }
-//
-//     while (strSources[0]->Pump(256))
-//     {
-//         for (unsigned int i=1; i<threshold; i++)
-//             strSources[i]->Pump(256);
-//     }
-//
-//     for (unsigned int i=0; i<threshold; i++)
-//         strSources[i]->PumpAll();
-//     size_t keySize = recovered.size();
-//     size_t KeySizePut;
-//     //    memcpy(&RecoveredSecret, &recovered, recovered.size()-1 );
-//     //    RecoveredSecret =  recovered;
-//
-//     CryptoPP::StringSink ss_RecoveredSecret(RecoveredSecret);
-//     cout << "";
-//     KeySizePut =  ss_RecoveredSecret.Put((const CryptoPP::byte*)recovered.data(),  recovered.size(), false);
-//
-//     return true;
-// }

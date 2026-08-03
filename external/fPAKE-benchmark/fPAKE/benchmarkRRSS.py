@@ -111,7 +111,7 @@ for seclvl in (0,1):
                             conn = IPConnection(IP="localhost", PORT = 10005)
                             # print("[Receiver] waiting for connection on 0.0.0.0:10005 ...")
                             pw = fp
-                            # print(pw)
+                            # print(f"[Receiver] pw = {pw!r}", file=sys.stderr, flush=True)
                             finalpw = fPAKE(weakPW=pw, connection=conn, securityParam=seclvl).receive_protocol(interLayer)
                         interLayer["negotiated_key"] = ''.join(format(byte, '08b') for byte in finalpw)
                         network_timings.append(interLayer["total_network_time"])

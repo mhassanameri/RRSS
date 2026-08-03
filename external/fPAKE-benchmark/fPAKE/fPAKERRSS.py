@@ -148,7 +148,7 @@ class fPAKE:
 
 
         #Hrere We replace the RSS with Random Robust Secret Sharing, the CPP impelementation, 
-        r = rr.RandomRobustSS(self.pw.__len__(), self.pw.__len__()-4, size=self.n)
+        r = rr.RandomRobustSS(self.pw.__len__(), self.pw.__len__()-3, size=self.n)
         secret, shares = r.sharegen_bytes(secretkey)
         
 
@@ -287,7 +287,7 @@ class fPAKE:
         # rss = RSS.RSSCodes.robustShamir(self.pw.__len__(), 1, size=self.n, PRIME=prime)
 
         #Replacing RSS with our new RRSS. 
-        r = rr.RandomRobustSS(self.pw.__len__(), self.pw.__len__()-4, size=self.n)
+        r = rr.RandomRobustSS(self.pw.__len__(), self.pw.__len__()-3, size=self.n)
 
         # print(self.pw.__len__())
 

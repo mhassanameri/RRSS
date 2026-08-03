@@ -130,21 +130,24 @@ public:
 
 
 
-    RandomRobustSS(int len, int t, int lambda): NTL_params(3*len,len, t, lambda, 3096){
-        _len = len;
-        _t = t;
-        _n =  2 * _len;
-        _m = 3 * _len; // Based on the paper, we decided to have 3*_len according to the security analysis.
-        lambda_ = lambda;
+    RandomRobustSS(int len, int t, int lambda): _len(len), _t(t),
+    lambda_(lambda),
+    _m(3 * len),
+    _n(2* len),
+    NTL_params(3*len,len, t, lambda, 3096){
     }
 
     static int RRSS_Init(int min, int max);
 //    static std::vector<std::string, std::vector<int>> ShareGen(int len, int t, int lambda, std::string Secret);
-    static std::vector<std::pair<std::string, std::vector<int>>> ShareGen(int len, int t, NTLParams NTL_params, const std::string& secret);
-    static std::string SecretReconstruction(int len, int t,  NTLParams NTL_params, std::vector<std::pair<std::string, std::vector<int>>> const Shares);
+    // static std::vector<std::pair<std::string, std::vector<int>>> ShareGen(int len, int t, NTLParams NTL_params, const std::string& secret);
+    static std::vector<std::pair<std::string, std::vector<int>>> ShareGen(int len, int t, NTLParams& NTL_params, const std::string& secret);
+
+    // static std::string SecretReconstruction(int len, int t,  NTLParams NTL_params, std::vector<std::pair<std::string, std::vector<int>>> const Shares);
+    static std::string SecretReconstruction(int len, int t,  const NTLParams& NTL_params, const std::vector<std::pair<std::string, std::vector<int>>>& Shares);
 
     static vec_ZZ_p ValidSharIndexFinder(       mat_ZZ_p V_shares_NTL,  int _len, int threshold, NTLParams NTL_params);
-    static vec_GF2E ValidSharIndexFinder_GF2E(  mat_GF2E V_shares_GF2E, int _len, int threshold, NTLParams NTL_params);
+    // static vec_GF2E ValidSharIndexFinder_GF2E(  mat_GF2E V_shares_GF2E, int _len, int threshold, NTLParams NTL_params);
+    static vec_GF2E ValidSharIndexFinder_GF2E(const NTL::mat_GF2E& V_shares_GF2E, int _len, int threshold,const NTLParams& NTL_params);
     static bool RecoverSecretFromValidShares (const std::vector<std::string> &strShares,
                                                 int threshold,
                                                 const std::vector<int> &selected,

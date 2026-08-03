@@ -6,8 +6,8 @@ import os
 import glob
 import datetime
 
-default_folder = "fPAKE/RRSSresults244" # "results244" Source folder of the results
-
+# default_folder = "fPAKE/RRSSresults128" # "results244" Source folder of the results
+default_folder = "fPAKE/RRSSresults244"
 
 def print_stats():
     print(f"{os.path.basename(old)} \t calc: {statistics.mean(avg_calc)} ± {statistics.stdev(avg_calc)} \t net: {statistics.mean(avg_net)} ± {statistics.stdev(avg_net)} \t\t overall: {statistics.mean(overall)} ± {statistics.stdev(overall)}")

@@ -18,3 +18,4 @@ cmake-build-debug
 /external/fPAKE-benchmark/fPAKE/RRSSresults244
 /external/fPAKE-benchmark/fPAKE/RSSresults244
 /build
+/cmake-build-asan
