@@ -6,8 +6,8 @@ import os
 import glob
 import datetime
 
-default_folder = "fPAKE/RRSSresults244" # "results244" Source folder of the results
-
+# default_folder = "fPAKE/RRSSresults128" # "results244" Source folder of the results
+default_folder = "fPAKE/RRSSresults244"
 
 def print_stats():
     print(f"{os.path.basename(old)} \t calc: {statistics.mean(avg_calc)} ± {statistics.stdev(avg_calc)} \t net: {statistics.mean(avg_net)} ± {statistics.stdev(avg_net)} \t\t overall: {statistics.mean(overall)} ± {statistics.stdev(overall)}")
@@ -68,7 +68,7 @@ for file in files:
         overall.append((js["results"][result]["avg_network_time"]+js["results"][result]["avg_calculation_time"])/1000000000)
         lastkey = js["results"][result]["fp"].__len__()
         # if js["results"][result]["avg_Sender_CommOverhead"] is not None:
-        # avg_send_commoverhead.append(js["results"][result]["avg_Sender_CommOverhead"]/1024) #Computing in KB. 
+        # avg_send_commoverhead.append(js["results"][result]["avg_Sender_CommOverhead"]/1024) #Computing in KB.
         # if js["results"][result]["avg_Receiver_CommOverhead"] is not None:
         avg_rece_commoverhead.append(js["results"][result]["avg_Receiver_CommOverhead"]/1024) #Computing in KB.
 

@@ -515,11 +515,12 @@ int CondEncArbHamSemiHonest::CondEnc(paillier_pubkey_t *ppk,
 
     std::vector<std::pair<std::string, std::vector<int> > > rrssShares;
     rrssShares = NTL_params.RRSS.ShareGen(_len, threshold, NTL_params.RRSS.NTL_params, b);
-
+    // int lambda_GF256 = 8;
+    int lambda_GF_2E = static_cast<int>(NTL_params.RRSS.NTL_params.GF_2E_SS.get_GF2E_degree());
 
     CryptoPP::vector_member_ptrs<CryptoPP::StringSink> strSinks(shares);
 
-    int lambda_GF256 = 8;
+
 
     int out_d;
     int j = 0;
@@ -550,7 +551,7 @@ int CondEncArbHamSemiHonest::CondEnc(paillier_pubkey_t *ppk,
 
         rslt = PackedEncodeMpz_t_packBits(rrssShares[i].first, 20, rrssShares[i].second,
                                           NTL_params.RRSS.NTL_params.P_GF_OrigShare,
-                                          lambda_GF256, PailVectPlain, NTL_params);
+                                          lambda_GF_2E, PailVectPlain, NTL_params);
         Aux_Ctx = PaillerWrapperFunctions::Pail_Subtct(ppk, vctx[i], vctx1[i]);
         R = PaillerWrapperFunctions::Rand_Plain_Pail(ppk);
         //I need to describe a function to generate random number in plaintext.
@@ -787,11 +788,20 @@ int CondEncArbHamSemiHonest::CondDec(paillier_pubkey_t *ppk,
 
 
     int rslt = 0;
-    int lambda_GF256 = 8;
+    // int lambda_GF256 = 8;
     vector<int> V_Shares_int(2 * NTL_params.RRSS.NTL_params.m_V);
-    mat_ZZ_p V_shares_NTL;
-    V_shares_NTL.SetDims(NTL_params.RRSS.NTL_params.m_V, 2 * _len);
-    vector<vector<int> > Mat_shar_Ints(2 * _len, vector<int>(NTL_params.RRSS.NTL_params.m_V));
+    // mat_ZZ_p V_shares_NTL;
+    // V_shares_NTL.SetDims(NTL_params.RRSS.NTL_params.m_V, 2 * _len);
+    // vector<vector<int> > Mat_shar_Ints(2 * _len, vector<int>(NTL_params.RRSS.NTL_params.m_V));
+
+    int lambda_GF_2E = static_cast<int>(NTL_params.RRSS.NTL_params.GF_2E_SS.get_GF2E_degree());
+    mat_GF2E V_shares_GF2E;
+    V_shares_GF2E.SetDims(NTL_params.RRSS.NTL_params.m_V, 2 * _len);
+
+    vector<vector<int> > Mat_shar_Ints(
+        2 * _len,
+        vector<int>(NTL_params.RRSS.NTL_params.m_V)
+    );
 
     int j = 0;
     int i_Mat = 0;
@@ -809,12 +819,17 @@ int CondEncArbHamSemiHonest::CondDec(paillier_pubkey_t *ppk,
         // V_Shares_int = PackedDecodeMpz_t( strShares_Main[i], DecodedBigInt, NTL_params.P_GF_OrigShare, lambda_GF256, 2*NTL_params.m_V);
 
         // V_Shares_int = PackedDecodeMpz_t_BaseL(strShares_Main[i], dec, NTL_params.P_GF_OrigShare, lambda_GF256, 2*NTL_params.m_V, NTL_params);
-        V_Shares_int = PackedDecodeMpz_t_packBits(strShares_Main[i], dec, NTL_params.RRSS.NTL_params.P_GF_OrigShare, lambda_GF256,
+        V_Shares_int = PackedDecodeMpz_t_packBits(strShares_Main[i], dec, NTL_params.RRSS.NTL_params.P_GF_OrigShare, lambda_GF_2E,
                                                   2 * NTL_params.RRSS.NTL_params.m_V, NTL_params);
         int count_m = 0;
         for (int c = 0; c < NTL_params.RRSS.NTL_params.m_V; c++) {
-            conv(Mat_shar_Ints[i_Mat][c], V_Shares_int[count_m]);
-            conv(Mat_shar_Ints[i_Mat + 1][c], V_Shares_int[count_m + 1]);
+
+            // conv(Mat_shar_Ints[i_Mat][c], V_Shares_int[count_m]);
+            // conv(Mat_shar_Ints[i_Mat + 1][c], V_Shares_int[count_m + 1]);
+
+            Mat_shar_Ints[i_Mat][c]     = V_Shares_int[count_m];
+            Mat_shar_Ints[i_Mat + 1][c] = V_Shares_int[count_m + 1];
+
             count_m = count_m + 2;
         }
         i_Mat = i_Mat + 2;
@@ -830,7 +845,8 @@ int CondEncArbHamSemiHonest::CondDec(paillier_pubkey_t *ppk,
 
     for (int ii = 0; ii < 2 * _len; ii++) {
         for (int jj = 0; jj < NTL_params.RRSS.NTL_params.m_V; jj++) {
-            conv(V_shares_NTL[jj][ii], Mat_shar_Ints[ii][jj]);
+            V_shares_GF2E[jj][ii] = NTL_params.RRSS.NTL_params.GF_2E_SS.int_to_GF2E(Mat_shar_Ints[ii][jj]);
+            // conv(V_shares_NTL[jj][ii], Mat_shar_Ints[ii][jj]);
         }
         // cout <<"\n";
     }
@@ -838,12 +854,13 @@ int CondEncArbHamSemiHonest::CondDec(paillier_pubkey_t *ppk,
 
     string recoveredMainSecret;
     vector<int> ValidShareIndx;
-    vec_ZZ_p x;
+    // vec_ZZ_p x;
+    vec_GF2E x;
     bool rslt_Indx;
 
-    x = NTL_params.RRSS.ValidSharIndexFinder(V_shares_NTL, 2 * _len, 2 * threshold, NTL_params.RRSS.NTL_params);
+    // x = NTL_params.RRSS.ValidSharIndexFinder(V_shares_NTL, 2 * _len, 2 * threshold, NTL_params.RRSS.NTL_params);
 
-
+    x = NTL_params.RRSS.ValidSharIndexFinder_GF2E( V_shares_GF2E, 2 * _len, 2 * threshold,NTL_params.RRSS.NTL_params);
 
 
     // cout << "the recovered x is: ";
@@ -1860,7 +1877,7 @@ void NTLParamsCondEncHam::compute_floor_div_minus_one(mpz_t c, const mpz_t a, co
 
 
 
-int NTLParamsCondEncHam::PackedEncodingInitParams(const mpz_t N, int _len, int m, int lambda, int k) {
+int NTLParamsCondEncHam::PackedEncodingInitParams(const mpz_t N, int _len, int m, int lambda, int lambda_1, int k) {
     mpz_init(RRSS.NTL_params.P_GF_OrigShare);
     mpz_init(RRSS.NTL_params.MaxM);
     mpz_init(RRSS.NTL_params.MaxMEncoded);
@@ -1868,7 +1885,8 @@ int NTLParamsCondEncHam::PackedEncodingInitParams(const mpz_t N, int _len, int m
     mpz_init(RRSS.NTL_params.N_MaxMEncdo_Floor);
     // int  log_P_GF = AES::DEFAULT_KEYLENGTH *8 + 1;
     int log_P_GF = 20 * 8 + 1; //20 is the string length of each share of the secret key.
-    int log_MaxM = 2 * (m + 1) * (8 + 2) + log_P_GF;
+    // int log_MaxM = 2 * (m + 1) * (8 + 2) + log_P_GF;
+    int log_MaxM = 2 * (m + 1) * (lambda_1 + 2) + log_P_GF;
     // 2*m because of 2n shares we decided to use for the security reason
     // int  log_MaxM =  m * (8+2) + log_P_GF; // 2*m because of 2n shares we decided to use for the security reason
 

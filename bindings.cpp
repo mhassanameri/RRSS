@@ -39,7 +39,8 @@ PYBIND11_MODULE(rrss, m) {
                      std::string secret = secret_in;
 
                      // produces: vector<pair<string, vector<int>>>
-                     auto shares = RandomRobustSS::ShareGen(self._len, self._t, self.NTL_params, secret);
+                     // auto shares = RandomRobustSS::ShareGen(self._len, self._t, self.NTL_params, secret);
+                     auto shares = self.ShareGen(self._len,self._t,self.NTL_params, secret);
 
                      py::list out;
                      for (auto &pr: shares) {
@@ -109,8 +110,8 @@ PYBIND11_MODULE(rrss, m) {
                      }
 
                      std::string secret = self.SecretReconstruction(
-                         provided_len, // len (#shares provided)
-                         threshold, // threshold
+                         self._len, // len (#shares provided)
+                         self._t, // threshold
                          self.NTL_params, // params
                          shares // decoded shares
                      );

@@ -12,6 +12,13 @@
 #include "ShamirSS/shamir.h"
 #include <NTL/ZZ_pEX.h>
 
+// For supporing arbitrary GF_2E
+#include <NTL/GF2E.h>
+#include <NTL/GF2X.h>
+#include <NTL/GF2XFactoring.h>
+#include <NTL/mat_GF2E.h>
+#include <NTL/vec_GF2E.h>
+
 #include <NTL/LLL.h>
 using namespace NTL;
 
@@ -28,6 +35,7 @@ vector<vector<int>> gauss_jordan_mod(vector<vector<int>> A, vector<vector<int>> 
 // vector<vector<GF256::byte>> gauss_jordan_GF256(vector<vector<GF256::byte>> A, vector<vector<GF256::byte>> R);
 vector<GF256::byte> gauss_jordan_GF256(vector<vector<GF256::byte>> A, vector<GF256::byte> R);
 vec_ZZ_p gauss_jordan_NTL_p(mat_ZZ_p A, vec_ZZ_p R);
+vec_GF2E gauss_jordan_GF2E(const mat_GF2E& A, const vec_GF2E& R);
 
 vector<vector<GF256::byte>> MatMult(vector<vector<GF256::byte>> A, vector<vector<GF256::byte>> B);
 vector<GF256::byte> MatMultVec( vector<vector<GF256::byte>> A,  vector<GF256::byte> B);
