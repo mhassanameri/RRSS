@@ -75,14 +75,14 @@ TEST_CASE("HDArbSemiEval") {
 TEST_CASE("HDAtmostTSemiEval") {
     int  n_lambda_ =3072;
     int lambda =128; //the security level.
-    int Num_tests =20;
+    int Num_tests =50;
     double rslt = 0;
 
-    // vector<int> len = {8, 16, 32, 64};
+    vector<int> len = {8, 16, 32, 64};
     // vector<int> len = {128};
-    vector<int> len = {32};
-    // vector<int> _ell = {1,2,3,4};
-    vector<int> _ell = {8};
+    // vector<int> len = {32};
+    vector<int> _ell = {1,2,3,4};
+    // vector<int> _ell = {8};
 
     string File  = "dataMalAtmostT.dat";
 
