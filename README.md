@@ -226,8 +226,33 @@ Use this section to document protocol/security/parameter choices and interfaces.
 - Public-key components used (Paillier, etc.): We use Paillier Public key scheme as the underlying public key encryption as the building blocks since it provides the ciphertext addition homomorphic and ciphertext-plaintext multiplication property. 
 ---
 
-### 8) How to cite / authorship
-- This repository contains the open-source implementation corresponding to a paper that is currently under review. To preserve the integrity of the double-blind review process, we do not include the paper title, author list, or preprint link at this time.
+### 8) Paper, authors, and citation
 
-- If the paper is accepted, or once an anonymized public preprint becomes available, we will update this repository with the full citation and, if applicable, an ePrint/arXiv link.
----
+This repository contains the open-source implementation accompanying:
+
+> **Random Robust Secret Sharing with Perfect Privacy and its Applications**  
+> Mohammad Hassan Ameri and Jeremiah Blocki  
+> ACM Conference on Computer and Communications Security (CCS 2026)
+
+The paper has been accepted to CCS 2026. The full version is available on the IACR Cryptology ePrint Archive:
+
+<https://eprint.iacr.org/2026/653>
+
+The final ACM Digital Library version and citation information will be added once they become available.
+
+#### Artifact archive
+
+A permanent Zenodo archive for the CCS 2026 artifact evaluation, including the exact evaluated release and reproducibility materials, will be added here before the artifact-submission deadline.
+
+<!-- Zenodo DOI: to be added -->
+
+#### How to cite
+
+```bibtex
+@inproceedings{AmeriBlocki2026RRSS,
+  author    = {Mohammad Hassan Ameri and Jeremiah Blocki},
+  title     = {Random Robust Secret Sharing with Perfect Privacy and its Applications},
+  booktitle = {Proceedings of the ACM Conference on Computer and Communications Security (CCS)},
+  year      = {2026},
+  note      = {To appear}
+}
