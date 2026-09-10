@@ -6,13 +6,65 @@ import os
 import glob
 import datetime
 
+import argparse
+
+parser = argparse.ArgumentParser(
+    description="Extract timing and communication statistics from RRSSfPAKE benchmark results."
+)
+parser.add_argument(
+    "security_parameter",
+    choices=["128", "244"],
+    help="Security parameter of the benchmark results to analyze."
+)
+args = parser.parse_args()
+
+default_folder = f"fPAKE/RRSSresults{args.security_parameter}"
+
 # default_folder = "fPAKE/RRSSresults128" # "results244" Source folder of the results
-default_folder = "fPAKE/RRSSresults244"
+# # default_folder = "fPAKE/RRSSresults244"
+
+
+def print_receiver_stats():
+    if not overall:
+        return
+
+    print(
+        f"{os.path.basename(old_Receiver)}\t"
+        f"calc(receiver): {statistics.mean(avg_calc)} ± {statistics.stdev(avg_calc)}\t"
+        f"net(receiver): {statistics.mean(avg_net)} ± {statistics.stdev(avg_net)}\t"
+        f"overall(receiver): {statistics.mean(overall)} ± {statistics.stdev(overall)}"
+    )
+    print(
+        f"{os.path.basename(old_Receiver)}\t"
+        f"Receiver Communication Overhead: "
+        f"{statistics.mean(avg_rece_commoverhead)} ± "
+        f"{statistics.stdev(avg_rece_commoverhead)}"
+    )
+
+
+def print_sender_stats():
+    if not overall:
+        return
+
+    print(
+        f"{os.path.basename(old_Sender)}\t"
+        f"calc(sender): {statistics.mean(avg_calc)} ± {statistics.stdev(avg_calc)}\t"
+        f"net(sender): {statistics.mean(avg_net)} ± {statistics.stdev(avg_net)}\t"
+        f"overall(sener): {statistics.mean(overall)} ± {statistics.stdev(overall)}"
+    )
+    print(
+        f"{os.path.basename(old_Sender)}\t"
+        f"Sender Communication Overhead: "
+        f"{statistics.mean(avg_send_commoverhead)} ± "
+        f"{statistics.stdev(avg_send_commoverhead)}"
+    )
+
+
 
 def print_stats():
-    print(f"{os.path.basename(old)} \t calc: {statistics.mean(avg_calc)} ± {statistics.stdev(avg_calc)} \t net: {statistics.mean(avg_net)} ± {statistics.stdev(avg_net)} \t\t overall: {statistics.mean(overall)} ± {statistics.stdev(overall)}")
-    # print(f"{os.path.basename(old)} \t Sender Communication Overhead: {statistics.mean(avg_send_commoverhead)} ± {statistics.stdev(avg_send_commoverhead)} ")
-    print(f"{os.path.basename(old)} \t Receiver Communication Overhead: {statistics.mean(avg_rece_commoverhead)} ± {statistics.stdev(avg_rece_commoverhead)} ")
+    print(f"{os.path.basename(old_Sender)} \t calc: {statistics.mean(avg_calc)} ± {statistics.stdev(avg_calc)} \t net: {statistics.mean(avg_net)} ± {statistics.stdev(avg_net)} \t\t overall: {statistics.mean(overall)} ± {statistics.stdev(overall)}")
+    print(f"{os.path.basename(old_Sender)} \t Sender Communication Overhead: {statistics.mean(avg_send_commoverhead)} ± {statistics.stdev(avg_send_commoverhead)} ")
+    # print(f"{os.path.basename(old_Receiver)} \t Receiver Communication Overhead: {statistics.mean(avg_rece_commoverhead)} ± {statistics.stdev(avg_rece_commoverhead)} ")
 
     """print("\tKey Size:\t", lastkey)
     print("\tNumber of Samples :\t", len(overall))
@@ -33,31 +85,71 @@ def print_stats():
     print("\t\tVariance :\t", statistics.variance(avg_net))"""
 
 
-# files = glob.glob(os.path.join(default_folder,"**","*Sender.json"),recursive=True)
-files = glob.glob(os.path.join(default_folder,"**","*Receiver.json"),recursive=True)
-files.sort()
-old = os.path.dirname(files[0])
-old = os.path.split(files[0])[0]
+files_Sender = glob.glob(os.path.join(default_folder,"**","*Sender.json"),recursive=True)
+files_Receiver = glob.glob(os.path.join(default_folder,"**","*Receiver.json"),recursive=True)
+
+files_Sender.sort()
+files_Receiver.sort()
+
+old_Sender = os.path.dirname(files_Sender[0])
+old_Sender = os.path.split(files_Sender[0])[0]
+
+old_Receiver = os.path.dirname(files_Receiver[0])
+old_Receiver = os.path.split(files_Receiver[0])[0]
+
+
 counter = 0
 avg_calc = []
 avg_net = []
 overall = []
-# avg_send_commoverhead = []
-avg_rece_commoverhead = []
+avg_send_commoverhead = []
 
 lastkey = 0
 lastfile = ""
-for file in files:
+for file in files_Sender:
     lastfile = file
-    if not os.path.split(file)[0] == old:
-        print_stats()
+    if not os.path.split(file)[0] == old_Sender:
+        print_sender_stats()
         avg_calc = []
         avg_net = []
         overall = []
-        # avg_send_commoverhead = []
+        avg_send_commoverhead = []
+        # overall_commoverhead = []
+        old_Sender = os.path.split(file)[0]
+
+    with open(file,"r") as json_file:
+        js = json.loads(json_file.read())
+
+    for result in js["results"]:
+        avg_calc.append(js["results"][result]["avg_calculation_time"]/1000000000)
+        avg_net.append(js["results"][result]["avg_network_time"]/1000000000)
+        overall.append((js["results"][result]["avg_network_time"]+js["results"][result]["avg_calculation_time"])/1000000000)
+        lastkey = js["results"][result]["fp"].__len__()
+        # if js["results"][result]["avg_Sender_CommOverhead"] is not None:
+        avg_send_commoverhead.append(js["results"][result]["avg_Sender_CommOverhead"]/1024) #Computing in KB.
+        # if js["results"][result]["avg_Receiver_CommOverhead"] is not None:
+        # avg_rece_commoverhead.append(js["results"][result]["avg_Receiver_CommOverhead"]/1024) #Computing in KB.
+
+print_sender_stats()
+
+
+counter = 0
+avg_calc = []
+avg_net = []
+overall = []
+avg_rece_commoverhead = []
+lastkey = 0
+lastfile = ""
+for file in files_Receiver:
+    lastfile = file
+    if not os.path.split(file)[0] == old_Receiver:
+        print_receiver_stats()
+        avg_calc = []
+        avg_net = []
+        overall = []
         avg_rece_commoverhead = []
         # overall_commoverhead = []
-        old = os.path.split(file)[0]
+        old_Receiver = os.path.split(file)[0]
 
     with open(file,"r") as json_file:
         js = json.loads(json_file.read())
@@ -72,4 +164,7 @@ for file in files:
         # if js["results"][result]["avg_Receiver_CommOverhead"] is not None:
         avg_rece_commoverhead.append(js["results"][result]["avg_Receiver_CommOverhead"]/1024) #Computing in KB.
 
-print_stats()
+
+
+# print_stats()
+print_receiver_stats()
