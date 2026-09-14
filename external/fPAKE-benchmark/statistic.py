@@ -20,7 +20,7 @@ args = parser.parse_args()
 
 default_folder = f"fPAKE/RRSSresults{args.security_parameter}"
 
-# default_folder = "fPAKE/RRSSresults128" # "results244" Source folder of the results
+# default_folder = "fPAKE/RRSSresults128-x" # "results244" Source folder of the results
 # # default_folder = "fPAKE/RRSSresults244"
 
 

@@ -62,12 +62,14 @@ for seclvl in (0,1):
         file_role = m.group(3)
 
         filepath, _ = os.path.split(jsonfile)
-        rel_path = os.path.relpath(filepath, "../results128")
-        
+        # rel_path = os.path.relpath(filepath, "../RRSSresults128new")
+
         if seclvl == 0:
-            result_filepath = os.path.join("RRSSresults128", rel_path)
+            # result_filepath = os.path.join("RRSSresults128-x", rel_path)
+            result_filepath = os.path.join("RRSSresults128", filepath)
         else:
-            result_filepath = os.path.join("RRSSresults244", rel_path)
+            # result_filepath = os.path.join("RRSSresults244", rel_path)
+            result_filepath = os.path.join("RRSSresults244", filepath)
 
         benchrun = {}
         benchrun["file"] = os.path.basename(jsonfile)
