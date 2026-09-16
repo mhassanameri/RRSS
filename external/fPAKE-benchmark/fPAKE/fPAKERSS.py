@@ -1,3 +1,7 @@
+try:
+    import Crypto.Util.number as nb
+except ModuleNotFoundError:
+    import Cryptodome.Util.number as nb
 from LiPAKE.liPAKE import LiPake
 from cryptography.hazmat.primitives.asymmetric import ed25519, ed448
 from cryptography.hazmat.primitives import serialization

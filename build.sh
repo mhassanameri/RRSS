@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-BUILD_DIR=cmake-build-debug
+BUILD_DIR=build
 
 rm -rf "$BUILD_DIR"
 

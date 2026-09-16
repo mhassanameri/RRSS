@@ -30,3 +30,6 @@ cmake-build-debug
 /external/fPAKE-benchmark/fPAKE/RSSresults128
 /external/fPAKE-benchmark/fPAKE/RRSSresults128
 /external/fPAKE-benchmark/fPAKE/results244-old
+/external/fPAKE-benchmark/results128(old)
+/external/fPAKE-benchmark/results244(old)
+/artifact/results/reproduced
