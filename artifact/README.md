@@ -13,6 +13,12 @@ The artifact supports reproduction of the fPAKE results reported in **Table 1**,
 
 The two implementations are evaluated on the same fPAKE inputs and parameter settings. The benchmark reports separate Sender and Receiver computation time, communication time, overall time, and communication overhead.
 
+## Artifact archive
+
+The permanent archival version of this artifact is available on Zenodo:
+
+<https://doi.org/10.5281/zenodo.22802638>
+
 ## Artifact overview
 
 This artifact supports reproduction of the RRSS-fPAKE results reported in Table 1 and the conditional-encryption evaluation reported in Figure 2.
@@ -109,6 +115,18 @@ apt-get update
 apt-get install -y python3-matplotlib
 ```
 
+## Artifact availability
+
+The permanent archival version of this artifact is available on Zenodo:
+
+<https://doi.org/10.5281/zenodo.22802638>
+
+For artifact evaluation, please use the Zenodo archive, which includes the
+complete evaluator-facing source tree, reproduction scripts, documentation, and
+prepared RRSS-fPAKE benchmark inputs. The actively maintained development
+repository is available at <https://github.com/mhassanameri/RRSS>. If obtaining
+the source from GitHub instead of Zenodo, follow the instructions in this README
+to run `download_rssfPAKE_data.sh` and retrieve the prepared benchmark inputs.
 
 # How to Build 
 Before starting to build the project, make sure that all the dependencies are installed. For that we can do as follows. 

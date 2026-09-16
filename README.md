@@ -1,3 +1,27 @@
+## CCS 2026 Artifact
+
+The evaluator-facing documentation for the ACM CCS 2026 artifact is available in
+[`artifact/README.md`](artifact/README.md).
+
+Please begin with that document for the complete environment setup, build,
+functionality checks, and instructions to reproduce the experiments supporting
+the paper.
+
+
+### Artifact availability
+
+The permanent archival version of this artifact is available on Zenodo:
+
+<https://doi.org/10.5281/zenodo.22802638>
+
+For artifact evaluation, please use the Zenodo archive, which includes the
+complete evaluator-facing source tree, reproduction scripts, documentation, and
+prepared RRSS-fPAKE benchmark inputs. The actively maintained development
+repository is available at <https://github.com/mhassanameri/RRSS>. If obtaining
+the source from GitHub instead of Zenodo, follow the instructions in this README
+to run `download_rssfPAKE_data.sh` and retrieve the prepared benchmark inputs.
+
+
 # RRSS: Random Robust Secret sharing scheme
 
 RRSS is a C++20 project that provides:

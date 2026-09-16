@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ZENODO_RECORD="REPLACE_WITH_YOUR_RECORD_NUMBER"
-ARCHIVE="RSSFPAKE-prepared-data-v1.tar.gz"
-EXPECTED_SHA256="REPLACE_WITH_THE_SHA256_VALUE"
+ZENODO_RECORD="22802638"
+ARCHIVE="RRSS-CCS2026-Artifact.zip"
+EXPECTED_SHA256="f6c202252c02d24c9a666fc20acd53954962e438356d2465f5f61cef64705843"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
@@ -16,10 +16,20 @@ curl -L --fail --retry 3 \
   "https://zenodo.org/records/${ZENODO_RECORD}/files/${ARCHIVE}?download=1" \
   -o "${TEMP_DIR}/${ARCHIVE}"
 
-echo "${EXPECTED_SHA256}  ${TEMP_DIR}/${ARCHIVE}" |
-  sha256sum --check -
+echo "${EXPECTED_SHA256}  ${TEMP_DIR}/${ARCHIVE}" | sha256sum --check -
 
-tar -xzf "${TEMP_DIR}/${ARCHIVE}" -C "${TARGET_DIR}"
+unzip -q "${TEMP_DIR}/${ARCHIVE}" \
+  "RRSS-CCS2026-Artifact/external/fPAKE-benchmark/results128/*" \
+  "RRSS-CCS2026-Artifact/external/fPAKE-benchmark/results244/*" \
+  -d "${TEMP_DIR}"
+
+cp -a \
+  "${TEMP_DIR}/RRSS-CCS2026-Artifact/external/fPAKE-benchmark/results128" \
+  "${TARGET_DIR}/"
+
+cp -a \
+  "${TEMP_DIR}/RRSS-CCS2026-Artifact/external/fPAKE-benchmark/results244" \
+  "${TARGET_DIR}/"
 
 echo "RSS-fPAKE data installed successfully:"
 echo "  ${TARGET_DIR}/results128"
