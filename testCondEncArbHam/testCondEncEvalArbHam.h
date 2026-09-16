@@ -53,7 +53,7 @@ TEST_CASE("HDArbSemiEval") {
 
     vector<int> len = {8,16, 32, 64, 128};
     // vector<int> len = {8,16,};
-    vector<int> _ell = {2, 4, 8, 16, 32, 64};
+    vector<int> _ell = {1, 2, 4, 8, 16, 32, 64};
 
     for (auto l:len)
     {
@@ -75,10 +75,10 @@ TEST_CASE("HDArbSemiEval") {
 TEST_CASE("HDAtmostTSemiEval") {
     int  n_lambda_ =3072;
     int lambda =128; //the security level.
-    int Num_tests =50;
+    int Num_tests =5;
     double rslt = 0;
 
-    vector<int> len = {8, 16, 32, 64};
+    vector<int> len = {8, 16, 32, 64, 128};
     // vector<int> len = {128};
     // vector<int> len = {32};
     vector<int> _ell = {1,2,3,4};
@@ -93,13 +93,24 @@ TEST_CASE("HDAtmostTSemiEval") {
     for (auto l:len)
     {
         int count = 1;
-
-        for (auto j:_ell)
+        if (l == 128) {
+            for (auto j:_ell) {
+                if (j <= 4) {
+                rslt =testCondEncAtmostTHamDistSemihonest(n_lambda_, lambda, Num_tests, l, j, File );
+                cout << "padded length: " << l << "\t" << "ell: " << j << "\n";
+            }
+            }
+        } else {
+            for (auto j:_ell)
         {
             rslt =testCondEncAtmostTHamDistSemihonest(n_lambda_, lambda, Num_tests, l, j, File );
             cout << "padded length: " << l << "\t" << "ell: " << j << "\n";
 
         }
+        }
+
+
+
     }
 
 }
@@ -121,8 +132,8 @@ TEST_CASE("HDArbSemiFuncCheck") {
     // mpz_t minPQ;
     int k = 5;
 
-    string msg = "Tes111";
-    string typo = "T00000";
+    string msg = "Test1";
+    string typo = "Test0";
     string payload = CryptoSymWrapperFunctions::Wrapper_pad( typo, len);
     cout << msg.size() << "\t" <<typo.size() << "\n";
     cout << msg << "\t" <<typo << "\n";

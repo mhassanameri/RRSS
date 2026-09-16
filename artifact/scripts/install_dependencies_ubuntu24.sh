@@ -70,11 +70,13 @@ export DEBIAN_FRONTEND=noninteractive
     pybind11-dev \
     python3 \
     python3-cryptography \
+    python3-matplotlib \
     python3-dev \
     python3-numpy \
     python3-pip \
     python3-venv \
     unzip \
+
     zlib1g-dev
 
 echo "[2/5] Creating the repository-local Python environment..."
