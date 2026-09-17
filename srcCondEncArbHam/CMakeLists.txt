@@ -100,7 +100,7 @@ add_executable(condencarbham main.cpp
 ### Link libraries. These are configured through 3rdparty/${lib_name}
 
 find_library(ARGON2_LIBRARY argon2 PATHS ${CMAKE_SOURCE_DIR}/argon2/phcargon2)
-include_directories("/usr/local/include/crypto-suites")
+#include_directories("/usr/local/include/crypto-suites")
 
 target_link_libraries(condencarbham
         PUBLIC

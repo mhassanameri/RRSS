@@ -1,5 +1,8 @@
 import random
-import Crypto.Util.number as nb
+try:
+    import Crypto.Util.number as nb
+except ModuleNotFoundError:
+    import Cryptodome.Util.number as nb
 import os
 from copy import copy
 """

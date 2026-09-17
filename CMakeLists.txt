@@ -84,6 +84,19 @@ if(NOT ARGON2_INCLUDE_DIR OR NOT ARGON2_LIBRARY)
 endif()
 
 # -----------------------------
+# Crypto-Suit
+# -----------------------------
+set(CRYPTO_SUITES_DIR "${CMAKE_SOURCE_DIR}/external/crypto-suites")
+
+if(NOT EXISTS "${CRYPTO_SUITES_DIR}/crypto-bn/bn.h")
+        message(FATAL_ERROR
+                "Missing bundled dependency: external/crypto-suites/crypto-bn/bn.h")
+endif()
+
+include_directories("${CMAKE_SOURCE_DIR}/external")
+
+
+# -----------------------------
 # Main executable
 # -----------------------------
 add_executable(RRSS
