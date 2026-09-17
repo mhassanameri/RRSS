@@ -342,7 +342,7 @@ We can generate all data by simply executing the following command.
 bash artifact/scripts/reproduce_table1_all.sh
 ```
 
-The RSS-fPAKE script invokes `benchmarkRSS.py` and `statisticBenchmarkRSSfPAKE.py`. The RRSS-fPAKE script invokes `benchmarkRRSS.py` and `statisticBenchmarkRRSSfPAKE.py`.
+The RSS-fPAKE script invokes `benchmarkRSS.py` and `statisticBenchmarkRSSfPAKE.py`. The RRSS-fPAKE script invokes `benchmarkRRSS.py` and `statisticBenchmarkRRSSfPAKE.py`. (Estimated time to get the results after calling `bash artifact/scripts/reproduce_table1_all.sh`: around 50 minuetes )
 
 The RRSS-fPAKE script also verifies that the compiled `rrss` Python module can be imported before starting the benchmark. Therefore, the RRSS C++ project and Python binding must be built with the same Python version used by `python3`.
 
@@ -518,7 +518,7 @@ The script performs the following steps:
 5. Copies the generated raw `.dat` files to `artifact/results/reproduced/`.
 6. Calls `generate_figure2.py` to normalize the measurements, export CSV files, and create the final plots.
 
-Benchmark execution can take time because it performs public-key cryptographic operations for multiple parameter combinations. (Estimated time to get the results: TBA)
+Benchmark execution can take time because it performs public-key cryptographic operations for multiple parameter combinations. (Estimated time to get the results: 1.5 hours --- 1 hour ArbHamSemiEval and aroun 30 min HDAtmostTsemiEval)
 
 ## Manual reproduction
 
