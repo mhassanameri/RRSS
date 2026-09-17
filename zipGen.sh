@@ -4,14 +4,16 @@ ZIP="../RRSS-CCS2026-Artifact.zip"
 
 zip -r "$ZIP" . \
   -x ".git/*" \
+     ".venv/*" \
+     "*/.venv/*" \
      "build/*" \
-     "cmake-build-asan/*" \
-     "cmake-build-debug/*" \
-     "cmake-build-release/*" \
-     "cmake-build-relwithdebinfo/*" \
-     "cmake-build-sanitizer/*" \
+     "build-backup.*/*" \
+     "artifact/results/reproduced/?*" \
+     "cmake-build-*/*" \
      ".idea/*" \
-     "**/__pycache__/*" \
+     "__pycache__/*" \
+     "*/__pycache__/*" \
+     "*.before-system-python" \
      "*.pyc" \
      "*.o" \
      "*.a" \

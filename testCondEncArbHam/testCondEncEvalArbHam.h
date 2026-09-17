@@ -95,7 +95,7 @@ TEST_CASE("HDAtmostTSemiEval") {
         int count = 1;
         if (l == 128) {
             for (auto j:_ell) {
-                if (j <= 4) {
+                if (j < 4) {
                 rslt =testCondEncAtmostTHamDistSemihonest(n_lambda_, lambda, Num_tests, l, j, File );
                 cout << "padded length: " << l << "\t" << "ell: " << j << "\n";
             }

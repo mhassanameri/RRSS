@@ -407,7 +407,7 @@ For each algorithm, security level, and input type, the total communication over
 
 Absolute timings may differ across machines because of hardware, system load, and compiler or Python-version differences. A successful reproduction should preserve the functionality and the qualitative performance comparison between RSS-fPAKE and RRSS-fPAKE.
 
-
+**Remark**: If you run `bash artifact/scripts/reproduce_table1_all.sh`, then there no need to call .py script to generate the output tanle file. It automatically calls the `python3 artifact/scripts/generate_table1.py` script inside it. 
 
 ### Manual benchmark execution for Table 1
 
