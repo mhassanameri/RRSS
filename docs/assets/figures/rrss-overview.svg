@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1050" viewBox="0 0 1800 1050" role="img" aria-labelledby="title desc">
+<title id="title">Random Robust Secret Sharing with Perfect Privacy</title>
+<desc id="desc">A secret is split into n shares. An adversary chooses up to n minus t positions, whose shares are replaced independently and uniformly at random. Identify finds at least t uncorrupted shares with probability at least one minus epsilon; SecretRecover reconstructs the secret. Any at most t minus one original shares are jointly uniform. Arbitrary adversarial replacement is a different model.</desc>
+<defs>
+ <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#75859a" stroke-width="1.6"/></marker>
+ <marker id="greenArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#188375" stroke-width="1.6"/></marker>
+ <pattern id="noise" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.5" fill="#df8b67" opacity=".4"/><path d="M12 12 l4 0 M14 10 l0 4" stroke="#df8b67" opacity=".4"/></pattern>
+ <g id="key"><circle cx="0" cy="0" r="20" fill="none" stroke="#ca941c" stroke-width="10"/><path d="M19 0 H70 M52 0 V17 M67 0 V13" fill="none" stroke="#ca941c" stroke-width="10" stroke-linejoin="round"/></g>
+ <g id="dice" stroke="#a9583d" stroke-width="1.8" stroke-linejoin="round">
+  <path d="M4 13 L24 2 Q28 0 32 2 L54 13 Q58 15 54 18 L34 29 Q30 31 26 29 L4 18 Q0 15 4 13 Z" fill="#fffdf9"/>
+  <path d="M0 20 Q0 16 4 18 L26 30 Q30 32 30 36 L30 57 Q30 62 26 60 L4 48 Q0 46 0 42 Z" fill="#f4c5aa"/>
+  <path d="M34 30 L54 18 Q58 16 58 21 L58 42 Q58 46 54 48 L34 60 Q30 62 30 57 L30 36 Q30 32 34 30 Z" fill="#df9371"/>
+  <g fill="#82412e" stroke="none">
+   <ellipse cx="20" cy="14" rx="3.5" ry="2"/><ellipse cx="38" cy="17" rx="3.5" ry="2"/>
+   <ellipse cx="8" cy="26" rx="2.4" ry="3.2" transform="rotate(-24 8 26)"/><ellipse cx="22" cy="48" rx="2.4" ry="3.2" transform="rotate(-24 22 48)"/>
+   <ellipse cx="15" cy="37" rx="2.4" ry="3.2" transform="rotate(-24 15 37)"/>
+   <ellipse cx="38" cy="33" rx="2.4" ry="3.2" transform="rotate(24 38 33)"/><ellipse cx="50" cy="26" rx="2.4" ry="3.2" transform="rotate(24 50 26)"/>
+   <ellipse cx="44" cy="39" rx="2.4" ry="3.2" transform="rotate(24 44 39)"/>
+   <ellipse cx="38" cy="51" rx="2.4" ry="3.2" transform="rotate(24 38 51)"/><ellipse cx="50" cy="44" rx="2.4" ry="3.2" transform="rotate(24 50 44)"/>
+  </g>
+ </g>
+ <g id="adversary">
+  <path d="M16 40 Q-2 26 6 4 Q14 23 29 23 M48 23 Q63 23 71 4 Q79 26 61 40" fill="#981e32"/>
+  <path d="M14 29 Q9 20 9 13 Q17 25 24 26 M55 26 Q63 24 68 13 Q67 23 63 29" fill="#ec6570"/>
+  <path d="M17 78 Q-2 85 0 100 H77 Q78 85 59 78" fill="#981e32"/>
+  <path d="M9 39 Q14 22 39 22 Q64 22 69 39 Q76 65 59 80 Q49 90 39 90 Q29 90 19 80 Q2 65 9 39 Z" fill="#dc3e51"/>
+  <path d="M61 32 Q76 51 64 71 Q55 85 39 87 Q62 91 71 69 Q79 46 61 32" fill="#ba273e"/>
+  <path d="M15 46 Q25 43 33 51 Q23 61 15 54 Z M63 46 Q53 43 45 51 Q55 61 63 54 Z" fill="#fff9ec"/>
+  <path d="M27 48 V54 M51 48 V54" stroke="#771b30" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M14 42 L31 47 M64 42 L47 47" stroke="#771b30" stroke-width="4" stroke-linecap="round"/>
+  <path d="M22 65 Q39 74 56 65 Q53 80 39 81 Q26 80 22 65 Z" fill="#771b30"/>
+  <path d="M26 68 L30 76 L34 70 M44 70 L48 76 L52 68" fill="#fff9ec"/>
+  <path d="M77 89 Q91 89 94 74" fill="none" stroke="#ba273e" stroke-width="7" stroke-linecap="round"/>
+  <path d="M94 99 V12 M79 24 V36 Q79 47 94 47 Q109 47 109 36 V24" fill="none" stroke="#981e32" stroke-width="4" stroke-linecap="round"/>
+  <path d="M94 2 L88 16 H100 Z M79 14 L73 28 H85 Z M109 14 L103 28 H115 Z" fill="#981e32"/>
+ </g>
+</defs>
+<rect width="1800" height="1050" fill="#fff"/>
+<style>text {font-family: 'DejaVu Sans',sans-serif; fill:#182a40} .muted {fill:#5d6f82} .math {font-family:'DejaVu Serif',serif} .blue {fill:#246eb8} .red {fill:#a8443a} .green {fill:#12776b}</style>
+<text x="64" y="70" font-size="40" class="" text-anchor="start" font-weight="bold">Random Robust Secret Sharing</text>
+<text x="65" y="110" font-size="23" class="muted" text-anchor="start">Perfect privacy. Recovery despite random share corruption.</text>
+<rect x="1442" y="46" width="292" height="62" rx="16" fill="#edf6fb" stroke="none" stroke-width="2"/>
+<text x="1588" y="85" font-size="22" class="blue" text-anchor="middle" font-weight="bold">t valid shares out of n</text>
+<path d="M64 145 L1736 145" fill="none" stroke="#dae3ec" stroke-width="2.5"/>
+<text x="90" y="205" font-size="16" class="muted" text-anchor="middle" font-weight="bold">SECRET</text>
+<text x="450" y="205" font-size="16" class="muted" text-anchor="middle" font-weight="bold">ORIGINAL SHARES</text>
+<text x="771" y="205" font-size="16" class="muted" text-anchor="middle" font-weight="bold">CORRUPTION CHANNEL</text>
+<text x="1033" y="205" font-size="16" class="muted" text-anchor="middle" font-weight="bold">RECEIVED SHARES</text>
+<text x="1320" y="205" font-size="16" class="muted" text-anchor="middle" font-weight="bold">IDENTIFY + RECOVER</text>
+<use href="#key" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#key" transform="translate(85 425) scale(0.85)"/>
+<text x="110" y="492" font-size="36" class="math" text-anchor="middle">s</text>
+<path d="M173 433 L425 433" fill="none" stroke="#75859a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="294" y="355" font-size="22" class="" text-anchor="middle" font-weight="bold">RRSS.ShareGen</text>
+<text x="294" y="384" font-size="21" class="math" text-anchor="middle">(s, pp)</text>
+<rect x="273" y="267" width="24" height="29" rx="5" fill="#eaf3fd" stroke="#6a9bce" stroke-width="2"/>
+<rect x="288" y="285" width="24" height="29" rx="5" fill="#eaf3fd" stroke="#6a9bce" stroke-width="2"/>
+<rect x="303" y="267" width="24" height="29" rx="5" fill="#eaf3fd" stroke="#6a9bce" stroke-width="2"/>
+<rect x="438" y="266" width="124" height="57" rx="13" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="500" y="304" font-size="26" class="math" text-anchor="middle">c₁</text>
+<path d="M566 294 L628 294" fill="none" stroke="#75859a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="438" y="348" width="124" height="57" rx="13" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="500" y="386" font-size="26" class="math" text-anchor="middle">c₂</text>
+<path d="M566 376 L628 376" fill="none" stroke="#75859a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="438" y="430" width="124" height="57" rx="13" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="500" y="468" font-size="26" class="math" text-anchor="middle">c₃</text>
+<path d="M566 458 L628 458" fill="none" stroke="#75859a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="438" y="594" width="124" height="57" rx="13" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="500" y="632" font-size="26" class="math" text-anchor="middle">cₙ</text>
+<path d="M566 622 L628 622" fill="none" stroke="#75859a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="500" y="558" font-size="36" class="muted" text-anchor="middle">⋮</text>
+<text x="500" y="687" font-size="20" class="muted" text-anchor="middle">n shares in 𝒮</text>
+<rect x="638" y="240" width="276" height="426" rx="22" fill="#fff6f1" stroke="#e9bcaa" stroke-width="2"/>
+<use href="#adversary" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#adversary" transform="translate(729 254) scale(0.82)"/>
+<text x="776" y="359" font-size="20" class="" text-anchor="middle" font-weight="bold">Adversary chooses</text>
+<text x="776" y="389" font-size="23" class="math" text-anchor="middle">positions C ⊆ [n]</text>
+<text x="776" y="423" font-size="25" class="math" text-anchor="middle">|C| ≤ n − t</text>
+<path d="M681 449 L871 449" fill="none" stroke="#e9bcaa" stroke-width="2.5"/>
+<use href="#dice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dice" transform="translate(751 463) scale(0.85)"/>
+<text x="776" y="547" font-size="20" class="" text-anchor="middle">For each i ∈ C:</text>
+<text x="776" y="582" font-size="24" class="math" text-anchor="middle">c′ᵢ ← Uniform(𝒮)</text>
+<text x="776" y="614" font-size="18" class="muted" text-anchor="middle">independently sampled</text>
+<text x="776" y="641" font-size="17" class="muted" text-anchor="middle">Other shares unchanged</text>
+<path d="M922 294 L972 294" fill="none" stroke="#75859a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="981" y="266" width="124" height="57" rx="13" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="1043" y="304" font-size="26" class="math" text-anchor="middle">c₁</text>
+<path d="M922 376 L972 376" fill="none" stroke="#75859a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="981" y="348" width="124" height="57" rx="13" fill="#fff0e7" stroke="#d98966" stroke-width="2"/>
+<rect x="983" y="350" width="120" height="53" rx="11" fill="url(#noise)" stroke="none" stroke-width="2"/>
+<text x="1043" y="386" font-size="26" class="math" text-anchor="middle">r₂</text>
+<path d="M922 458 L972 458" fill="none" stroke="#75859a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="981" y="430" width="124" height="57" rx="13" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="1043" y="468" font-size="26" class="math" text-anchor="middle">c₃</text>
+<path d="M922 622 L972 622" fill="none" stroke="#75859a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="981" y="594" width="124" height="57" rx="13" fill="#fff0e7" stroke="#d98966" stroke-width="2"/>
+<rect x="983" y="596" width="120" height="53" rx="11" fill="url(#noise)" stroke="none" stroke-width="2"/>
+<text x="1043" y="632" font-size="26" class="math" text-anchor="middle">rₙ</text>
+<text x="1043" y="558" font-size="36" class="muted" text-anchor="middle">⋮</text>
+<text x="1043" y="687" font-size="20" class="math muted" text-anchor="middle">c′ = (c′₁, …, c′ₙ)</text>
+<path d="M1122 294 V623 M1108 294 H1122 M1108 376 H1122 M1108 458 H1122 M1108 623 H1122" stroke="#a2afbc" stroke-width="2" fill="none"/>
+<path d="M1122 433 L1154 433" fill="none" stroke="#75859a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="1166" y="272" width="374" height="349" rx="22" fill="#eff8f6" stroke="#91c5b9" stroke-width="2"/>
+<circle cx="1343" cy="317" r="19" fill="white" stroke="#188375" stroke-width="3"/><path d="M1357 332 l15 15 M1333 317 l7 7 l13 -15" stroke="#188375" stroke-width="3" fill="none"/>
+<text x="1353" y="383" font-size="21" class="" text-anchor="middle" font-weight="bold">RRSS.Identify(c′, pp)</text>
+<text x="1353" y="424" font-size="25" class="math green" text-anchor="middle">V ⊆ [n] ∖ C</text>
+<text x="1353" y="459" font-size="27" class="math green" text-anchor="middle">|V| ≥ t</text>
+<text x="1353" y="491" font-size="17" class="muted" text-anchor="middle">valid indices identified</text>
+<path d="M1353 510 L1353 544" fill="none" stroke="#188375" stroke-width="2.5" marker-end="url(#greenArrow)"/>
+<text x="1353" y="581" font-size="20" text-anchor="middle" font-weight="bold">RRSS.SecretRecover(V, c′<tspan baseline-shift="sub" font-size="14">V</tspan>, pp)</text>
+<path d="M1544 433 L1588 433" fill="none" stroke="#188375" stroke-width="2.5" marker-end="url(#greenArrow)"/>
+<use href="#key" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#key" transform="translate(1631 420) scale(0.85)"/>
+<text x="1657" y="486" font-size="36" class="math" text-anchor="middle">s</text>
+<text x="1657" y="527" font-size="19" class="green" text-anchor="middle" font-weight="bold">Recovered secret</text>
+<text x="1657" y="558" font-size="18" class="muted" text-anchor="middle">with probability</text>
+<text x="1657" y="587" font-size="24" class="math green" text-anchor="middle">≥ 1 − ε(λ)</text>
+<rect x="1509" y="635" width="228" height="62" rx="12" fill="#fff4f3" stroke="#edc8c3" stroke-width="2"/>
+<text x="1623" y="661" font-size="19" class="red" text-anchor="middle">If |V| &lt; t: output ⊥</text>
+<text x="1623" y="685" font-size="15" class="muted" text-anchor="middle">recovery wrapper</text>
+<text x="65" y="721" font-size="19" class="muted" text-anchor="start">Share space in our construction:</text>
+<text x="384" y="721" font-size="23" class="math">𝒮 = 𝔽<tspan dy="6" font-size="16">2</tspan><tspan dy="-8" font-size="12">λ</tspan><tspan dx="7" dy="2" font-size="23">× (𝔽</tspan><tspan dy="6" font-size="16">2</tspan><tspan dy="-8" font-size="12">λ₁</tspan><tspan dx="2" dy="2" font-size="23">)</tspan><tspan dy="-10" font-size="16">6n</tspan></text>
+<text x="711" y="721" font-size="18" class="muted" text-anchor="start">One secret-sharing component + 6n identification components</text>
+<rect x="64" y="750" width="538" height="202" rx="18" fill="#f3f7fc" stroke="#dce6f2" stroke-width="2"/>
+<text x="88" y="787" font-size="17" class="blue" text-anchor="start" font-weight="bold">01  PERFECT PRIVACY</text>
+<text x="88" y="828" font-size="29" class="math" text-anchor="start">t₁ = t − 1</text>
+<text x="88" y="868" font-size="21" class="" text-anchor="start">Any ≤ t − 1 original shares are jointly</text>
+<text x="88" y="900" font-size="21" class="" text-anchor="start">uniform over their share space,</text>
+<text x="88" y="932" font-size="21" class="" text-anchor="start">independently of the secret.</text>
+<rect x="621" y="750" width="538" height="202" rx="18" fill="#eff8f6" stroke="#d5eae4" stroke-width="2"/>
+<text x="645" y="787" font-size="17" class="green" text-anchor="start" font-weight="bold">02  RANDOM ROBUSTNESS</text>
+<text x="645" y="828" font-size="25" class="math" text-anchor="start">t₂ = t   •   up to n − t corruptions</text>
+<text x="645" y="868" font-size="21" class="" text-anchor="start">Identify ≥ t uncorrupted shares, then</text>
+<text x="645" y="900" font-size="21" class="" text-anchor="start">recover s with probability ≥ 1 − ε(λ).</text>
+<text x="645" y="932" font-size="20" class="muted" text-anchor="start">Replacement values must be uniform.</text>
+<rect x="1178" y="750" width="558" height="202" rx="18" fill="#f8f5fc" stroke="#e5dcef" stroke-width="2"/>
+<text x="1202" y="787" font-size="17" class="" text-anchor="start" font-weight="bold">03  NO PRIVACY–ROBUSTNESS GAP</text>
+<text x="1202" y="828" font-size="29" class="math" text-anchor="start">t₂ = t₁ + 1</text>
+<text x="1202" y="868" font-size="21" class="" text-anchor="start">Achieved for random corruptions.</text>
+<text x="1202" y="900" font-size="21" class="" text-anchor="start">Impossible under strong robustness</text>
+<text x="1202" y="932" font-size="20" class="" text-anchor="start">against arbitrary corruptions (App. I.2).</text>
+<rect x="65" y="984" width="19" height="19" rx="4" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="95" y="1000" font-size="17" class="muted" text-anchor="start">Unchanged share</text>
+<rect x="294" y="984" width="19" height="19" rx="4" fill="#fff0e7" stroke="#d98966" stroke-width="2"/>
+<text x="324" y="1000" font-size="17" class="muted" text-anchor="start">Independent uniform replacement</text>
+<text x="1735" y="1000" font-size="17" class="muted" text-anchor="end">Colors illustrate corruption; the receiver is not told the positions.</text>
+<text x="65" y="1031" font-size="16" class="muted" text-anchor="start">pp: public parameters   •   𝒮: share space   •   C: corrupted positions   •   V: identified valid positions</text>
+</svg>

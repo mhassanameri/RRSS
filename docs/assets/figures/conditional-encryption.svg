@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1350" viewBox="0 0 1600 1350"><title>RRSS-based conditional encryption for Hamming distance</title><desc>Alice encrypts m1 and sends the ciphertext and public key to Bob. Bob conditionally encrypts payload m3 with control message m2. Alice uses RRSS to identify valid shares and recover the payload when Hamming distance is at most ell.</desc><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#526b80" stroke-width="1.7"/></marker></defs><rect width="1600" height="1350" fill="white"/>
+<text x="800" y="66" font-family="DejaVu Sans,sans-serif" font-size="38" fill="#213e54" font-weight="700" text-anchor="middle">Conditional encryption for Hamming distance</text>
+<text x="800" y="108" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#607486" font-weight="400" text-anchor="middle">Release a payload only when the encrypted message is sufficiently close to a control message.</text>
+<rect x="420" y="134" width="760" height="65" rx="18" fill="#f3f6f8" stroke="none" stroke-width="2"/>
+<text x="455" y="177" font-family="DejaVu Sans,sans-serif" font-size="28" fill="#213e54">π = (KeyGen, Enc, <tspan fill="#267cb4" font-weight="700">CEnc</tspan>, Dec)</text>
+<text x="1150" y="176" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#267cb4" font-weight="700" text-anchor="end">New algorithm</text>
+<rect x="60" y="228" width="680" height="790" rx="18" fill="#f7f9fb" stroke="#d9e3eb" stroke-width="2"/>
+<rect x="820" y="228" width="720" height="790" rx="18" fill="#f5faff" stroke="#cfdfed" stroke-width="2"/>
+<circle cx="105" cy="267" r="13" fill="#267cb4"/><path d="M82 309 Q82 284 105 284 Q128 284 128 309 Z" fill="#267cb4"/>
+<text x="145" y="278" font-family="DejaVu Sans,sans-serif" font-size="30" fill="#267cb4" font-weight="700" text-anchor="start">Alice</text>
+<text x="145" y="311" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#607486" font-weight="400" text-anchor="start">Key owner · keeps sk private</text>
+<circle cx="866" cy="267" r="13" fill="#388679"/><path d="M843 309 Q843 284 866 284 Q889 284 889 309 Z" fill="#388679"/>
+<text x="906" y="278" font-family="DejaVu Sans,sans-serif" font-size="30" fill="#176849" font-weight="700" text-anchor="start">Bob</text>
+<text x="906" y="311" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#607486" font-weight="400" text-anchor="start">Conditional encryptor</text>
+<g transform="translate(108 362)" fill="none" stroke="#d4a32b" stroke-width="6" stroke-linecap="round"><circle cx="0" cy="0" r="11"/><path d="M11 0 H44 M32 0 V10 M43 0 V8"/></g>
+<text x="177" y="371" font-family="DejaVu Sans,sans-serif" font-size="24" fill="#213e54" font-weight="700" text-anchor="start">(pk, sk) ← KeyGen(1<tspan baseline-shift="super" font-size="17">λ</tspan>)</text>
+<text x="105" y="401" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#607486" font-weight="400" text-anchor="start">Public parameters include n and ℓ.</text>
+<rect x="99" y="438" width="109" height="76" rx="18" fill="#fff7df" stroke="#e7d297" stroke-width="2"/>
+<text x="153" y="471" font-family="DejaVu Sans,sans-serif" font-size="29" fill="#213e54" font-weight="700" text-anchor="middle">m₁</text>
+<text x="153" y="496" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#607486" font-weight="400" text-anchor="middle">message</text>
+<path d="M208 476 H251" fill="none" stroke="#526b80" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="261" y="438" width="417" height="76" rx="18" fill="white" stroke="#c7d7e3" stroke-width="2"/>
+<text x="469" y="484" font-family="DejaVu Sans,sans-serif" font-size="28" fill="#213e54" font-weight="700" text-anchor="middle">c₁ ← Encₚₖ(m₁)</text>
+<path d="M678 476 H779 V365 H1190 V500" fill="none" stroke="#526b80" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1035" y="339" width="310" height="49" rx="12" fill="white" stroke="#c7d7e3" stroke-width="2"/>
+<text x="1190" y="372" font-family="DejaVu Sans,sans-serif" font-size="24" fill="#267cb4" font-weight="700" text-anchor="middle">Send (pk, c₁)</text>
+<rect x="859" y="403" width="228" height="57" rx="12" fill="#fff7df" stroke="#e7d297" stroke-width="2"/>
+<text x="973" y="438" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#213e54" font-weight="700" text-anchor="middle">m₂  control message</text>
+<rect x="1254" y="403" width="247" height="57" rx="12" fill="#fff7df" stroke="#e7d297" stroke-width="2"/>
+<text x="1377" y="438" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#213e54" font-weight="700" text-anchor="middle">m₃  payload message</text>
+<path d="M973 460 V500" fill="none" stroke="#526b80" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M1377 460 V500" fill="none" stroke="#526b80" stroke-width="3" marker-end="url(#arrow)"/>
+<g transform="translate(0 20)">
+<rect x="855" y="490" width="650" height="322" rx="20" fill="white" stroke="#267cb4" stroke-width="2"/>
+<text x="1180" y="534" font-family="DejaVu Sans,sans-serif" font-size="27" fill="#176849" font-weight="700" text-anchor="middle">RRSS-based conditional encryption</text>
+<text x="1180" y="572" font-family="DejaVu Sans,sans-serif" font-size="30" fill="#267cb4" font-weight="700" text-anchor="middle">C′ ← CEncₚₖ(c₁, m₂, m₃)</text>
+<text x="889" y="621" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#267cb4" font-weight="700" text-anchor="start">1</text>
+<text x="927" y="621" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#213e54" font-weight="400" text-anchor="start">Choose a fresh key K; encrypt payload m₃.</text>
+<text x="889" y="669" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#267cb4" font-weight="700" text-anchor="start">2</text>
+<text x="927" y="669" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#176849" font-weight="700" text-anchor="start">RRSS.ShareGen(K): generate n shares.</text>
+<text x="889" y="717" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#267cb4" font-weight="700" text-anchor="start">3</text>
+<text x="927" y="717" font-family="DejaVu Sans,sans-serif" font-size="20" fill="#213e54" font-weight="400" text-anchor="start">Condition each share on a character match</text>
+<text x="927" y="748" font-family="DejaVu Sans,sans-serif" font-size="20" fill="#213e54" font-weight="400" text-anchor="start">using c₁ and the control message m₂.</text>
+<text x="1180" y="790" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#607486" font-weight="400" text-anchor="middle">Bob does not know m₁ or use sk.</text>
+</g>
+<path d="M855 795 H740 V620 H679" fill="none" stroke="#526b80" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="703" y="665" width="115" height="46" rx="10" fill="white" stroke="#d5e0e8" stroke-width="2"/>
+<text x="760" y="696" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#267cb4" font-weight="700" text-anchor="middle">Send C′</text>
+<rect x="98" y="561" width="580" height="320" rx="18" fill="white" stroke="#88b59d" stroke-width="2"/>
+<text x="388" y="603" font-family="DejaVu Sans,sans-serif" font-size="30" fill="#213e54" font-weight="700" text-anchor="middle">Decₛₖ(C′)</text>
+<text x="127" y="645" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#213e54" font-weight="400" text-anchor="start">Decrypt to obtain n candidate shares:</text>
+<rect x="132" y="668" width="42" height="28" rx="7" fill="#e4f1fa" stroke="#267cb4" stroke-width="2"/>
+<rect x="189" y="668" width="42" height="28" rx="7" fill="#e4f1fa" stroke="#267cb4" stroke-width="2"/>
+<rect x="246" y="668" width="42" height="28" rx="7" fill="#fff0e9" stroke="#d36843" stroke-width="2"/>
+<rect x="303" y="668" width="42" height="28" rx="7" fill="#e4f1fa" stroke="#267cb4" stroke-width="2"/>
+<rect x="360" y="668" width="42" height="28" rx="7" fill="#e4f1fa" stroke="#267cb4" stroke-width="2"/>
+<rect x="417" y="668" width="42" height="28" rx="7" fill="#e4f1fa" stroke="#267cb4" stroke-width="2"/>
+<rect x="474" y="668" width="42" height="28" rx="7" fill="#fff0e9" stroke="#d36843" stroke-width="2"/>
+<rect x="531" y="668" width="42" height="28" rx="7" fill="#e4f1fa" stroke="#267cb4" stroke-width="2"/>
+<rect x="588" y="668" width="42" height="28" rx="7" fill="#e4f1fa" stroke="#267cb4" stroke-width="2"/>
+<text x="128" y="730" font-family="DejaVu Sans,sans-serif" font-size="20" fill="#267cb4" font-weight="700" text-anchor="start">Matching characters → valid shares</text>
+<text x="128" y="761" font-family="DejaVu Sans,sans-serif" font-size="20" fill="#d36843" font-weight="700" text-anchor="start">Mismatches → random / invalid shares</text>
+<text x="128" y="806" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#176849" font-weight="700" text-anchor="start">RRSS identifies ≥ n − ℓ valid shares</text>
+<text x="128" y="839" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#213e54" font-weight="400" text-anchor="start">when close enough; recover K, then m₃.</text>
+<path d="M388 881 V912" fill="none" stroke="#526b80" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="98" y="924" width="580" height="66" rx="12" fill="#edf7f0" stroke="#a6cbb4" stroke-width="2"/>
+<text x="126" y="952" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#176849" font-weight="700" text-anchor="start">m₃  if Ham(m₁, m₂) ≤ ℓ</text>
+<text x="126" y="980" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#d36843" font-weight="700" text-anchor="start">⊥    otherwise*</text>
+<rect x="855" y="850" width="650" height="139" rx="14" fill="#edf3f8" stroke="none" stroke-width="2"/>
+<text x="1180" y="887" font-family="DejaVu Sans,sans-serif" font-size="17" fill="#607486" font-weight="700" text-anchor="middle">THE HAMMING-DISTANCE PREDICATE</text>
+<text x="1180" y="928" font-family="DejaVu Sans,sans-serif" font-size="25" fill="#213e54" font-weight="700" text-anchor="middle">P(m₁, m₂) = 1  ⇔  Ham(m₁, m₂) ≤ ℓ</text>
+<text x="1180" y="967" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#607486" font-weight="400" text-anchor="middle">n = message length · ℓ = allowed mismatches</text>
+<text x="800" y="1060" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#607486" font-weight="700" text-anchor="middle">FASTER CONDITIONAL DECRYPTION</text>
+<rect x="100" y="1084" width="650" height="154" rx="18" fill="#f5f7f9" stroke="#d4dfe7" stroke-width="2"/>
+<text x="130" y="1121" font-family="DejaVu Sans,sans-serif" font-size="24" fill="#213e54" font-weight="700" text-anchor="start">[CCS24:AB]  Ameri &amp; Blocki</text>
+<text x="130" y="1158" font-family="DejaVu Sans,sans-serif" font-size="20" fill="#607486" font-weight="400" text-anchor="start">Search over candidate subsets of shares</text>
+<text x="590" y="1208" font-family="DejaVu Sans,sans-serif" font-size="34" fill="#c8463d" font-weight="700" text-anchor="start">Ω</text>
+<text x="626" y="1206" font-family="DejaVu Sans,sans-serif" font-size="50" fill="#c8463d" font-weight="400" text-anchor="start">(</text>
+<text x="660" y="1188" font-family="DejaVu Sans,sans-serif" font-size="24" fill="#c8463d" font-weight="400" text-anchor="middle">n</text>
+<text x="660" y="1216" font-family="DejaVu Sans,sans-serif" font-size="24" fill="#c8463d" font-weight="400" text-anchor="middle">ℓ</text>
+<text x="680" y="1206" font-family="DejaVu Sans,sans-serif" font-size="50" fill="#c8463d" font-weight="400" text-anchor="start">)</text>
+<text x="130" y="1202" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#213e54" font-weight="400" text-anchor="start">Combinatorial decryption cost</text>
+<rect x="790" y="1084" width="710" height="154" rx="18" fill="#edf7f0" stroke="#a6cbb4" stroke-width="2"/>
+<text x="821" y="1121" font-family="DejaVu Sans,sans-serif" font-size="24" fill="#176849" font-weight="700" text-anchor="start">RRSS-based scheme</text>
+<text x="821" y="1158" font-family="DejaVu Sans,sans-serif" font-size="20" fill="#607486" font-weight="400" text-anchor="start">Identify valid shares using linear algebra</text>
+<text x="821" y="1202" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#213e54" font-weight="400" text-anchor="start">Polynomial decryption cost</text>
+<text x="1310" y="1207" font-family="DejaVu Sans,sans-serif" font-size="34" fill="#176849" font-weight="700" text-anchor="start">O(n<tspan baseline-shift="super" font-size="22">ω</tspan>)</text>
+<text x="800" y="1271" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#607486" font-weight="400" text-anchor="middle">ω is the matrix multiplication exponent. Complexity comparison: RRSS paper, §1.1.4 and Appendix H.</text>
+<text x="800" y="1303" font-family="DejaVu Sans,sans-serif" font-size="17" fill="#607486" font-weight="400" text-anchor="middle">*Correctness and error detection hold except with negligible probability. KeyGen parameters n and ℓ are implicit.</text>
+</svg>

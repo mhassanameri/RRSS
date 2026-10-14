@@ -1,0 +1,231 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1250" viewBox="0 0 1600 1250" role="img" aria-labelledby="title desc">
+<title id="title">Nearby-vehicle application: pairing from similar sensor fingerprints</title>
+<desc id="desc">Devices in two nearby cars measure acceleration, rotation, and air pressure. Local processing creates similar binary fingerprints used as fuzzy passwords. An RRSS-based fPAKE establishes a shared key when their Hamming distance is within the tolerance. FastZIP is prior work; RRSS replaces the robust secret sharing component in its fPAKE implementation. The sensor traces and bit strings are illustrative.</desc>
+<defs><ns0:g xmlns:ns0="http://www.w3.org/2000/svg" id="key"><ns0:circle cx="0" cy="0" r="20" fill="none" stroke="#ca941c" stroke-width="10" /><ns0:path d="M19 0 H70 M52 0 V17 M67 0 V13" fill="none" stroke="#ca941c" stroke-width="10" stroke-linejoin="round" /></ns0:g>
+ <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto-start-reverse"><path d="M1 1 L8 4.5 L1 8" fill="none" stroke="#7892a7" stroke-width="1.6"/></marker></defs>
+<rect width="1600" height="1250" fill="white"/>
+<style>text{font-family:'DejaVu Sans',sans-serif;fill:#182a40}.muted{fill:#5d6f82}.math{font-family:'DejaVu Serif',serif}.green{fill:#12776b}.blue{fill:#246eb8}.orange{fill:#bb5c3f}</style>
+<text x="64" y="66" font-size="38" class="" text-anchor="start" font-weight="bold">Device pairing from shared physical context</text>
+<text x="65" y="108" font-size="23" class="muted" text-anchor="start" font-weight="normal">Adapted application scenario • Similar sensor fingerprints serve as fuzzy passwords.</text>
+<path d="M64 143 H1536" fill="none" stroke="#dae3ec" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="800" y="190" font-size="18" class="blue" text-anchor="middle" font-weight="bold">TWO NEARBY CARS ON THE SAME ROAD</text>
+<rect x="130" y="412" width="1340" height="54" rx="8" fill="#92969b" stroke="#686d73" stroke-width="2"/>
+<rect x="160" y="447" width="109" height="10" rx="1" fill="#ffffff" stroke="#151719" stroke-width="2"/>
+<rect x="320" y="447" width="109" height="10" rx="1" fill="#ffffff" stroke="#151719" stroke-width="2"/>
+<rect x="480" y="447" width="109" height="10" rx="1" fill="#ffffff" stroke="#151719" stroke-width="2"/>
+<rect x="640" y="447" width="109" height="10" rx="1" fill="#ffffff" stroke="#151719" stroke-width="2"/>
+<rect x="800" y="447" width="109" height="10" rx="1" fill="#ffffff" stroke="#151719" stroke-width="2"/>
+<rect x="960" y="447" width="109" height="10" rx="1" fill="#ffffff" stroke="#151719" stroke-width="2"/>
+<rect x="1120" y="447" width="109" height="10" rx="1" fill="#ffffff" stroke="#151719" stroke-width="2"/>
+<rect x="1280" y="447" width="109" height="10" rx="1" fill="#ffffff" stroke="#151719" stroke-width="2"/>
+<g transform="translate(116 220.32) scale(.48)">
+<path d="M473 323 L483 271 L530 211 Q541 195 569 194 H849 Q873 195 893 215 L974 286 L1095 303 L1127 327 L1138 377 L1130 402 H480 L468 382 Z" fill="#76acd0" stroke="#354651" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M501 210 L534 191 H852 L876 201 L879 215 H536 L518 230 Z" fill="#27343e" stroke="#27343e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M557 190 V182 H816 L829 190" fill="none" stroke="#38434b" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M497 210 L476 219 L490 224 H532" fill="#27343e" stroke="#27343e" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M529 231 L558 215 H846 L929 284 L514 288 Z" fill="#27343e" stroke="#27343e" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M535 239 L560 226 H623 L623 278 H522 Z" fill="#c6dfe9" stroke="#9eb8c8" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M638 226 H739 V278 H638 Z" fill="#c6dfe9" stroke="#9eb8c8" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M755 226 H838 L899 278 H755 Z" fill="#c6dfe9" stroke="#9eb8c8" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M536 244 L565 231 H600 L554 272 H526 Z" fill="#eaf7fc" stroke="#eaf7fc" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M769 232 H833 L870 267 H769 Z" fill="#eaf7fc" stroke="#eaf7fc" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M494 307 L697 302 L940 291 L1085 311" fill="none" stroke="#edf8fc" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M657 312 V368 L681 382 H922 L938 352 V301" fill="none" stroke="#507085" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M751 305 V373" fill="none" stroke="#507085" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M681 317 H711 M783 312 H815" fill="none" stroke="#354651" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M659 374 L878 356 L932 343" fill="none" stroke="#426477" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M472 373 L532 375 L552 404 H1089 L1134 380 V408 H478 Z" fill="#303c46" stroke="#303c46" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M525 404 L530 361 L555 334 H629 L657 360 L664 405 L649 411 L644 368 L623 348 H564 L544 369 L540 409 Z" fill="#303c46" stroke="#303c46" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M944 404 L949 361 L974 334 H1048 L1076 360 L1083 405 L1068 411 L1063 368 L1042 348 H983 L963 369 L959 409 Z" fill="#303c46" stroke="#303c46" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M932 278 L954 279 L965 288 L960 298 H938 Z" fill="#27343e" stroke="#27343e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M480 282 L519 292 L554 301 L508 304 L477 298 Z" fill="#e7554c" stroke="#993d36" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1061 306 L1100 313 L1116 329 L1081 326 Z" fill="#f7fbfc" stroke="#71828b" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1124 340 L1132 362 L1108 362 L1107 346 Z" fill="#27343e" stroke="#27343e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1098 383 H1124" fill="none" stroke="#acbcc4" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="594" cy="399" r="43" fill="#222c34"/><circle cx="594" cy="399" r="29" fill="#71818e" stroke="#d1dbe1" stroke-width="2"/><circle cx="594" cy="399" r="8" fill="#c4d0d8"/>
+<path d="M594 375 L597 399 L599 378" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M617 392 L597 399 L622 395" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M608 419 L597 399 L613 422" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M580 419 L597 399 L585 422" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M571 392 L597 399 L576 395" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1013" cy="399" r="43" fill="#222c34"/><circle cx="1013" cy="399" r="29" fill="#71818e" stroke="#d1dbe1" stroke-width="2"/><circle cx="1013" cy="399" r="8" fill="#c4d0d8"/>
+<path d="M1013 375 L1016 399 L1018 378" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1036 392 L1016 399 L1041 395" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1027 419 L1016 399 L1032 422" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M999 419 L1016 399 L1004 422" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M990 392 L1016 399 L995 395" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="783" y="224" width="44" height="73" rx="9" fill="#347dad" stroke="#347dad" stroke-width="2"/>
+<rect x="788" y="233" width="34" height="51" rx="4" fill="#fff" stroke="none" stroke-width="2"/>
+<path d="M800 229 h10" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="805" cy="290" r="2.5" fill="white"/>
+<text x="805" y="346" font-size="23" class="blue" text-anchor="middle" font-weight="bold">A</text>
+</g>
+<text x="500" y="296" font-size="23" class="blue" text-anchor="middle" font-weight="bold">Car A</text>
+<g transform="translate(716 220.32) scale(.48)">
+<path d="M473 323 L483 271 L530 211 Q541 195 569 194 H849 Q873 195 893 215 L974 286 L1095 303 L1127 327 L1138 377 L1130 402 H480 L468 382 Z" fill="#ed927b" stroke="#354651" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M501 210 L534 191 H852 L876 201 L879 215 H536 L518 230 Z" fill="#27343e" stroke="#27343e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M557 190 V182 H816 L829 190" fill="none" stroke="#38434b" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M497 210 L476 219 L490 224 H532" fill="#27343e" stroke="#27343e" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M529 231 L558 215 H846 L929 284 L514 288 Z" fill="#27343e" stroke="#27343e" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M535 239 L560 226 H623 L623 278 H522 Z" fill="#c6dfe9" stroke="#9eb8c8" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M638 226 H739 V278 H638 Z" fill="#c6dfe9" stroke="#9eb8c8" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M755 226 H838 L899 278 H755 Z" fill="#c6dfe9" stroke="#9eb8c8" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M536 244 L565 231 H600 L554 272 H526 Z" fill="#eaf7fc" stroke="#eaf7fc" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M769 232 H833 L870 267 H769 Z" fill="#eaf7fc" stroke="#eaf7fc" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M494 307 L697 302 L940 291 L1085 311" fill="none" stroke="#edf8fc" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M657 312 V368 L681 382 H922 L938 352 V301" fill="none" stroke="#507085" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M751 305 V373" fill="none" stroke="#507085" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M681 317 H711 M783 312 H815" fill="none" stroke="#354651" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M659 374 L878 356 L932 343" fill="none" stroke="#426477" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M472 373 L532 375 L552 404 H1089 L1134 380 V408 H478 Z" fill="#303c46" stroke="#303c46" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M525 404 L530 361 L555 334 H629 L657 360 L664 405 L649 411 L644 368 L623 348 H564 L544 369 L540 409 Z" fill="#303c46" stroke="#303c46" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M944 404 L949 361 L974 334 H1048 L1076 360 L1083 405 L1068 411 L1063 368 L1042 348 H983 L963 369 L959 409 Z" fill="#303c46" stroke="#303c46" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M932 278 L954 279 L965 288 L960 298 H938 Z" fill="#27343e" stroke="#27343e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M480 282 L519 292 L554 301 L508 304 L477 298 Z" fill="#e7554c" stroke="#993d36" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1061 306 L1100 313 L1116 329 L1081 326 Z" fill="#f7fbfc" stroke="#71828b" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1124 340 L1132 362 L1108 362 L1107 346 Z" fill="#27343e" stroke="#27343e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1098 383 H1124" fill="none" stroke="#acbcc4" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="594" cy="399" r="43" fill="#222c34"/><circle cx="594" cy="399" r="29" fill="#71818e" stroke="#d1dbe1" stroke-width="2"/><circle cx="594" cy="399" r="8" fill="#c4d0d8"/>
+<path d="M594 375 L597 399 L599 378" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M617 392 L597 399 L622 395" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M608 419 L597 399 L613 422" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M580 419 L597 399 L585 422" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M571 392 L597 399 L576 395" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1013" cy="399" r="43" fill="#222c34"/><circle cx="1013" cy="399" r="29" fill="#71818e" stroke="#d1dbe1" stroke-width="2"/><circle cx="1013" cy="399" r="8" fill="#c4d0d8"/>
+<path d="M1013 375 L1016 399 L1018 378" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1036 392 L1016 399 L1041 395" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1027 419 L1016 399 L1032 422" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M999 419 L1016 399 L1004 422" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M990 392 L1016 399 L995 395" fill="none" stroke="#d5e0e7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="783" y="224" width="44" height="73" rx="9" fill="#258473" stroke="#258473" stroke-width="2"/>
+<rect x="788" y="233" width="34" height="51" rx="4" fill="#fff" stroke="none" stroke-width="2"/>
+<path d="M800 229 h10" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="805" cy="290" r="2.5" fill="white"/>
+<text x="805" y="346" font-size="23" class="green" text-anchor="middle" font-weight="bold">B</text>
+</g>
+<text x="1100" y="296" font-size="23" class="orange" text-anchor="middle" font-weight="bold">Car B</text>
+<path d="M500 475 L400 491" fill="none" stroke="#7892a7" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M1100 475 L1200 491" fill="none" stroke="#7892a7" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="400" y="522" font-size="26" class="blue" text-anchor="middle" font-weight="bold">Device A</text>
+<rect x="114" y="541" width="572" height="126" rx="16" fill="#f6f9fc" stroke="#dce6f2" stroke-width="2"/>
+<text x="400" y="572" font-size="20" class="muted" text-anchor="middle" font-weight="normal">Accelerometer · Gyroscope · Barometer</text>
+<g transform="translate(179 610)">
+<circle r="26" fill="white" stroke="#347dad" stroke-width="2.5"/>
+<path d="M-19 5 A20 20 0 0 1 19 5" fill="none" stroke="#cedde6" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-18 3 L-14 2 M-12 -12 L-9 -9 M0 -19 V-15 M13 -13 L10 -10 M19 2 L15 2" fill="none" stroke="#347dad" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M0 5 L13 -11" fill="none" stroke="#347dad" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cy="5" r="4" fill="#347dad"/>
+</g>
+<path d="M273 609 L290 610 L307 612 L324 607 L341 594 L358 625 L375 605 L392 609 L409 613 L426 606 L443 598 L460 619 L477 608 L494 609 L511 611 L528 608" fill="none" stroke="#347dad" stroke-width="2.7" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="400" y="650" font-size="18" class="muted" text-anchor="middle" font-weight="normal">Local sensing → sensor fusion → fingerprint</text>
+<path d="M400 676 V702" fill="none" stroke="#7892a7" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="172" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="188.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="210" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="226.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">0</text>
+<rect x="248" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="264.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="286" y="716" width="33" height="43" rx="7" fill="#fff0e7" stroke="#d98966" stroke-width="2"/>
+<text x="302.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="324" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="340.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">0</text>
+<rect x="362" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="378.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="400" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="416.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">0</text>
+<rect x="438" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="454.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">0</text>
+<rect x="476" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="492.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="514" y="716" width="33" height="43" rx="7" fill="#fff0e7" stroke="#d98966" stroke-width="2"/>
+<text x="530.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">0</text>
+<rect x="552" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="568.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="590" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="606.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<g transform="translate(124 738)" fill="none" stroke="#347dad" stroke-width="2" stroke-linecap="round">
+<path d="M-23 3 C-27 -30 25 -31 25 0 C25 15 20 23 16 27"/>
+<path d="M-17 9 C-24 -23 18 -28 19 -1 C20 13 15 23 11 28"/>
+<path d="M-12 18 C-10 9 -18 -9 -7 -15 C5 -24 14 -13 13 1 C12 13 9 22 5 28"/>
+<path d="M-17 25 C-3 11 -14 -3 -5 -9 C3 -15 8 -8 7 3 C6 14 3 22 -1 27"/>
+<path d="M-22 17 C-21 22 -23 25 -25 27"/>
+<path d="M-10 27 C-3 18 1 11 1 0"/>
+</g>
+<text x="400" y="789" font-size="19" class="muted" text-anchor="middle" font-weight="normal">Fingerprint = local fuzzy password</text>
+<text x="1200" y="522" font-size="26" class="green" text-anchor="middle" font-weight="bold">Device B</text>
+<rect x="914" y="541" width="572" height="126" rx="16" fill="#f6f9fc" stroke="#dce6f2" stroke-width="2"/>
+<text x="1200" y="572" font-size="20" class="muted" text-anchor="middle" font-weight="normal">Accelerometer · Gyroscope · Barometer</text>
+<g transform="translate(979 610)">
+<circle r="26" fill="white" stroke="#258473" stroke-width="2.5"/>
+<path d="M-19 5 A20 20 0 0 1 19 5" fill="none" stroke="#cedde6" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M-18 3 L-14 2 M-12 -12 L-9 -9 M0 -19 V-15 M13 -13 L10 -10 M19 2 L15 2" fill="none" stroke="#258473" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M0 5 L13 -11" fill="none" stroke="#258473" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cy="5" r="4" fill="#258473"/>
+</g>
+<path d="M1073 609 L1090 612 L1107 611 L1124 608 L1141 596 L1158 623 L1175 606 L1192 609 L1209 612 L1226 607 L1243 600 L1260 618 L1277 608 L1294 610 L1311 609 L1328 608" fill="none" stroke="#258473" stroke-width="2.7" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1200" y="650" font-size="18" class="muted" text-anchor="middle" font-weight="normal">Local sensing → sensor fusion → fingerprint</text>
+<path d="M1200 676 V702" fill="none" stroke="#7892a7" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="972" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="988.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="1010" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="1026.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">0</text>
+<rect x="1048" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="1064.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="1086" y="716" width="33" height="43" rx="7" fill="#fff0e7" stroke="#d98966" stroke-width="2"/>
+<text x="1102.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">0</text>
+<rect x="1124" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="1140.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">0</text>
+<rect x="1162" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="1178.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="1200" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="1216.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">0</text>
+<rect x="1238" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="1254.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">0</text>
+<rect x="1276" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="1292.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="1314" y="716" width="33" height="43" rx="7" fill="#fff0e7" stroke="#d98966" stroke-width="2"/>
+<text x="1330.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="1352" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="1368.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<rect x="1390" y="716" width="33" height="43" rx="7" fill="#eaf3fd" stroke="#adc7de" stroke-width="2"/>
+<text x="1406.5" y="746" font-size="24" class="math" text-anchor="middle" font-weight="normal">1</text>
+<g transform="translate(924 738)" fill="none" stroke="#258473" stroke-width="2" stroke-linecap="round">
+<path d="M-23 3 C-27 -30 25 -31 25 0 C25 15 20 23 16 27"/>
+<path d="M-17 9 C-24 -23 18 -28 19 -1 C20 13 15 23 11 28"/>
+<path d="M-12 18 C-10 9 -18 -9 -7 -15 C5 -24 14 -13 13 1 C12 13 9 22 5 28"/>
+<path d="M-17 25 C-3 11 -14 -3 -5 -9 C3 -15 8 -8 7 3 C6 14 3 22 -1 27"/>
+<path d="M-22 17 C-21 22 -23 25 -25 27"/>
+<path d="M-10 27 C-3 18 1 11 1 0"/>
+</g>
+<text x="1200" y="789" font-size="19" class="muted" text-anchor="middle" font-weight="normal">Fingerprint = local fuzzy password</text>
+<text x="800" y="592" font-size="17" class="muted" text-anchor="middle" font-weight="normal">If fingerprints are</text>
+<text x="800" y="622" font-size="17" class="muted" text-anchor="middle" font-weight="normal">sufficiently close</text>
+<path d="M707 641 H893" fill="none" stroke="#b4c4d0" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 7"/>
+<path d="M400 800 V838 H595" fill="none" stroke="#7892a7" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M1200 800 V838 H1005" fill="none" stroke="#7892a7" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="608" y="808" width="384" height="83" rx="20" fill="#eff8f6" stroke="#91c5b9" stroke-width="2"/>
+<text x="800" y="842" font-size="27" class="green" text-anchor="middle" font-weight="bold">RRSS-based fPAKE</text>
+<text x="800" y="873" font-size="22" class="math" text-anchor="middle" font-weight="normal">Ham(pwd<tspan baseline-shift="sub" font-size="70%">A</tspan>, pwd<tspan baseline-shift="sub" font-size="70%">B</tspan>) ≤ ℓ</text>
+<text x="304" y="871" font-size="17" class="muted" text-anchor="middle" font-weight="normal">Tolerates fingerprint differences</text>
+<text x="1286" y="871" font-size="17" class="muted" text-anchor="middle" font-weight="normal">Fingerprints stay local</text>
+<path d="M800 899 V929" fill="none" stroke="#7892a7" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
+<use xlink:href="#key" transform="translate(697 960) scale(.72)"/>
+<text x="788" y="965" font-size="27" class="green" text-anchor="start" font-weight="bold">Shared session key K</text>
+<text x="800" y="1001" font-size="20" class="muted" text-anchor="middle" font-weight="normal">Secure communication between the two cars for exchanging traffic data</text>
+<path d="M64 1026 H1536" fill="none" stroke="#dae3ec" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="64" y="1045" width="476" height="113" rx="16" fill="#f8f5fc" stroke="none" stroke-width="2"/>
+<text x="84" y="1079" font-size="22" class="" text-anchor="start" font-weight="bold">Prior practical fPAKE</text>
+<text x="84" y="1113" font-size="19" class="muted" text-anchor="start" font-weight="normal">Efficient, including use in FastZIP</text>
+<text x="84" y="1141" font-size="18" class="muted" text-anchor="start" font-weight="normal">Robustness–privacy gap</text>
+<rect x="562" y="1045" width="476" height="113" rx="16" fill="#f6f9fc" stroke="none" stroke-width="2"/>
+<text x="582" y="1079" font-size="22" class="" text-anchor="start" font-weight="bold">Prior full-security fPAKE</text>
+<text x="582" y="1113" font-size="19" class="muted" text-anchor="start" font-weight="normal">Full security guarantees</text>
+<text x="582" y="1141" font-size="18" class="muted" text-anchor="start" font-weight="normal">No practical implementation reported*</text>
+<rect x="1060" y="1045" width="476" height="113" rx="16" fill="#eff8f6" stroke="none" stroke-width="2"/>
+<text x="1080" y="1079" font-size="22" class="green" text-anchor="start" font-weight="bold">Our RRSS-based fPAKE</text>
+<text x="1080" y="1113" font-size="19" class="muted" text-anchor="start" font-weight="normal">Full UC security + practical efficiency</text>
+<text x="1080" y="1141" font-size="18" class="muted" text-anchor="start" font-weight="normal">Replaces RSS in the FastZIP codebase</text>
+<text x="64" y="1191" font-size="17" class="muted" text-anchor="start" font-weight="normal">FastZIP: Fomichev et al., MobiSys 2021. RRSS: Ameri &amp; Blocki, ACM CCS 2026.</text>
+<text x="64" y="1217" font-size="16" class="muted" text-anchor="start" font-weight="normal">Adapted two-car illustration; original FastZIP evaluates intra-car pairing. Traces and fingerprints are illustrative.</text>
+<text x="64" y="1241" font-size="15" class="muted" text-anchor="start" font-weight="normal">*Comparison as reported in the RRSS paper. Sensor context and online guessing determine pairing security.</text>
+</svg>

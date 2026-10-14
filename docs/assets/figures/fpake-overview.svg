@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="1176" viewBox="0 0 1600 1176" role="img" aria-labelledby="title desc">
+<title id="title">Fuzzy Password-Authenticated Key Exchange</title>
+<desc id="desc">Alice and Bob use close passwords to establish a shared session key over an adversarial network. Example passwords Pass#word and P@ss#word differ at one position. For honest execution, Hamming distance at most ell yields the same key except with negligible error; beyond ell the outputs are independent keys. A lower strip explains the RRSS connection: character-wise iPAKE produces valid or randomly corrupted shares, and RRSS recovers a shared secret from at least n minus ell valid shares before session-key derivation.</desc>
+<defs><ns0:g xmlns:ns0="http://www.w3.org/2000/svg" id="adversary">
+  <ns0:path d="M16 40 Q-2 26 6 4 Q14 23 29 23 M48 23 Q63 23 71 4 Q79 26 61 40" fill="#981e32" />
+  <ns0:path d="M14 29 Q9 20 9 13 Q17 25 24 26 M55 26 Q63 24 68 13 Q67 23 63 29" fill="#ec6570" />
+  <ns0:path d="M17 78 Q-2 85 0 100 H77 Q78 85 59 78" fill="#981e32" />
+  <ns0:path d="M9 39 Q14 22 39 22 Q64 22 69 39 Q76 65 59 80 Q49 90 39 90 Q29 90 19 80 Q2 65 9 39 Z" fill="#dc3e51" />
+  <ns0:path d="M61 32 Q76 51 64 71 Q55 85 39 87 Q62 91 71 69 Q79 46 61 32" fill="#ba273e" />
+  <ns0:path d="M15 46 Q25 43 33 51 Q23 61 15 54 Z M63 46 Q53 43 45 51 Q55 61 63 54 Z" fill="#fff9ec" />
+  <ns0:path d="M27 48 V54 M51 48 V54" stroke="#771b30" stroke-width="3.5" stroke-linecap="round" />
+  <ns0:path d="M14 42 L31 47 M64 42 L47 47" stroke="#771b30" stroke-width="4" stroke-linecap="round" />
+  <ns0:path d="M22 65 Q39 74 56 65 Q53 80 39 81 Q26 80 22 65 Z" fill="#771b30" />
+  <ns0:path d="M26 68 L30 76 L34 70 M44 70 L48 76 L52 68" fill="#fff9ec" />
+  <ns0:path d="M77 89 Q91 89 94 74" fill="none" stroke="#ba273e" stroke-width="7" stroke-linecap="round" />
+  <ns0:path d="M94 99 V12 M79 24 V36 Q79 47 94 47 Q109 47 109 36 V24" fill="none" stroke="#981e32" stroke-width="4" stroke-linecap="round" />
+  <ns0:path d="M94 2 L88 16 H100 Z M79 14 L73 28 H85 Z M109 14 L103 28 H115 Z" fill="#981e32" />
+ </ns0:g>
+<ns0:g xmlns:ns0="http://www.w3.org/2000/svg" id="key"><ns0:circle cx="0" cy="0" r="20" fill="none" stroke="#ca941c" stroke-width="10" /><ns0:path d="M19 0 H70 M52 0 V17 M67 0 V13" fill="none" stroke="#ca941c" stroke-width="10" stroke-linejoin="round" /></ns0:g>
+ <ns0:g xmlns:ns0="http://www.w3.org/2000/svg" id="dice" stroke="#a9583d" stroke-width="1.8" stroke-linejoin="round">
+  <ns0:path d="M4 13 L24 2 Q28 0 32 2 L54 13 Q58 15 54 18 L34 29 Q30 31 26 29 L4 18 Q0 15 4 13 Z" fill="#fffdf9" />
+  <ns0:path d="M0 20 Q0 16 4 18 L26 30 Q30 32 30 36 L30 57 Q30 62 26 60 L4 48 Q0 46 0 42 Z" fill="#f4c5aa" />
+  <ns0:path d="M34 30 L54 18 Q58 16 58 21 L58 42 Q58 46 54 48 L34 60 Q30 62 30 57 L30 36 Q30 32 34 30 Z" fill="#df9371" />
+  <ns0:g fill="#82412e" stroke="none">
+   <ns0:ellipse cx="20" cy="14" rx="3.5" ry="2" /><ns0:ellipse cx="38" cy="17" rx="3.5" ry="2" />
+   <ns0:ellipse cx="8" cy="26" rx="2.4" ry="3.2" transform="rotate(-24 8 26)" /><ns0:ellipse cx="22" cy="48" rx="2.4" ry="3.2" transform="rotate(-24 22 48)" />
+   <ns0:ellipse cx="15" cy="37" rx="2.4" ry="3.2" transform="rotate(-24 15 37)" />
+   <ns0:ellipse cx="38" cy="33" rx="2.4" ry="3.2" transform="rotate(24 38 33)" /><ns0:ellipse cx="50" cy="26" rx="2.4" ry="3.2" transform="rotate(24 50 26)" />
+   <ns0:ellipse cx="44" cy="39" rx="2.4" ry="3.2" transform="rotate(24 44 39)" />
+   <ns0:ellipse cx="38" cy="51" rx="2.4" ry="3.2" transform="rotate(24 38 51)" /><ns0:ellipse cx="50" cy="44" rx="2.4" ry="3.2" transform="rotate(24 50 44)" />
+  </ns0:g>
+ </ns0:g>
+ 
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto-start-reverse"><path d="M1 1 L8 4.5 L1 8" fill="none" stroke="#517caa" stroke-width="1.6"/></marker>
+</defs>
+<rect width="1600" height="1176" fill="white"/>
+<style>text{font-family:'DejaVu Sans',sans-serif;fill:#182a40}.muted{fill:#5d6f82}.math{font-family:'DejaVu Serif',serif}.green{fill:#12776b}.red{fill:#a8443a}.blue{fill:#246eb8}</style>
+<text x="64" y="69" font-size="37" class="" text-anchor="start" font-weight="bold">Fuzzy Password-Authenticated Key Exchange</text>
+<text x="65" y="109" font-size="22" class="muted" text-anchor="start" font-weight="normal">Establish a shared session key using passwords that are close, even when they are not identical.</text>
+<path d="M64 143 L1536 143" fill="none" stroke="#dae3ec" stroke-width="2.8"/>
+<text x="265" y="221" font-size="29" class="" text-anchor="middle" font-weight="bold">Alice</text>
+<rect x="68" y="245" width="394" height="115" rx="18" fill="#f6f9fd" stroke="#dce6f2" stroke-width="2"/>
+<text x="265" y="273" font-size="14" class="muted" text-anchor="middle" font-weight="bold">LOCAL PASSWORD</text>
+<rect x="91" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="108" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">P</text>
+<rect x="130" y="289" width="34" height="44" rx="8" fill="#fff0e7" stroke="#d98966" stroke-width="2"/>
+<text x="147" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">a</text>
+<rect x="169" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="186" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">s</text>
+<rect x="208" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="225" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">s</text>
+<rect x="247" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="264" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">#</text>
+<rect x="286" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="303" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">w</text>
+<rect x="325" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="342" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">o</text>
+<rect x="364" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="381" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">r</text>
+<rect x="403" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="420" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">d</text>
+<circle cx="265" cy="474" r="89" fill="#397fb5" opacity=".09"/>
+<path d="M200 551 Q200 494 265 494 Q330 494 330 551 Z" fill="#397fb5"/>
+<rect x="252" y="484" width="26" height="30" rx="10" fill="#efc8ac"/>
+<ellipse cx="265" cy="460" rx="37" ry="43" fill="#f6d9bf"/>
+<path d="M228 488 Q209 418 261 411 Q313 403 310 498 L298 487 L296 448 Q268 445 252 427 Q248 451 232 455 Z" fill="#493b4b"/>
+<circle cx="252" cy="465" r="3" fill="#493b4b"/>
+<circle cx="278" cy="465" r="3" fill="#493b4b"/>
+<path d="M255 481 Q265 490 276 481" stroke="#a16b5d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<use xlink:href="#key" transform="translate(229 602) scale(0.8)"/>
+<text x="265" y="657" font-size="29" class="math" text-anchor="middle" font-weight="normal">K<tspan baseline-shift="sub" font-size="70%">A</tspan></text>
+<text x="1335" y="221" font-size="29" class="" text-anchor="middle" font-weight="bold">Bob</text>
+<rect x="1138" y="245" width="394" height="115" rx="18" fill="#f6f9fd" stroke="#dce6f2" stroke-width="2"/>
+<text x="1335" y="273" font-size="14" class="muted" text-anchor="middle" font-weight="bold">LOCAL PASSWORD</text>
+<rect x="1161" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="1178" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">P</text>
+<rect x="1200" y="289" width="34" height="44" rx="8" fill="#fff0e7" stroke="#d98966" stroke-width="2"/>
+<text x="1217" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">@</text>
+<rect x="1239" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="1256" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">s</text>
+<rect x="1278" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="1295" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">s</text>
+<rect x="1317" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="1334" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">#</text>
+<rect x="1356" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="1373" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">w</text>
+<rect x="1395" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="1412" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">o</text>
+<rect x="1434" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="1451" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">r</text>
+<rect x="1473" y="289" width="34" height="44" rx="8" fill="#eaf3fd" stroke="#b4cbe0" stroke-width="2"/>
+<text x="1490" y="320" font-size="25" class="math" text-anchor="middle" font-weight="normal">d</text>
+<circle cx="1335" cy="474" r="89" fill="#327f76" opacity=".09"/>
+<path d="M1270 551 Q1270 494 1335 494 Q1400 494 1400 551 Z" fill="#327f76"/>
+<rect x="1322" y="484" width="26" height="30" rx="10" fill="#efc8ac"/>
+<ellipse cx="1335" cy="460" rx="37" ry="43" fill="#f6d9bf"/>
+<path d="M1299 469 Q1283 417 1323 412 Q1341 396 1373 424 L1372 461 L1361 441 Q1332 452 1309 439 Z" fill="#493b4b"/>
+<circle cx="1322" cy="465" r="3" fill="#493b4b"/>
+<circle cx="1348" cy="465" r="3" fill="#493b4b"/>
+<path d="M1325 481 Q1335 490 1346 481" stroke="#a16b5d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<use xlink:href="#key" transform="translate(1299 602) scale(0.8)"/>
+<text x="1335" y="657" font-size="29" class="math" text-anchor="middle" font-weight="normal">K<tspan baseline-shift="sub" font-size="70%">B</tspan></text>
+<use xlink:href="#adversary" transform="translate(660 177) scale(0.75)"/>
+<text x="775" y="220" font-size="19" class="red" text-anchor="start" font-weight="bold">Active network adversary</text>
+<text x="775" y="248" font-size="16" class="muted" text-anchor="start" font-weight="normal">Can observe and modify messages</text>
+<path d="M800 278 L800 332" fill="none" stroke="#b65b64" stroke-width="2.8" stroke-dasharray="7 7"/>
+<path d="M558 542 C495 549 465 510 487 473 C448 429 476 377 532 375 C532 325 586 306 632 337 C660 302 716 310 737 333 C781 294 838 312 858 340 C906 310 970 329 970 372 C1032 357 1083 400 1059 447 C1099 491 1074 539 1020 542 C1007 587 944 597 906 572 C861 610 799 593 779 574 C728 612 667 588 651 567 C612 594 565 579 558 542 Z" fill="#edf5fd" stroke="#95b8d8" stroke-width="2.5"/>
+<text x="780" y="385" font-size="32" class="blue" text-anchor="middle" font-weight="bold">fPAKE</text>
+<path d="M572 422 L991 422" fill="none" stroke="#517caa" stroke-width="2.8" marker-end="url(#arrow)"/>
+<path d="M991 463 L572 463" fill="none" stroke="#517caa" stroke-width="2.8" marker-end="url(#arrow)"/>
+<path d="M572 504 L991 504" fill="none" stroke="#517caa" stroke-width="2.8" marker-end="url(#arrow)"/>
+<text x="780" y="548" font-size="19" class="muted" text-anchor="middle" font-weight="normal">Protocol messages</text>
+<path d="M471 465 L363 465" fill="none" stroke="#517caa" stroke-width="2.8" marker-end="url(#arrow)"/>
+<path d="M1095 465 L1236 465" fill="none" stroke="#517caa" stroke-width="2.8" marker-end="url(#arrow)"/>
+<text x="800" y="633" font-size="20" class="muted" text-anchor="middle" font-weight="normal">Example: one differing character</text>
+<text x="800" y="664" font-size="26" class="math green" text-anchor="middle" font-weight="normal"><tspan fill="#c43d3d">⟨</tspan>n = 9 <tspan fill="#c43d3d">||</tspan> ℓ = 1 <tspan fill="#c43d3d">||</tspan> K<tspan baseline-shift="sub" font-size="70%">A</tspan> = K<tspan baseline-shift="sub" font-size="70%">B</tspan><tspan fill="#c43d3d">⟩</tspan></text>
+<text x="64" y="715" font-size="15" class="muted" text-anchor="start" font-weight="bold">HONEST EXECUTION WITHOUT MESSAGE TAMPERING</text>
+<rect x="64" y="730" width="727" height="81" rx="14" fill="#eff8f6" stroke="#d5eae4" stroke-width="2"/>
+<text x="87" y="765" font-size="25" class="math green" text-anchor="start" font-weight="normal">Ham(pwd<tspan baseline-shift="sub" font-size="70%">A</tspan>, pwd<tspan baseline-shift="sub" font-size="70%">B</tspan>) ≤ ℓ</text>
+<text x="87" y="792" font-size="19" class="green" text-anchor="start" font-weight="normal">Same session key, except with negligible error</text>
+<rect x="810" y="730" width="726" height="81" rx="14" fill="#f8f5fc" stroke="#e5dcef" stroke-width="2"/>
+<text x="833" y="765" font-size="25" class="math" text-anchor="start" font-weight="normal">Ham(pwd<tspan baseline-shift="sub" font-size="70%">A</tspan>, pwd<tspan baseline-shift="sub" font-size="70%">B</tspan>) &gt; ℓ</text>
+<text x="833" y="792" font-size="19" class="muted" text-anchor="start" font-weight="normal">Independent session keys, up to negligible error</text>
+<text x="64" y="860" font-size="17" class="blue" text-anchor="start" font-weight="bold">HOW RRSS ENABLES THIS CONSTRUCTION</text>
+<text x="1535" y="860" font-size="16" class="muted" text-anchor="end" font-weight="normal">Construction intuition</text>
+<rect x="64" y="879" width="1472" height="190" rx="18" fill="#f6f9fc" stroke="#dce6f2" stroke-width="2"/>
+<text x="87" y="919" font-size="22" class="" text-anchor="start" font-weight="bold">iPAKE + share masking</text>
+<text x="87" y="954" font-size="18" class="blue" text-anchor="start" font-weight="normal">Matching characters → valid share</text>
+<text x="87" y="987" font-size="18" class="red" text-anchor="start" font-weight="normal">Mismatch → uniform random share</text>
+<path d="M431 947 L480 947" fill="none" stroke="#517caa" stroke-width="2.8" marker-end="url(#arrow)"/>
+<rect x="494" y="921" width="23" height="45" rx="6" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="505" y="951" font-size="18" class="blue" text-anchor="middle" font-weight="normal">•</text>
+<rect x="523" y="921" width="23" height="45" rx="6" fill="#fff0e7" stroke="#d98966" stroke-width="2"/>
+<text x="534" y="951" font-size="18" class="red" text-anchor="middle" font-weight="normal">?</text>
+<rect x="552" y="921" width="23" height="45" rx="6" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="563" y="951" font-size="18" class="blue" text-anchor="middle" font-weight="normal">•</text>
+<rect x="581" y="921" width="23" height="45" rx="6" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="592" y="951" font-size="18" class="blue" text-anchor="middle" font-weight="normal">•</text>
+<rect x="610" y="921" width="23" height="45" rx="6" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="621" y="951" font-size="18" class="blue" text-anchor="middle" font-weight="normal">•</text>
+<rect x="639" y="921" width="23" height="45" rx="6" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="650" y="951" font-size="18" class="blue" text-anchor="middle" font-weight="normal">•</text>
+<rect x="668" y="921" width="23" height="45" rx="6" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="679" y="951" font-size="18" class="blue" text-anchor="middle" font-weight="normal">•</text>
+<rect x="697" y="921" width="23" height="45" rx="6" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="708" y="951" font-size="18" class="blue" text-anchor="middle" font-weight="normal">•</text>
+<rect x="726" y="921" width="23" height="45" rx="6" fill="#eaf3fd" stroke="#90b8de" stroke-width="2"/>
+<text x="737" y="951" font-size="18" class="blue" text-anchor="middle" font-weight="normal">•</text>
+<text x="621" y="989" font-size="18" class="muted" text-anchor="middle" font-weight="normal">n candidate shares</text>
+<text x="621" y="1019" font-size="17" class="muted" text-anchor="middle" font-weight="normal">Bob does not know which shares</text>
+<text x="621" y="1045" font-size="17" class="muted" text-anchor="middle">are <tspan fill="#246eb8">valid</tspan>/<tspan fill="#bd563b">invalid</tspan>. <tspan fill="#126657" font-weight="bold">RRSS</tspan> identifies them.</text>
+<path d="M763 947 L809 947" fill="none" stroke="#517caa" stroke-width="2.8" marker-end="url(#arrow)"/>
+<text x="837" y="919" font-size="23" class="green" text-anchor="start" font-weight="bold">RRSS</text>
+<text x="837" y="952" font-size="21" class="math green" text-anchor="start" font-weight="normal">≥ t = n − ℓ valid shares</text>
+<text x="837" y="987" font-size="18" class="muted" text-anchor="start" font-weight="normal">Recover the shared secret</text>
+<path d="M1144 947 L1190 947" fill="none" stroke="#517caa" stroke-width="2.8" marker-end="url(#arrow)"/>
+<text x="1216" y="936" font-size="21" class="" text-anchor="start" font-weight="bold">Session-key derivation</text>
+<text x="1216" y="975" font-size="23" class="math green" text-anchor="start" font-weight="normal">Shared key K</text>
+<text x="64" y="1110" font-size="19" class="" text-anchor="start" font-weight="bold">Password privacy:</text>
+<text x="270" y="1110" font-size="19" class="muted" text-anchor="start" font-weight="normal">an unsuccessful guess reveals no matching positions and gives no offline password test.</text>
+<text x="64" y="1142" font-size="16" class="muted" text-anchor="start" font-weight="normal">Online guessing remains possible. Share colors are illustrative.</text>
+</svg>

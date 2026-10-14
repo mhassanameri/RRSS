@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Random Robust Secret Sharing with Perfect Privacy and its Applications — ACM CCS 2026. Paper, code, and applications to fuzzy PAKE and conditional encryption.">
+  <meta name="theme-color" content="#153e42">
+  <meta property="og:title" content="RRSS — Random Robust Secret Sharing with Perfect Privacy">
+  <meta property="og:description" content="ACM CCS 2026 · Perfect privacy under random share corruption, with applications to fuzzy PAKE and conditional encryption.">
+  <meta property="og:type" content="website">
+  <!-- After deployment, optionally add og:url and an absolute URL to a PNG og:image. -->
+  <title>RRSS | ACM CCS 2026</title>
+  <style>
+:root{--ink:#18383e;--muted:#596d73;--green:#176849;--blue:#267cb4;--line:#dce5e4;--paper:#fcfdfb;--tint:#f1f6f4;--red:#c8463d}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:17px;line-height:1.7}a{color:var(--blue);text-underline-offset:4px}a:hover{color:var(--green)}a:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:5px}.container{width:min(1120px,calc(100% - 64px));margin-inline:auto}.site-header{background:rgba(252,253,251,.97);border-bottom:1px solid var(--line)}.nav{display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:82px}.wordmark{text-decoration:none;color:var(--ink);font-size:24px;font-weight:800;letter-spacing:-1px}.wordmark span{font-size:12px;letter-spacing:1px;color:var(--muted);font-weight:600;margin-left:12px}.nav-links{display:flex;gap:28px}.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:600}.skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10}.skip:focus{top:10px}.hero{padding-top:74px;padding-bottom:30px}.eyebrow{font-size:12px;font-weight:750;letter-spacing:1.7px;text-transform:uppercase;color:var(--green);margin:0 0 20px}.dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:8px}h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,4.6vw,62px);line-height:1.12;font-weight:500;letter-spacing:-1.8px;max-width:1060px;margin:0 0 28px}h1 span{color:var(--green)}.authors{font-size:20px;margin:0}.authors span{margin:0 14px;color:#84948f}.affiliation{margin:4px 0 24px;color:var(--muted);font-size:15px}.lead{font-size:21px;max-width:800px;line-height:1.65;color:var(--muted)}.actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin:30px 0 52px}.button{padding:12px 20px;border:1px solid #a9bdb7;border-radius:6px;font-size:15px;font-weight:650;text-decoration:none;color:var(--ink);display:inline-flex;align-items:center;gap:22px}.button.primary{background:var(--ink);border-color:var(--ink);color:white}.button:hover{background:#e6efea}.button.primary:hover{background:var(--green)}.text-link{font-size:15px;margin-left:8px}.hero-facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);padding:26px 0;gap:34px}.hero-facts strong{display:block;font-size:18px}.hero-facts span{display:block;color:var(--muted);font-size:14px;margin-top:5px}.section{padding-block:70px}.section-heading{margin-bottom:30px}h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(29px,3.2vw,42px);font-weight:500;line-height:1.2;letter-spacing:-.8px;margin:0 0 16px}.section-deck{color:var(--muted);max-width:750px;margin:0}.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px}.intro-grid p{margin-top:0}.large-copy{font-size:21px;line-height:1.7}.large-copy strong{font-weight:600}.note{font-size:14px;color:var(--muted)}.figure{margin:30px 0;background:white;border:1px solid var(--line);border-radius:10px;overflow:hidden}.figure>a{display:block;padding:18px}.figure img{display:block;width:100%;height:auto}.figure figcaption{border-top:1px solid var(--line);padding:15px 22px;font-size:13px;color:var(--muted);line-height:1.6}.figure figcaption span{font-weight:750;color:var(--ink);margin-right:10px}details{border-top:1px solid var(--line);padding:18px 0}summary{cursor:pointer;font-weight:650}details p{max-width:950px}.abstract{margin-top:10px}.tinted{background:var(--tint);border-block:1px solid var(--line)}.application+.application{border-top:1px solid #cbdad5;margin-top:58px;padding-top:55px}.application-heading{display:flex;align-items:flex-start;gap:20px}.number{display:grid;place-items:center;background:#deebe5;color:var(--green);font-size:19px;font-weight:750;border-radius:6px;min-width:42px;height:42px;margin-top:4px}h3{font-size:25px;line-height:1.35;margin:0 0 8px;letter-spacing:-.5px}.application-heading p{margin:0 0 12px;color:var(--muted)}.application>p{max-width:1000px}.green{color:var(--green)}.red{color:var(--red)}.application-example{margin-top:30px}.comparison{display:grid;grid-template-columns:1fr 50px 1fr;gap:20px;align-items:center;background:white;padding:28px;border:1px solid var(--line);border-radius:8px;margin-top:28px}.comparison div>span{font-size:13px;color:var(--muted)}.comparison strong{display:block;font-family:Georgia,serif;font-size:33px;margin:8px 0}.comparison p{font-size:14px;margin:0}.comparison-arrow{font-size:30px;color:var(--muted)}sup{font-size:.65em}.related{font-size:14px}.related>span{margin:0 8px}.resource-list{border-top:1px solid var(--line)}.resource-list>a{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:25px 4px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}.resource-list>a:hover{background:var(--tint)}.resource-list h3{font-size:21px}.resource-list p{font-size:15px;margin:0;color:var(--muted)}.resource-list>a>span{font-size:27px;color:var(--green)}.citation-section{padding-top:10px}.citation-box{background:#edf2ef;border:1px solid var(--line);border-radius:8px;padding:24px;margin-top:25px}pre{overflow-x:auto;margin:0;font-size:13px;line-height:1.8;tab-size:2}.footer{padding-block:28px 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:25px;font-size:13px;color:var(--muted)}@media(max-width:760px){.container{width:calc(100% - 36px)}.nav{flex-direction:column;align-items:flex-start;padding-block:17px;gap:12px}.nav-links{gap:22px;flex-wrap:wrap}.hero{padding-top:42px}h1{letter-spacing:-.8px}.eyebrow{font-size:10px}.authors{font-size:17px}.authors span{margin:0 7px}.lead{font-size:18px}.hero-facts{grid-template-columns:1fr;gap:20px}.section{padding-block:45px}.intro-grid{grid-template-columns:1fr;gap:8px}.large-copy{font-size:19px}.figure>a{padding:5px}.figure figcaption{padding:12px 15px}.comparison{grid-template-columns:1fr;padding:22px;gap:10px}.comparison-arrow{transform:rotate(90deg);justify-self:start}.footer{flex-direction:column;gap:8px}h3{font-size:22px}.citation-section{padding-top:10px}.citation-box{padding:16px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{.site-header,.actions,.skip{display:none}.container{width:100%}.section,.hero{padding-block:20px}details:not([open]){display:none}.figure,.comparison{break-inside:avoid}body{font-size:11pt}.footer{font-size:9pt}}
+
+
+html{scroll-padding-top:20px}
+body{font-size:16px;line-height:1.55}
+.container{width:min(1120px,calc(100% - 40px))}
+.hero{text-align:center;padding-top:28px;padding-bottom:12px}
+h1{font-size:clamp(32px,4vw,49px);max-width:1000px;margin:0 auto 16px}
+.eyebrow{margin-bottom:10px}
+.authors{font-size:19px}.authors a{color:inherit}
+.affiliation{margin:3px 0 10px}
+.lead{font-size:18px;line-height:1.5;margin:12px auto;max-width:900px}
+.actions{justify-content:center;gap:8px;margin:16px 0}
+.button{padding:7px 12px;font-size:13px;gap:5px;border-radius:6px}
+.project-toc{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px;margin:18px auto 20px;font-size:19px;font-weight:750;line-height:1.45}
+.project-toc a{text-decoration:none;padding:8px 12px;border-radius:7px;border:1px solid currentColor}
+.project-toc .primitive{color:#176849;background:#edf7f1}
+.project-toc .fpake{color:#226fa7;background:#edf5fc}
+.project-toc .ce{color:#7a479a;background:#f6effa}
+.project-toc .separator{color:#c43d3d}
+.hero-facts{padding:13px 0;gap:18px}.hero-facts strong{font-size:16px}.hero-facts span{margin-top:2px}
+.section{padding-block:26px}.section-heading{margin-bottom:14px}
+h2{font-size:31px;margin-bottom:8px}h3{font-size:23px}
+.intro-grid{gap:28px}.large-copy{font-size:18px;line-height:1.55}
+p{margin-block:10px}
+.figure{margin:16px 0}.figure>a{padding:5px}
+.figure img{max-height:670px;object-fit:contain}
+.figure figcaption{padding:8px 14px;line-height:1.4}
+.application+.application{margin-top:26px;padding-top:24px}
+.application-heading{gap:12px}.application-heading p{margin-bottom:5px}
+.application-example{margin-top:16px;padding:12px 0}
+.comparison{padding:14px 20px;margin-top:16px;gap:12px}
+.comparison strong{margin:4px 0}
+.math-cost{display:flex!important;align-items:center;gap:3px}
+.binomial{display:inline-flex;align-items:center;vertical-align:middle;line-height:1}
+.binomial .paren{font-size:1.9em;font-weight:400}
+.binomial .stack{display:inline-flex;flex-direction:column;align-items:center;gap:3px;font-size:.66em;padding:0 2px}
+.citation-section{padding-block:22px}.citation-box{padding:14px;margin-top:10px}
+.citation-box pre{line-height:1.5}
+.footer{padding-block:16px}
+@media(max-width:760px){
+.container{width:calc(100% - 28px)}.hero{padding-top:22px}
+.project-toc{font-size:16px;gap:7px}.project-toc a{padding:7px 9px}
+.project-toc .separator{display:none}
+.hero-facts{grid-template-columns:1fr;gap:8px;text-align:left}
+.hero-facts strong,.hero-facts span{display:inline}
+.hero-facts strong{margin-right:6px}
+.section{padding-block:20px}.intro-grid{gap:5px}
+.comparison{grid-template-columns:1fr 24px 1fr;padding:12px;gap:8px}
+.comparison-arrow{transform:none}.comparison strong{font-size:28px}
+.comparison div>span,.comparison p{font-size:12px}
+}
+
+
+/* Resource cards and permanently visible supporting material. */
+.conference{font-size:13px;line-height:1.5;color:var(--muted);margin:-3px auto 15px;max-width:900px}
+.actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:760px;margin:24px auto 28px}
+.actions .button{min-height:76px;padding:15px 18px;justify-content:center;gap:11px;font-size:16px;font-weight:650;border-radius:7px;background:white;line-height:1.45;transition:background .15s,transform .15s}
+.actions .resource-blue{color:#1455bd;border-color:#8aacff}
+.actions .resource-dark{color:#18212d;border-color:#18212d}
+.actions .resource-green{color:#087632;border-color:#54b777}
+.actions .resource-amber{color:#a66000;border-color:#d99a33}
+.actions .resource-blue:hover{background:#edf3ff}.actions .resource-dark:hover{background:#edf0f4}.actions .resource-green:hover{background:#edf8f0}.actions .resource-amber:hover{background:#fff6e5}
+.resource-icon{width:20px;height:20px;flex-shrink:0}
+.toc-arrow{display:inline-block;font-size:.85em;margin-left:4px}
+.abstract{border-top:1px solid var(--line);padding:18px 0}
+.always-visible-heading{font-family:inherit;font-size:16px;font-weight:650;letter-spacing:0;margin:0 0 10px;line-height:1.5}
+@media(max-width:540px){.actions{gap:8px}.actions .button{padding:12px 8px;min-height:86px;font-size:13px;gap:7px;flex-direction:column}.resource-icon{width:18px;height:18px}.conference{font-size:12px}}
+
+.secondary-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:502px;margin:-14px auto 28px}
+.secondary-actions .button{min-height:64px;padding:14px 16px;justify-content:center;gap:10px;font-size:15px;line-height:1.4;background:white}
+.secondary-actions .resource-prior{color:#704194;border-color:#b994d2}.secondary-actions .resource-citation{color:#176849;border-color:#70a58d}
+.secondary-actions .resource-prior:hover{background:#f6effa}.secondary-actions .resource-citation:hover{background:#edf7f1}
+@media(max-width:540px){.secondary-actions{gap:8px}.secondary-actions .button{font-size:13px;padding:12px 8px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<main id="main">
+  <section class="hero container">
+    <h1>Random Robust Secret Sharing <span>with Perfect Privacy</span> and its Applications</h1>
+    <p class="conference">ACM Conference on Computer and Communications Security, (ACM-CCS 2026)</p>
+    <p class="authors">Mohammad Hassan Ameri, <a href="https://www.cs.purdue.edu/homes/jblocki/">Jeremiah Blocki</a></p>
+    <p class="affiliation">Purdue University</p>
+    <p class="lead">Recover a secret from randomly corrupted shares --- while preserving perfect privacy. A foundation for practical fuzzy password authentication and conditional encryption.</p>
+    <div class="actions" aria-label="Paper and project resources">
+      <a class="button resource-blue" href="https://eprint.iacr.org/2026/653"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 16h7"/></svg><span>Full Version-ePrint</span></a>
+      <a class="button resource-blue" href="https://doi.org/10.1145/3830454.3846816"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3 10 14M10 5H4v15h15v-6"/></svg><span>ACM CCS26 Version</span></a>
+      <a class="button resource-blue" href="assets/RRSS%20Presentation%20Slides.pdf"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="13" rx="1"/><path d="M12 16v5M7 21l5-5 5 5M7 8h10M7 11h6"/></svg><span>Slides</span></a>
+      <a class="button resource-dark" href="https://github.com/mhassanameri/RRSS"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path fill="currentColor" stroke="none" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.07c-3.1.67-3.76-1.32-3.76-1.32-.51-1.28-1.24-1.62-1.24-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.7 1.15 1.7 1.15.99 1.7 2.6 1.21 3.24.93.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.24-5.07-5.49 0-1.21.43-2.2 1.14-2.98-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.56 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.53.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.26-2.6 5.21-5.08 5.49.4.35.75 1.02.75 2.06v3.04c0 .3.2.65.76.54A11.1 11.1 0 0 0 12 .9z"/></svg><span>GitHub</span></a>
+      <a class="button resource-green" href="https://github.com/mhassanameri/RRSS/blob/main/artifact/README.md"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5zM3 8v10l9 5 9-5V8M12 13v10M7.5 5.5l9 5"/></svg><span>Artifact</span></a>
+      <a class="button resource-amber" href="https://www.cs.purdue.edu/homes/mameriek/"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8M5 9v12h14V9M9 21v-8h6v8"/></svg><span>Author Homepage</span></a>
+    </div>
+    <div class="secondary-actions" aria-label="Prior work and citation">
+      <a class="button resource-prior" href="https://mhassanameri.github.io/CondEncCCS24Artifact/"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5H4v15h15v-5M14 3h7v7M21 3 10 14"/></svg><span>Prior Work: CCS 2024</span></a>
+      <a class="button resource-citation" href="#citation"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4H5v16h3M16 4h3v16h-3M12 7v10M9 14l3 3 3-3"/></svg><span>BibTeX</span></a>
+    </div>
+    <nav class="project-toc" aria-label="Explore the research">
+      <span class="separator" aria-hidden="true">⟨</span>
+      <a class="primitive" href="#overview">RRSS: The cryptographic primitive <span class="toc-arrow" aria-hidden="true">↓</span></a>
+      <span class="separator" aria-hidden="true">||</span>
+      <a class="fpake" href="#fpake">Application 1: fPAKE <span class="toc-arrow" aria-hidden="true">↓</span></a>
+      <span class="separator" aria-hidden="true">||</span>
+      <a class="ce" href="#conditional-encryption">Application 2: Conditional encryption <span class="toc-arrow" aria-hidden="true">↓</span></a>
+      <span class="separator" aria-hidden="true">⟩</span>
+    </nav>
+    <div class="hero-facts" aria-label="Main contributions">
+      <div><strong>Perfect privacy</strong><span>Any ≤ t − 1 shares are jointly uniform.</span></div>
+      <div><strong>Random robustness</strong><span>Recover despite up to n − t random corruptions.</span></div>
+      <div><strong>Two applications</strong><span>Fuzzy PAKE and conditional encryption.</span></div>
+    </div>
+  </section>
+
+  <section id="overview" class="section container">
+    <div class="section-heading"><p class="eyebrow">01 / The primitive</p><h2>Privacy without a robustness gap.</h2></div>
+    <div class="intro-grid"><p class="large-copy">Shamir secret sharing offers perfect privacy, but corrupted shares can prevent reconstruction. <strong>RRSS preserves that privacy and adds robustness against random share corruption.</strong></p><div><p>An adversary chooses up to n − t positions; the shares at those positions are replaced by independent uniform random shares. RRSS identifies enough valid shares to recover the secret with high probability.</p><p class="note">The model matters: random replacement is weaker than arbitrary malicious corruption. It is exactly the structure that arises from character mismatches in our applications.</p></div></div>
+    <figure class="figure"><a href="assets/figures/rrss-overview.svg" aria-label="Open the RRSS figure at full size"><img src="assets/figures/rrss-overview.svg" alt="RRSS share generation, random corruption, identification of valid shares, and secret recovery." width="1600" height="1000"></a><figcaption><span>Figure 1</span> Random Robust Secret Sharing. The reconstruction threshold is t; the corruption budget is n − t.</figcaption></figure>
+    <div class="abstract"><h3 class="always-visible-heading">Read the research summary</h3><p>We introduce Random Robust Secret Sharing with Perfect Privacy (RRSS). The construction preserves (t − 1)-perfect privacy while recovering a secret with high probability when an arbitrary subset of up to n − t shares is independently replaced at random. We use RRSS to construct a practically efficient fuzzy password-authenticated key exchange protocol for Hamming distance and an efficient conditional encryption scheme for arbitrary Hamming-distance thresholds. Implementations evaluate the practicality of both applications.</p></div>
+  </section>
+
+  <section id="applications" class="tinted"><div class="container section">
+    <div class="section-heading"><p class="eyebrow">02 / Applications</p><h2>When mismatches become random shares.</h2><p class="section-deck">The same identification step turns noisy inputs into useful cryptographic building blocks.</p></div>
+    <article class="application" id="fpake">
+      <div class="application-heading"><span class="number">A</span><div><h3>Fuzzy password-authenticated key exchange</h3><p>Establish a shared session key using passwords that are close in Hamming distance.</p></div></div>
+      <p>Matching characters yield valid shares; mismatches yield random shares. The receiving party does not initially know which shares are valid. <strong class="green">RRSS identifies them</strong>, enabling reconstruction when the passwords are sufficiently close. The protocol provides full UC security.</p>
+      <figure class="figure"><a href="assets/figures/fpake-overview.svg" aria-label="Open the fuzzy PAKE figure at full size"><img loading="lazy" src="assets/figures/fpake-overview.svg" alt="Alice and Bob use similar passwords and RRSS to establish a session key." width="1600" height="1100"></a><figcaption><span>Figure 2</span> RRSS-based fuzzy PAKE: valid shares from matches, random shares from mismatches.</figcaption></figure>
+      <div class="application-example"><h3 class="always-visible-heading">Application example: pairing from sensor fingerprints</h3><p>Similar physical measurements can produce nearby binary fingerprints, which serve as fuzzy passwords. We integrate RRSS into the FastZIP fPAKE implementation and evaluate it using the original fingerprint datasets.</p><figure class="figure"><a href="assets/figures/fastzip-application.svg" aria-label="Open the sensor fingerprint application figure at full size"><img loading="lazy" src="assets/figures/fastzip-application.svg" alt="Illustrative nearby-car scenario with sensor fingerprints and secure traffic-data exchange." width="1600" height="1250"></a><figcaption><span>Figure 3</span> Adapted two-car illustration. Original FastZIP evaluates intra-car device pairing; this illustration is not a claim of a deployed inter-car system.</figcaption></figure></div>
+    </article>
+    <article class="application" id="conditional-encryption">
+      <div class="application-heading"><span class="number">B</span><div><h3>Conditional encryption for Hamming distance</h3><p>Release a payload only when an encrypted message is close to a control message.</p></div></div>
+      <p>Alice encrypts m<sub>1</sub>. Bob combines that ciphertext with a control message m<sub>2</sub> and payload m<sub>3</sub>. Alice recovers the payload when Ham(m<sub>1</sub>, m<sub>2</sub>) ≤ ℓ; otherwise decryption returns ⊥, except with negligible error. RRSS replaces a combinatorial search for valid shares with efficient identification.</p>
+      <div class="comparison" role="group" aria-label="Conditional decryption complexity comparison"><div><span>Ameri &amp; Blocki · CCS 2024</span><strong class="red math-cost" aria-label="Omega of n choose ell">Ω<span class="binomial" aria-hidden="true"><span class="paren">(</span><span class="stack"><span>n</span><span>ℓ</span></span><span class="paren">)</span></span></strong><p>Search over candidate subsets</p></div><span class="comparison-arrow" aria-hidden="true">→</span><div><span>RRSS-based scheme · CCS 2026</span><strong class="green">O(n<sup>ω</sup>)</strong><p>Identify valid shares using linear algebra</p></div></div>
+      <p class="note">The binomial coefficient denotes “n choose ℓ”; ω is the matrix multiplication exponent. This compares conditional decryption costs; see the paper for ciphertext-size tradeoffs and benchmarks.</p>
+      <figure class="figure"><a href="assets/figures/conditional-encryption.svg" aria-label="Open the conditional encryption figure at full size"><img loading="lazy" src="assets/figures/conditional-encryption.svg" alt="Conditional encryption workflow between Alice and Bob, its RRSS connection, and the decryption complexity comparison." width="1600" height="1350"></a><figcaption><span>Figure 4</span> Conditional encryption with RRSS-based share identification and recovery.</figcaption></figure>
+      <p class="related">Continuing our CCS 2024 work: <a href="https://mhassanameri.github.io/CondEncCCS24Artifact/">Conditional Encryption project ↗</a> <span aria-hidden="true">·</span> <a href="https://github.com/mhassanameri/CondEncCCS24Artifact">2024 artifact ↗</a></p>
+    </article>
+  </div></section>
+
+  <section id="citation" class="section container citation-section"><div class="section-heading"><p class="eyebrow">04 / Reference</p><h2>Cite this work.</h2></div><p>Mohammad Hassan Ameri and Jeremiah Blocki. <em>Random Robust Secret Sharing with Perfect Privacy and its Applications.</em> ACM CCS, 2026.</p><div class="citation-box"><h3 class="always-visible-heading">BibTeX</h3><pre><code>@inproceedings{ameri2026rrss,
+  author    = {Mohammad Hassan Ameri and Jeremiah Blocki},
+  title     = {Random Robust Secret Sharing with Perfect Privacy
+               and its Applications},
+  booktitle = {Proceedings of the ACM SIGSAC Conference
+               on Computer and Communications Security},
+  year      = {2026},
+  doi       = {10.1145/3830454.3846816},
+  url       = {https://eprint.iacr.org/2026/653}
+}</code></pre></div></section>
+</main>
+<footer class="container footer"><span>RRSS · Purdue University · ACM CCS 2026</span><a href="https://github.com/mhassanameri/RRSS">Project repository ↗</a></footer>
+</body>
+</html>
